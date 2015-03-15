@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{title}</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico in the root directory -->
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="font/font-awesome.min.css">
+		<link rel="stylesheet" href="css/jquery-ui.min.css">
+		<link rel="stylesheet" href="css/jquery-ui.theme.css">
+		<link rel="stylesheet" href="css/jquery.bxslider.css">
+		<link rel="stylesheet" href="css/main.css">
+		<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="main-gallery__helper"></div>
+		
+		<div class="main-gallery">
+			<div class="main-gallery__content">
+				<div class="main-gallery__content-slider">
+					<div class="main-gallery__content-slider-item" style="background: red;">
+						<div class="main-gallery__content-inner">
+							<a href="#" class="main-gallery__content-link">
+								<img src="img/slider/slide-1.jpg" alt="">
+							</a>
+							
+							<div class="main-gallery__content-slider-item-body">
+								<div class="main-gallery__title">From the Valley of the Deer</div>
+								<div class="main-gallery__author">by Jullian McDonald</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="main-gallery__content-slider-item" style="background: green;">
+						<div class="main-gallery__content-inner">
+							<a href="#" class="main-gallery__content-link">
+								<img src="img/slider/slide-2.jpg" alt="">
+							</a>
+							
+							<div class="main-gallery__content-slider-item-body">
+								<div class="main-gallery__title">From the Valley of the Deer 2</div>
+								<div class="main-gallery__author">by Jullian McDonald</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="main-gallery__content-slider-item" style="background: yellow;">
+						<div class="main-gallery__content-inner">
+							<a href="#" class="main-gallery__content-link">
+								<img src="img/slider/slide-3.jpg" alt="">
+							</a>
+							
+							<div class="main-gallery__content-slider-item-body">
+								<div class="main-gallery__title">From the Valley of the Deer 3</div>
+								<div class="main-gallery__author">by Jullian McDonald</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="main-gallery__content-slider-item" style="background: blue;">
+						<div class="main-gallery__content-inner">
+							<a href="#" class="main-gallery__content-link">
+								<img src="img/slider/slide-4.jpg" alt="">
+							</a>
+							
+							<div class="main-gallery__content-slider-item-body">
+								<div class="main-gallery__title">From the Valley of the Deer 4</div>
+								<div class="main-gallery__author">by Jullian McDonald</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="main-gallery__pager">
+				<menu id="main-gallery__pager">
+					<a href="#" data-slide-index="0" class="active"></a>
+					<a href="#" data-slide-index="1"></a>
+					<a href="#" data-slide-index="2"></a>
+					<a href="#" data-slide-index="3"></a>
+				</menu>
+			</div>
+			
+			<div class="container main-gallery__header">
+				<div class="main-gallery__header-logo"></div>
+				
+				<div class="main-gallery__header-form">
+					<form>
+						<input type="search" placeholder="Search or filter by keyword">
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="main-gallery__footer">
+			<div class="container">
+				<ul class="main-gallery__titles">
+					<li data-slide-index="0" class="active">
+						<strong>Work Title 1</strong>
+						<span>Artist Credit 1</span>
+					</li>
+					
+					<li data-slide-index="1">
+						<strong>Work Title 2</strong>
+						<span>Artist Credit 2</span>
+					</li>
+					
+					<li data-slide-index="2">
+						<strong>Work Title 3</strong>
+						<span>Artist Credit 3</span>
+					</li>
+					
+					<li data-slide-index="3">
+						<strong>Work Title 4</strong>
+						<span>Artist Credit 4</span>
+					</li>
+				</ul>
+				
+				<span class="show-site"></span>
+			</div>
+		</div>
+		
+		<div id="wrap">
+			<div class="header-helper header-helper_fixed"></div>
+			
+			<header class="header header_front header_fixed">
+				<div class="container">
+					<button type="button" class="nav-toggle" data-toggle=".header__nav"></button>
+					
+					<nav class="header__nav">
+						<div class="nav-support header__nav-item">
+							<div class="nav-title">We Support</div>
+							
+							<ul class="drop-list">
+								<li><a href="#">How we commission</a></li>
+								<li><a href="#">Enabling foundations</a></li>
+								<li><a href="#">Our mission statement</a></li>
+								<li><a href="#">Our history</a></li>
+								<li><a href="#">Support us</a></li>
+							</ul>
+						</div>
+						
+						<div class="nav-publish header__nav-item">
+							<div class="nav-title">We Publish</div>
+							
+							<ul class="drop-list">
+								<li><a href="#">Editorial</a></li>
+								<li><a href="#">Networked Music Review</a></li>
+								<li><a href="#">Networked Perfomance</a></li>
+								<li><a href="#">Special Features</a></li>
+								<li><a href="#">Subscribe</a></li>
+							</ul>
+						</div>
+						
+						<div class="nav-organize header__nav-item">
+							<div class="nav-title">We Organize</div>
+							
+							<ul class="drop-list">
+								<li><a href="#">Upgrade! Boston</a></li>
+								<li><a href="#">Exhibitions</a></li>
+								<li><a href="#">Special Events</a></li>
+							</ul>
+						</div>
+						
+						<div class="header__nav-item">
+							<a href="#" class="social-envelope"></a>
+							<a href="#" class="social-fb"></a>
+							<a href="#" class="social-tw"></a>
+							<a href="#" class="social-git"></a>
+						</div>
+					</nav>
+					
+					<div class="header__search">
+						<form>
+							<input type="search" placeholder="Search or filter">
+							<button type="submit"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>
+			</header>
+			
+			<div id="content">
+				<section class="commission">
+					<div class="commission__work">
+						<img src="img/i4.jpg" alt="">
+					</div>
+					
+					<h1 class="commission__title">From the Valley of the Deer</h1>
+					<div class="commission__author">by Jillian Mcdonald</div>
+					
+					<div class="commission__year"><span>2014</span></div>
+					
+					<div class="commission__small-desc">with funds from the Jerome Foundation, <br>now celebrating 50 years of the creative spirit of emerging artists</div>
+					
+					<div class="commission__desc">
+						From the Valley of the Deer is an augmented reality artwork based on Valley of the Deer, a video installation produced in Scotland in 2013. In each city where the installation is exhibited, local GPS coordinates will be haunted by characters and scenes from the coordinates will be haunted by characters and scenes from the apparitions may also be stumbled upon as 'Points of Interest' by passersby, the locations visited long after by spirits of a distant valley. [For mobile devices]
+					</div>
+					
+					<div class="commission__media">
+						<iframe src="https://player.vimeo.com/video/50764152" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+					
+					<div class="commission__item">
+						<h3>TAXONOMY</h3>
+						
+						<p>
+							<a href="#">LAYAR</a> | <a href="#">Video</a> | <a href="#">Mobile</a>
+						</p>
+					</div>
+					
+					<div class="commission__item">
+						<h3>REQUIREMENTS</h3>
+						
+						<p>
+							This work is built for Smartphones running iOS or Android OS with the LAYAR app installed. <a href="#">More details here</a>
+						</p>
+					</div>
+					
+					<div class="commission__item">
+						<h3>MEDIA &amp; ACHIEVMENTS</h3>
+						
+						<p>
+							<a href="#">Augmented Horror Scenes in the Scottish Highlands</a> / Wired, Oct 2014
+						</p>
+						
+						<p><a href="#">2014 PrixArs Hybrid Art Honorary Mention</a></p>
+					</div>
+					
+					<div class="commission__item">
+						<h3>ADDITTIONAL NOTES</h3>
+						
+						<p>prints available on the <a href="#">Turbulence Art Store</a></p>
+						<p>Also check <a href="#">Online/Undead</a>, another commissioned work by Jillian</p>
+						<p>We’ve conducted an interview with Jillian in 2009, <a href="#">check it out</a></p>
+					</div>
+					
+					<div class="commission__item commission__item_share">
+						<h3>SHARE</h3>
+						
+						<div>
+							<script>
+								document.write('<input type="text" value="' + document.location.href + '" readonly onclick="this.select();">');
+							</script>
+						</div>
+						
+						
+					</div>
+				</section>
+				
+				<section class="artist-details">
+					<div class="artist-details__info">
+						<h1 class="artist-details__name">Jillian Mcdonald</h1>
+						
+						<img src="img/artist.png" alt="" class="artist-details__photo">
+						
+						<div class="artist-details__map">
+							<img src="img/map-1.png" alt="" class="artist-details__map-img">
+						</div>
+						
+						<div class="artist-details__place">New York, NY</div>
+					</div>
+					
+					<div class="artist-details__content">
+						<div class="artist-details__desc">
+							Jillian McDonald is a Canadian artist who divides her time between New York and Canada. She is Associate Professor of Art at Pace University, and is hopelessly in love with the North. She will be in residence at the Art Gallery of Southwestern Manitoba in 2015 and the Lower Manhattan Cultural Council in 2016.
+						</div>
+						
+						<a href="#" class="artist-details__site">JillianMcdonald.net</a>
+						
+						<div class="artist-details__social">
+							<a href="#" class="social-fb"></a>
+							<a href="#" class="social-tw"></a>
+							<a href="#" class="social-git"></a>
+						</div>
+						
+						<div class="artist-details__relevant">
+							<div class="artist-details__relevant-title">Other possibly relevant commissions</div>
+							
+							<ul class="artist-details__relevant-list">
+								<li>
+									<a href="#"><img src="img/icons/i1.jpg" alt=""></a>
+								</li><li>
+									<a href="#"><img src="img/icons/i2.jpg" alt=""></a>
+								</li><li>
+									<a href="#"><img src="img/icons/i3.jpg" alt=""></a>
+								</li><li>
+									<a href="#"><img src="img/icons/i4.jpg" alt=""></a>
+								</li><li>
+									<a href="#"><img src="img/icons/i5.jpg" alt=""></a>
+								</li><li>
+									<a href="#"><img src="img/icons/i6.jpg" alt=""></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+		
+		<footer class="footer">
+			<div class="container">
+				<div class="nav-support footer__nav-item">
+					<div class="nav-title">We Support</div>
+					
+					<ul class="drop-list">
+						<li><a href="#">How we commission</a></li>
+						<li><a href="#">Enabling foundations</a></li>
+						<li><a href="#">Our mission statement</a></li>
+						<li><a href="#">Our history</a></li>
+						<li><a href="#">Support us</a></li>
+					</ul>
+				</div>
+				
+				<div class="nav-publish footer__nav-item">
+					<div class="nav-title">We Publish</div>
+					
+					<ul class="drop-list">
+						<li><a href="#">Editorial</a></li>
+						<li><a href="#">Networked Music Review</a></li>
+						<li><a href="#">Networked Perfomance</a></li>
+						<li><a href="#">Special Features</a></li>
+						<li><a href="#">Subscribe</a></li>
+					</ul>
+				</div>
+				
+				<div class="nav-organize footer__nav-item">
+					<div class="nav-title">We Organize</div>
+					
+					<ul class="drop-list">
+						<li><a href="#">Upgrade! Boston</a></li>
+						<li><a href="#">Exhibitions</a></li>
+						<li><a href="#">Special Events</a></li>
+					</ul>
+				</div>
+				
+				<div class="nav-socialize footer__nav-item">
+					<div class="nav-title">We Socialize</div>
+					
+					<ul class="drop-list">
+						<li><a href="#"><i class="icon-mail_small"></i> Email us</a></li>
+						<li><a href="#"><i class="icon-fb_small"></i> Like us</a></li>
+						<li><a href="#"><i class="icon-tw_small"></i> Follow us</a></li>
+						<li><a href="#"><i class="icon-github_small"></i> Fork us</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="footer__f">A project of <a href="#">New Radio and Performing Atrs, Inc</a></div>
+		</footer>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+		<script src="js/plugins.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+</html>
