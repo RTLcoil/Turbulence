@@ -1784,9 +1784,10 @@ body *:focus {
   max-width: 680px;
   margin: 0 auto 100px;
   font-family: "Merriweather", serif;
+  font-weight: 300;
   font-size: 22px;
-  line-height: 1.4;
-  text-align: justify;
+  line-height: 1.5;
+  text-align: left;
   color: #32477d;
 }
 .page h1 {
