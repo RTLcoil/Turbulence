@@ -400,9 +400,9 @@ body *:focus {
   padding-bottom: 15px;
   padding-top: 15px;
   height: 31px;
-  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow:    0px 2px 8px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:         0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 .header-fixed .header_front.header_fixed {
   padding-top: 0;
@@ -1673,6 +1673,18 @@ body *:focus {
   max-height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-size: 18px;
+  background: #fafafa;
+  color: #a1aebc;
+  margin: 0 -16px;
+}
+
+.ui-autocomplete li.ui-menu-item.ui-state-focus{
+  color: #32477d;
+  background: #f1f4f8;
+  border-color: #a1aebc;
 }
 
 * {
