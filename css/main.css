@@ -2384,6 +2384,7 @@ body *:focus {
   .front-logo__media {
     height: auto;
     top: 0;
+    display: none;
   }
 
   .front-logo__social {
