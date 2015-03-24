@@ -489,100 +489,79 @@ var tmpl = {
 					return html;
 				}
 				
-				$("> img", $itemIcon).each(function(i) {
-					var timerIcon;
-
-					$(this).on("mouseenter.desktopPopupOpen", function(e) {
-						var $opened  = $(".opened-popup"),
+				$("> img", $itemIcon).on("dblclick.desktopPopupOpen", function(e) {
+					var $opened = $(".opened-popup"),
+						$closest = $(this).closest(".i-item");
+					
+					if($opened.length && !$closest.hasClass("opened-popup")) {
+						$opened.removeClass("opened-popup").find(".i-item__popup").hide();
+					}
+					
+					if($closest.hasClass("opened-popup")) {
+						$closest.removeClass("opened-popup").find(".i-item__popup").hide();
+						return;
+					}
+					
+					var $popup = $(".i-item__popup", $closest);
+					
+					if($closest.offset().left + 300 > $(window).width()) {
+						$closest.addClass("side-left").removeClass("side-right");
+					} else {
+						$closest.addClass("side-right").removeClass("side-left");
+					}
+					
+					if($popup.length) {
+						$popup.show();
+						$closest.addClass("opened-popup");
+					} else {
+						$closest.append(createIconPopup($closest)).addClass("opened-popup");
+					}
+				});
+				
+				$("body").on("dblclick", ".i-item__popup-frame", function() {
+					var $closest = $(this).closest(".i-item");
+					if($closest.hasClass("opened-popup")) {
+						$closest.removeClass("opened-popup").find(".i-item__popup").hide();
+						return;
+					}
+				});
+				
+				$("> img", $itemArtist).on("dblclick.desktopPopupOpen", function(e) {
+					if(e.target == this) {
+						var $opened = $(".opened-popup"),
 							$closest = $(this).closest(".i-item"),
-							$popup   = $(".i-item__popup", $closest);
-
-						if(timerIcon) {
-							clearTimeout(timerIcon);
-							timerIcon = null;
+							offsetLeft = $(this).offset().left;
+						
+						if($opened.length && !$closest.hasClass("opened-popup")) {
+							$opened.removeClass("opened-popup").find(".i-item__popup").hide();
+						} 
+						
+						if($closest.hasClass("opened-popup")) {
+							$closest.removeClass("opened-popup").find(".i-item__popup").hide();
+							return;
 						}
 						
-						if($closest.offset().left + 300 > $(window).width()) {
-							$closest.addClass("side-left").removeClass("side-right");
-						} else {
-							$closest.addClass("side-right").removeClass("side-left");
-						}
+						var $popup = $(".i-item__popup", $closest);
 						
 						if($popup.length) {
 							$popup.show();
 							$closest.addClass("opened-popup");
 						} else {
-							$closest.append(createIconPopup($closest)).addClass("opened-popup");
+							$closest.append(createArtistPopup($closest)).addClass("opened-popup");
 						}
-					}).closest(".i-item").on("mouseleave.desktopPopupOpen", function() {
-						var _this = $(this);
-
-						if(timerIcon) {
-							clearTimeout(timerIcon);
-							timerIcon = null;
+						
+						if(offsetLeft - 75 < 0) {
+							$(".i-item__popup", $closest).css("left", -offsetLeft+1);
+						} else {
+							$(".i-item__popup", $closest).css("left", -75);
 						}
-
-						timerIcon = setTimeout(function() {
-							_this.removeClass("opened-popup").find(".i-item__popup").hide();
-						}, 150);
-					}).on("mouseenter.desktopPopupOpen", function() {
-						if(timerIcon) {
-							clearTimeout(timerIcon);
-							timerIcon = null;
-						}
-					});
+					}
 				});
-
-				$("> img", $itemArtist).each(function() {
-					var timerItemArtist;
-
-					$(this).on("mouseenter.desktopPopupOpen", function(e) {
-						if(e.target == this) {
-							var $opened = $(".opened-popup"),
-								$closest = $(this).closest(".i-item"),
-								offsetLeft = $(this).offset().left;
-							
-							if($opened.length && !$closest.hasClass("opened-popup")) {
-								$opened.removeClass("opened-popup").find(".i-item__popup").hide();
-							} 
-							
-							if($closest.hasClass("opened-popup")) {
-								$closest.removeClass("opened-popup").find(".i-item__popup").hide();
-								return;
-							}
-							
-							var $popup = $(".i-item__popup", $closest);
-							
-							if($popup.length) {
-								$popup.show();
-								$closest.addClass("opened-popup");
-							} else {
-								$closest.append(createArtistPopup($closest)).addClass("opened-popup");
-							}
-							
-							if(offsetLeft - 75 < 0) {
-								$(".i-item__popup", $closest).css("left", -offsetLeft+1);
-							} else {
-								$(".i-item__popup", $closest).css("left", -75);
-							}
-						}
-					}).closest(".i-item").on("mouseleave.desktopPopupOpen", function() {
-						var _this = $(this);
-
-						if(timerItemArtist) {
-							clearTimeout(timerItemArtist);
-							timerItemArtist = null;
-						}
-
-						timerItemArtist = setTimeout(function() {
-							_this.removeClass("opened-popup").find(".i-item__popup").hide();
-						}, 150);
-					}).on("mouseenter.desktopPopupOpen", function() {
-						if(timerItemArtist) {
-							clearTimeout(timerItemArtist);
-							timerItemArtist = null;
-						}
-					});
+				
+				$("body").on("click", function(e) {
+					if(!($(e.target).closest(".isotope").length || $(e.target).hasClass("isotope"))) {
+						$(".opened-popup").length && $(".opened-popup").removeClass("opened-popup").find(".i-item__popup").hide();
+					}
 				});
 				
 				function createMobileGallery() {
@@ -611,7 +590,7 @@ var tmpl = {
 							$imgArtist = $("> img", $itemArtist),
 							slider;
 						
-						$imgIcon.off(".desktopPopupOpen").on("click.mobilePopupOpen", function() {
+						$imgIcon.off("dblclick.desktopPopupOpen").on("click.mobilePopupOpen", function() {
 							$("#overlay").fadeIn();
 							$("#popup-icons").fadeIn();
 							
