@@ -73,6 +73,8 @@
 
 var tmpl = {
 	popupIcon: '<div class="i-item__popup"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
+
+	popupIconTitle: '<div class="i-item__popup"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
 	
 	popupArtist: '<div class="i-item__popup i-item__popup_person"><div class="i-item__popup_map"><img src="{map}" alt=""></div><img src="{artist}" alt="" class="i-item__popup-artist"><a href="{artistUrl}" class="i-item__popup-name">{name}</a><div class="i-item__popup-place">{place}</div><div class="i-item__popup-works">{works}</div></div>'
 };
@@ -210,6 +212,7 @@ var tmpl = {
 					$sortByTitleUp     = $(".search-block__period-years-titles .search-block__period-left"),
 					$sortByTitleDown   = $(".search-block__period-years-titles .search-block__period-right"),
 					$itemIcon          = $(".i-item_icon"),
+					$itemIconTitle     = $(".i-item_icon_title"),
 					$itemArtist        = $(".i-item_artist"),
 				
 					isSmallScreen      = !!$('.search-block__filter [class*="search-block__filter-item"] span:first').is(":hidden"),
@@ -463,6 +466,30 @@ var tmpl = {
 					return html;
 				}
 				
+				function createIconTitlePopup($root) {
+					var data = $root.data(),
+							html = tmpl.popupIconTitle,
+							tags, links = '';
+						
+					html = html
+						.replace('{img}', data.img)
+						.replace('{url}', data.url)
+						.replace('{title}', data.title)
+						.replace('{author}', data.author);
+					
+					tags = data.labels.split(",");
+					tagsUrl = data.labelsUrl.split(",");
+					links = '';
+					
+					for(var i = 0, j = tags.length; i < j; i += 1) {
+						links += ('<a href="' + (""+tagsUrl[i]) + '">' + tags[i] + '</a>');
+					}
+					
+					html = html.replace('{tags}', links);
+					
+					return html;
+				}
+				
 				function createArtistPopup($root) {
 					var data = $root.data(),
 						html = tmpl.popupArtist,
@@ -532,6 +559,50 @@ var tmpl = {
 						}
 					});
 				});
+				
+				$("> img", $itemIconTitle).each(function(i) {
+					var timerIconTitle;
+
+					$(this).on("mouseenter.desktopPopupTitleOpen", function(e) {
+						var $opened  = $(".opened-popup"),
+							$closest = $(this).closest(".i-item"),
+							$popup   = $(".i-item__popup", $closest);
+
+						if(timerIconTitle) {
+							clearTimeout(timerIconTitle);
+							timerIconTitle = null;
+						}
+						
+						if($closest.offset().left + 300 > $(window).width()) {
+							$closest.addClass("side-left").removeClass("side-right");
+						} else {
+							$closest.addClass("side-right").removeClass("side-left");
+						}
+						
+						if($popup.length) {
+							$popup.show();
+							$closest.addClass("opened-popup");
+						} else {
+							$closest.append(createIconPopup($closest)).addClass("opened-popup");
+						}
+					}).closest(".i-item").on("mouseleave.desktopPopupTitleOpen", function() {
+						var _this = $(this);
+
+						if(timerIconTitle) {
+							clearTimeout(timerIconTitle);
+							timerIconTitle = null;
+						}
+
+						timerIconTitle = setTimeout(function() {
+							_this.removeClass("opened-popup").find(".i-item__popup").hide();
+						}, 150);
+					}).on("mouseenter.desktopPopupTitleOpen", function() {
+						if(timerIconTitle) {
+							clearTimeout(timerIconTitle);
+							timerIconTitle = null;
+						}
+					});
+				});
 
 				$("> img", $itemArtist).each(function() {
 					var timerItemArtist;
@@ -576,7 +647,7 @@ var tmpl = {
 
 						timerItemArtist = setTimeout(function() {
 							_this.removeClass("opened-popup").find(".i-item__popup").hide();
-						}, 150);
+						}, 0);
 					}).on("mouseenter.desktopPopupOpen", function() {
 						if(timerItemArtist) {
 							clearTimeout(timerItemArtist);
@@ -605,11 +676,52 @@ var tmpl = {
 					$("body").append($result);
 				}
 				
+				function createMobileGalleryIconTitle() {
+					var $result = "";
+					
+					if(!$("#overlay").length) {
+						$('<div />', {
+							id: 'overlay'
+						}).appendTo("body");
+					}
+					
+					$result += '<div class="popup-gallery" id="popup-icons-titles"><div class="popup-gallery__inner"><div class="popup-gallery__slider">';
+					
+					$.each($(".i-item_icon"), function() {
+						$result += '<div class="popup-gallery__slider-item">' + createIconPopup($(this)) + '</div>';
+					});
+					
+					$result += '</div></div><div class="popup-gallery__close"></div></div>';
+					
+					$("body").append($result);
+				}
+				
+				function createMobileGalleryArtist() {
+					var $result = "";
+					
+					if(!$("#overlay").length) {
+						$('<div />', {
+							id: 'overlay'
+						}).appendTo("body");
+					}
+					
+					$result += '<div class="popup-gallery" id="popup-artist"><div class="popup-gallery__inner"><div class="popup-gallery__slider">';
+					
+					$.each($(".i-item_artist"), function() {
+						$result += '<div class="popup-gallery__slider-item">' + createArtistPopup($(this)) + '</div>';
+					});
+					
+					$result += '</div></div><div class="popup-gallery__close"></div></div>';
+					
+					$("body").append($result);
+				}
+				
 				(function() {
 					if(isSmallScreen) {
 						var $imgIcon = $("> img", $itemIcon),
+							$imgIconTitles = $("> img", $itemIconTitle),
 							$imgArtist = $("> img", $itemArtist),
-							slider;
+							sliderIcon, sliderIconTitle, sliderArtist;
 						
 						$imgIcon.off(".desktopPopupOpen").on("click.mobilePopupOpen", function() {
 							$("#overlay").fadeIn();
@@ -620,20 +732,60 @@ var tmpl = {
 							if(!$("#popup-icons").hasClass("slider-ready")) {
 								$("#popup-icons").addClass("slider-ready");
 								
-								slider = $("#popup-icons .popup-gallery__slider").bxSlider({
+								sliderIcon = $("#popup-icons .popup-gallery__slider").bxSlider({
 									pager: false,
 									controls: false,
 									slideWidth: 230,
 									startSlide: index
 								});
 							} else {
-								slider.goToSlide(index);
+								sliderIcon.goToSlide(index);
 							}
 						});
 						
-						//$imgArtist.off("dblclick.desktopPopupOpen");
+						$imgIconTitles.off(".desktopPopupTitleOpen").on("click.mobilePopupTitleIconOpen", function() {
+							$("#overlay").fadeIn();
+							$("#popup-icons-titles").fadeIn();
+							
+							var index = $imgIconTitles.index(this);
+							
+							if(!$("#popup-icons-titles").hasClass("slider-ready")) {
+								$("#popup-icons-titles").addClass("slider-ready");
+								
+								sliderIconTitle = $("#popup-icons-titles .popup-gallery__slider").bxSlider({
+									pager: false,
+									controls: false,
+									slideWidth: 230,
+									startSlide: index
+								});
+							} else {
+								sliderIconTitle.goToSlide(index);
+							}
+						});
+						
+						$imgArtist.off(".desktopPopupOpen").closest(".i-item_artist").on("click.mobilePopupOpen", function() {
+							$("#overlay").fadeIn();
+							$("#popup-artist").fadeIn();
+
+							var index = $imgIcon.index($("> img", this));
+							
+							if(!$("#popup-artist").hasClass("slider-ready")) {
+								$("#popup-artist").addClass("slider-ready");
+								
+								sliderArtist = $("#popup-artist .popup-gallery__slider").bxSlider({
+									pager: false,
+									controls: false,
+									slideWidth: 230,
+									startSlide: index
+								});
+							} else {
+								sliderArtist.goToSlide(index);
+							}
+						});
 						
 						createMobileGallery();
+						createMobileGalleryIconTitle();
+						createMobileGalleryArtist();
 						
 						$("#overlay").click(function() {
 							$("#overlay").fadeOut();
