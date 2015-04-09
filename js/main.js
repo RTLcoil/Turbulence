@@ -172,16 +172,35 @@ var tmpl = {
 				var st = $(window).scrollTop();
 				
 				if('matchMedia' in window && window.matchMedia('(min-width: 768px)').matches) {
-					$("body")[st > $(window).height() ? "addClass" : "removeClass"]("header-fixed");
+					$("body")[st >= $(window).height() ? "addClass" : "removeClass"]("header-fixed");
 				}
 			});
 		}
 		
 		if($("[data-toggle]").length) {
 			$("[data-toggle]").on("click", function() {
-				var $elem = $($(this).data("toggle"));
-				
-				$elem.length && $elem.slideToggle(0);
+				var $this = $(this),
+					$elem = $($this.data("toggle")),
+					dir   = $this.data("toggle-dir");
+
+				if(dir) {
+					var flag = !!($elem.width() > 80),
+						width = flag ? 0 : $elem.children(":first").outerWidth();
+
+					if(!flag) {
+						$elem.css("visibility", "visible");
+					}
+
+					$elem.stop().animate({
+						width: width
+					}, 250, 'linear', function() {
+						if(flag) {
+							$elem.css("visibility", "hidden");
+						}
+					});
+				} else {
+					$elem.length && $elem.slideToggle(0);
+				}
 			});
 		}
 		
