@@ -373,6 +373,10 @@ body *:focus {
   margin-top: 15px;
   max-width: 500px;
 }
+
+.header_front.header_index .header__search {
+  margin-top: 0;
+}
 .header_inner .header__search input[type='search'], 
 .header_fixed .header__search input[type='search'] {
   -webkit-appearance: textfield;
