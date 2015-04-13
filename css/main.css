@@ -1956,6 +1956,18 @@ body *:focus {
   position: relative;
   margin: 0 0 25px;
 }
+.color-custom .artist-details__info {
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+}
+.color-custom .artist-details__place:before {
+  background: transparent;
+  border-left: solid 1px;
+  width: 0;
+}
+.color-custom .artist-details__place:after {
+  border: solid 1px;
+}
 .artist-details__name {
   position: absolute;
   left: 0;
@@ -2319,6 +2331,10 @@ body *:focus {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+}
+
+.color-custom .commission__item_share input {
+  border: solid 1px;
 }
 
 .header__search-mobile {
