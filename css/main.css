@@ -556,12 +556,15 @@ body *:focus {
 }
 .footer__nav-item {
   float: left;
-  width: 22.083333333333332%;
-  margin: 0 1.3541666666666667%;
+  width: 22%;
+  margin: 0 0 0 4%;
   font-family: "Roboto Condensed", sans-serif;
   border-top: solid 1px;
   padding-top: 6px;
   margin-bottom: 45px;
+}
+.footer__nav-item:first-child {
+  margin-left: 0;
 }
 .footer__nav-item .drop-list {
   padding: 0;
