@@ -72,7 +72,7 @@
 }(jQuery));
 
 var tmpl = {
-	popupIcon: '<div class="i-item__popup"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
+	popupIcon: '<div class="i-item__popup" style="outline: solid 3px {color}; border-color: {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
 
 	popupIconTitle: '<div class="i-item__popup"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
 	
@@ -475,6 +475,15 @@ var tmpl = {
 					tags = data.labels.split(",");
 					tagsUrl = data.labelsUrl.split(",");
 					links = '';
+
+					if("customColor" in data && data.customColor) {
+						var re = new RegExp("{color}", "gi");
+						while(re.test(html)) {
+							html = html.replace("{color}", data.customColor);
+						}
+
+						html = html.replace("i-item__popup", "i-item__popup i-item__popup_custom-color");
+					}
 					
 					for(var i = 0, j = tags.length; i < j; i += 1) {
 						links += ('<a href="' + (""+tagsUrl[i]) + '">' + tags[i] + '</a>');

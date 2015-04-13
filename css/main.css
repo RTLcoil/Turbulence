@@ -556,8 +556,8 @@ body *:focus {
 }
 .footer__nav-item {
   float: left;
-  width: 22%;
-  margin: 0 0 0 4%;
+  width: 22.975%;
+  margin: 0 0 0 2.7%;
   font-family: "Roboto Condensed", sans-serif;
   border-top: solid 1px;
   padding-top: 6px;
@@ -1447,10 +1447,11 @@ body *:focus {
   font-size: 16px;
   font-family: "Merriweather", serif;
 }
-.i-item_icon_title span, .i-item_artist span {
+.i-item_icon_title span, 
+.i-item_artist span {
   display: inline-block;
   vertical-align: middle;
-  padding-right: 20px;
+  /*padding-right: 20px;*/
   color: #5b698d;
 }
 .i-item_year, .i-item_letter {
@@ -1518,6 +1519,13 @@ body *:focus {
   top: 222px;
   z-index: 2;
   position: absolute;
+}
+.i-item__popup.i-item__popup_custom-color {
+  border: 0;
+}
+.i-item__popup.i-item__popup_custom-color:before,
+.i-item__popup.i-item__popup_custom-color:after {
+  content: none !important;
 }
 .i-item__popup-frame {
   position: absolute;
