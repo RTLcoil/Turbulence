@@ -2151,12 +2151,20 @@ body *:focus {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    position: absolute;
-    bottom: auto;
+    position: fixed;
+    bottom: 0;
   }
-  .header__nav-inner {
-    position: static;
-    margin-left: 0;
+  .header__nav-inner,
+  .header-fixed .header_front.header_fixed .header__nav-inner {
+    /*position: static;
+    margin-left: 0;*/
+    width: 268px;
+    position: absolute;
+    left: 48px;
+    top: 62px;
+    bottom: 60px;
+    overflow: auto;
+    padding: 0;
   }
   .header_inner .header__nav .drop-list {
     margin-bottom: 25px;
@@ -2495,19 +2503,35 @@ body *:focus {
 
 .header_front.header_index .header__nav {
   width: 0;
-  position: absolute;
+  position: fixed;
   display: block;
   padding: 0;
   overflow: hidden;
+  bottom: 0;
 }
 
 .header_front.header_index .header__nav-inner {
   width: 268px;
-  position: relative;
-  left: 0;
-  top: 0;
+  position: absolute;
+  left: 48px;
+  top: 62px;
+  bottom: 60px;
+  padding: 0;
+  overflow: auto;
+}
+
+.header__search-mobile {
+  position: fixed;
   bottom: 0;
-  padding: 62px 0 35px 48px;
+  left: 0;
+  padding: 20px;
+  width: 276px;
+  background: #FAFAFA;
+  margin: 0;
+}
+
+.header__search-mobile form {
+  position: relative;
 }
 
 .header_front.header_fixed .header__nav-inner

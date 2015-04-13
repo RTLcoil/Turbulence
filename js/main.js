@@ -185,7 +185,7 @@ var tmpl = {
 
 				if(dir) {
 					var flag = !!($elem.width() > 80),
-						width = flag ? 0 : $elem.children(":first").outerWidth();
+						width = flag ? 0 : ($elem.children(":first").outerWidth() + $elem.children(":first").position().left);
 
 					if(!flag) {
 						$elem.css("visibility", "visible");
