@@ -171,9 +171,9 @@ var tmpl = {
 			$(window).on("scroll", function() {
 				var st = $(window).scrollTop();
 				
-				if('matchMedia' in window && window.matchMedia('(min-width: 768px)').matches) {
+				//if('matchMedia' in window && window.matchMedia('(min-width: 768px)').matches) {
 					$("body")[st >= $(window).height() ? "addClass" : "removeClass"]("header-fixed");
-				}
+				//}
 			});
 		}
 		

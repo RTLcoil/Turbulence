@@ -2138,8 +2138,10 @@ body *:focus {
 
 @media screen and (max-width: 767px) {
   .header_inner {
-    position: relative;
-    margin-bottom: 30px;
+    /*position: relative;*/
+    -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   }
   .header_inner .header__search {
     display: none;
@@ -2161,7 +2163,8 @@ body *:focus {
   }
 
   .header_inner__helper {
-    display: none;
+    /*display: none;*/
+    margin-bottom: 30px;
   }
 
   .artist-details {
@@ -2412,7 +2415,7 @@ body *:focus {
 }
 @media screen and (max-width: 767px) {
   .header-fixed .header_front {
-    position: relative;
+    /*position: relative;*/
   }
   .header-fixed .header-helper {
     display: none;
@@ -2421,11 +2424,12 @@ body *:focus {
   .header_front {
     padding-top: 0;
     height: 40px;
+    margin: 0 0 35px;
   }
 
   .header_inner.header_fixed .nav-toggle,
   .header_fixed.header_fixed .nav-toggle {
-    margin-top: 20px;
+   /* margin-top: 20px;*/
   }
 
   .page {
@@ -2455,6 +2459,18 @@ body *:focus {
 
   .header_front .nav-toggle {
     margin-top: 20px;
+  }
+
+  .header-fixed .header_front .nav-toggle {
+    margin-top: 0px;
+  }
+
+  .header-fixed .header_front.header_fixed .nav-toggle {
+    margin-top: 15px;
+  }
+
+  .header-fixed #wrap {
+    padding-top: 75px;
   }
 
   .header_front .header__nav {
