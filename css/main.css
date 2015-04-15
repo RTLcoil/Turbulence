@@ -1448,11 +1448,25 @@ body *:focus {
   font-family: "Merriweather", serif;
 }
 .i-item_icon_title span, 
-.i-item_artist span {
+.i-item_artist span,
+.i-item_icon_title > a, 
+.i-item_artist > a {
   display: inline-block;
   vertical-align: middle;
   /*padding-right: 20px;*/
   color: #5b698d;
+}
+.i-item_icon_title > span, 
+.i-item_artist > span,
+.i-item_icon_title > a, 
+.i-item_artist > a {
+  padding-right: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+.i-item_icon_title > a:hover, 
+.i-item_artist > a:hover {
+  text-decoration: underline;
 }
 .i-item_year, .i-item_letter {
   width: 78px;
