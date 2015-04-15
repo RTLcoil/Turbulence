@@ -289,11 +289,11 @@ body *:focus {
 }
 .header__nav-inner {
   width: 268px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  padding: 62px 0 35px 48px;
+  position: absolute;
+  left: 48px;
+  top: 62px;
+  bottom: 35px;
+  overflow: auto;
 }
 
 .header_front.header_fixed .header__nav {
@@ -303,11 +303,18 @@ body *:focus {
 }
 .header_front.header_fixed .header__nav-inner {
   position: relative;
+  padding: 48px 0 35px 62px;
+  left: 0;
+  top: 0;
+  bottom: 0;
 }
 
-.header-fixed .header_front.header_fixed .header__nav,
-.header-fixed .header_front.header_fixed .header__nav-inner  {
+.header-fixed .header_front.header_fixed .header__nav {
   position: fixed;
+  bottom: 0;
+}
+.header-fixed .header_front.header_fixed .header__nav-inner {
+  position: absolute;
   bottom: 0;
 }
 .header_front.header_index .header__nav {
@@ -319,6 +326,7 @@ body *:focus {
   width: auto;
   position: static;
   padding: 0;
+  overflow: visible;
 }
 .header_inner .header__nav .header__nav-item, .header_fixed .header__nav .header__nav-item {
   float: none;
