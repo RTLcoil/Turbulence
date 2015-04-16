@@ -292,7 +292,7 @@ body *:focus {
   position: absolute;
   left: 48px;
   top: 62px;
-  bottom: 35px;
+  bottom: 0;
   overflow: auto;
 }
 
@@ -302,11 +302,12 @@ body *:focus {
   bottom: auto;
 }
 .header_front.header_fixed .header__nav-inner {
-  position: relative;
-  padding: 48px 0 35px 62px;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  position: absolute;
+  /*padding: 48px 0 35px 62px;*/
+  left: 48px;
+  top: 62px;
+  bottom: auto;
+  /*bottom: 0;*/
 }
 
 .header-fixed .header_front.header_fixed .header__nav {
@@ -2563,7 +2564,7 @@ body *:focus {
 }
 
 .header__search-mobile {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   padding: 20px;
