@@ -1691,9 +1691,9 @@ body *:focus {
   bottom: 100%;
   margin: 0 auto 5px;
   height: 60px;
-  border-left: solid 1px ;
+  background-color: inherit;
   position: absolute;
-  width: 0;
+  width: 1px;
 }
 .i-item__popup-place:after {
   content: "";
