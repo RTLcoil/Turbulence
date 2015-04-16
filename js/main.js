@@ -72,7 +72,7 @@
 }(jQuery));
 
 var tmpl = {
-	popupIcon: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span style="color: {color}">{author}</span></div><div class="i-item__popup-tags" style="color: {color}">{tags}</div></div>',
+	popupIcon: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span style="color: {color}">{author}</span></div><div class="i-item__popup-tags" style="color: {color}">{tags}</div></div>',
 
 	popupIconTitle: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span style="color: {color}">{author}</span></div><div class="i-item__popup-tags" style="color: {color}">{tags}</div></div>',
 	
@@ -460,6 +460,8 @@ var tmpl = {
 					
 					$this.addClass("active").siblings(".active").removeClass("active");
 				}
+				
+				////////////////////////////////////
 				
 				function createIconPopup($root) {
 					var data = $root.data(),
