@@ -260,6 +260,7 @@ var tmpl = {
 				
 				$sortByYearsDown.on("click", function() { // sort by years
 					changeActive($(this));
+					reverseValue($(this), !1);
 					
 					$container.isotope({
 						sortBy: 'yearDown'
@@ -268,6 +269,7 @@ var tmpl = {
 				
 				$sortByYearsUp.on("click", function() { // sort by years
 					changeActive($(this));
+					reverseValue($(this), !0);
 					
 					$container.isotope({
 						sortBy: 'yearUp'
@@ -276,6 +278,7 @@ var tmpl = {
 				
 				$sortByLettersDown.on("click", function() { // sort by letters
 					changeActive($(this));
+					reverseValue($(this), !1);
 					
 					$container.isotope({
 						sortBy: 'letterDown'
@@ -284,6 +287,7 @@ var tmpl = {
 				
 				$sortByLettersUp.on("click", function() { // sort by letters
 					changeActive($(this));
+					reverseValue($(this), !0);
 					
 					$container.isotope({
 						sortBy: 'letterUp'
@@ -292,6 +296,7 @@ var tmpl = {
 				
 				$sortByTitleDown.on("click", function() { // sort by title
 					changeActive($(this));
+					reverseValue($(this), !1);
 					
 					$container.isotope({
 						sortBy: 'titleDown'
@@ -300,6 +305,7 @@ var tmpl = {
 				
 				$sortByTitleUp.on("click", function() { // sort by title
 					changeActive($(this));
+					reverseValue($(this), !0);
 					
 					$container.isotope({
 						sortBy: 'titleUp'
@@ -455,12 +461,16 @@ var tmpl = {
 				
 				function changeActive($this) {
 					if($this.hasClass("active")) {
-						return;
+						//return;
 					}
 					
 					$this.addClass("active").siblings(".active").removeClass("active");
 				}
 				
+				function reverseValue($elem, bol) {
+					$elem.parent()[bol ? "removeClass" : "addClass"]("revert");
+				}
+
 				////////////////////////////////////
 				
 				function createIconPopup($root) {
@@ -564,7 +574,7 @@ var tmpl = {
 					return html;
 				}
 				
-				$("> img", $itemIcon).each(function(i) {
+				$("> img, > a", $itemIcon).each(function(i) {
 					var timerIcon;
 
 					$(this).on("mouseenter.desktopPopupOpen", function(e) {
@@ -608,10 +618,10 @@ var tmpl = {
 					});
 				});
 				
-				$("> img", $itemIconTitle).each(function(i) {
+				$("> img, > a", $itemIconTitle).each(function(i) {
 					var timerIconTitle;
 
-					$(this).on("mouseenter.desktopPopupTitleOpen", function(e) {
+					$(this).on("mouseenter.desktopPopupOpen", function(e) {
 						var $opened  = $(".opened-popup"),
 							$closest = $(this).closest(".i-item"),
 							$popup   = $(".i-item__popup", $closest);
@@ -633,7 +643,7 @@ var tmpl = {
 						} else {
 							$closest.append(createIconPopup($closest)).addClass("opened-popup");
 						}
-					}).closest(".i-item").on("mouseleave.desktopPopupTitleOpen", function() {
+					}).closest(".i-item").on("mouseleave.desktopPopupOpen", function() {
 						var _this = $(this);
 
 						if(timerIconTitle) {
@@ -644,7 +654,7 @@ var tmpl = {
 						timerIconTitle = setTimeout(function() {
 							_this.removeClass("opened-popup").find(".i-item__popup").hide();
 						}, 150);
-					}).on("mouseenter.desktopPopupTitleOpen", function() {
+					}).on("mouseenter.desktopPopupOpen", function() {
 						if(timerIconTitle) {
 							clearTimeout(timerIconTitle);
 							timerIconTitle = null;
@@ -652,7 +662,7 @@ var tmpl = {
 					});
 				});
 
-				$("> img", $itemArtist).each(function() {
+				$("> img, > a", $itemArtist).each(function() {
 					var timerItemArtist;
 
 					$(this).on("mouseenter.desktopPopupOpen", function(e) {
@@ -766,12 +776,25 @@ var tmpl = {
 				
 				(function() {
 					if(isSmallScreen) {
-						var $imgIcon = $("> img", $itemIcon),
+						var $imgIcon       = $("> img", $itemIcon),
 							$imgIconTitles = $("> img", $itemIconTitle),
-							$imgArtist = $("> img", $itemArtist),
+							$imgArtist     = $("> img", $itemArtist),
+							$aIcon         = $("> a", $itemIcon),
+							$aIconTitles   = $("> a", $itemIconTitle),
+							$aArtist       = $("> a", $itemArtist),
 							sliderIcon, sliderIconTitle, sliderArtist;
+
+							console.log($aIconTitles);
+
+						$aIcon.add($aArtist).add($aIconTitles).off(".desktopPopupOpen").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
+							$(this).siblings("img").click();
+						});
 						
-						$imgIcon.off(".desktopPopupOpen").on("click.mobilePopupOpen", function() {
+						$imgIcon.off(".desktopPopupOpen").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
 							$("#overlay").fadeIn();
 							$("#popup-icons").fadeIn();
 							
@@ -791,7 +814,9 @@ var tmpl = {
 							}
 						});
 						
-						$imgIconTitles.off(".desktopPopupTitleOpen").on("click.mobilePopupTitleIconOpen", function() {
+						$imgIconTitles.off(".desktopPopupOpen").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
 							$("#overlay").fadeIn();
 							$("#popup-icons-titles").fadeIn();
 							
@@ -811,11 +836,13 @@ var tmpl = {
 							}
 						});
 						
-						$imgArtist.off(".desktopPopupOpen").closest(".i-item_artist").on("click.mobilePopupOpen", function() {
+						$imgArtist.off(".desktopPopupOpen").closest(".i-item_artist").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
 							$("#overlay").fadeIn();
 							$("#popup-artist").fadeIn();
 
-							var index = $imgIcon.index($("> img", this));
+							var index = $imgArtist.index($("> img", this));
 							
 							if(!$("#popup-artist").hasClass("slider-ready")) {
 								$("#popup-artist").addClass("slider-ready");

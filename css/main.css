@@ -1234,6 +1234,20 @@ body *:focus {
   position: relative;
   top: -8px;
 }
+.search-block__period-left span:before {
+  content: attr(data-before);
+}
+.search-block__period-left span:after {
+  content: attr(data-after);
+  display: none;
+}
+.search-block__period-right span:before {
+  content: attr(data-before);
+  display: none;
+}
+.search-block__period-right span:after {
+  content: attr(data-after);
+}
 .search-block__period-left.active {
   color: #4b4b4b;
   cursor: default;
@@ -1277,6 +1291,33 @@ body *:focus {
   background: url(../img/icn-search.svg) 0 0 no-repeat;
   background-size: cover;
 }
+
+.revert .search-block__period-right {
+  float: left;
+  text-align: left;
+}
+
+.revert .search-block__period-left {
+  float: right;
+  text-align: right;
+}
+.revert .search-block__period-left span:before {
+  content: attr(data-before);
+  display: none;
+}
+.revert .search-block__period-left span:after {
+  content: attr(data-after);
+  display: block;
+}
+.revert .search-block__period-right span:before {
+  content: attr(data-before);
+  display: block;
+}
+.revert .search-block__period-right span:after {
+  content: attr(data-after);
+  display: none;
+}
+
 .search-block__field input[type='search'] {
   -webkit-appearance: textfield;
   display: block;
