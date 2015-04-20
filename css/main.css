@@ -1556,6 +1556,11 @@ body *:focus {
   right: 100%;
   margin-right: 2px;
 }
+.i-item__popup_custom-color .i-item__popup-frame {
+  width: 78px;
+  background-size: 80px 62px;
+  margin-right: 4px;
+}
 .i-item__popup-img {
   width: 200px;
   height: 200px;
@@ -1753,6 +1758,14 @@ body *:focus {
   right: auto;
   left: 100%;
   margin: 0 0 0 2px;
+}
+.i-item.side-left .i-item__popup_custom-color .i-item__popup-frame {
+  width: 78px;
+  background-size: 80px 62px;
+  margin: 0 0 0 4px;
+  right: auto;
+  left: 100%;
+  background-position: 100% 0;
 }
 
 .filter-label {
