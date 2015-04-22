@@ -40,14 +40,16 @@ $options = get_option( 'turbulence_theme_options' );
     <?php wp_head(); ?>
 
 </head>
-
-<body <?php body_class(); ?>>
-<div id="wrapper">
 <?php
     $_thePost =  get_post();
     $_theArtists = get_field('artist');
+    $color = get_field('color');
     $_theArtists = is_array($_theArtists) ? $_theArtists : array($_theArtists);
 ?>
+
+<body <?php echo ($color ? 'class="color-custom" style="color: '.$color.'"' : '')?>>
+<div id="wrapper">
+
 <?php if(is_front_page() || $_thePost->post_type == 'commission'):
     $args = array(
 

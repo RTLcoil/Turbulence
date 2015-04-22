@@ -37,7 +37,8 @@ $artists = is_array($artists) ? $artists : array($artists)
     </div>
     <?php if($media = get_field('media')):?>
         <div class="commission__media">
-            <?php echo $media;?>
+            <iframe src="<?php echo $media;?>" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
         </div>
     <?php endif;?>
 
