@@ -76,7 +76,7 @@ var tmpl = {
 
 	popupIconTitle: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span style="color: {color}">{author}</span></div><div class="i-item__popup-tags" style="color: {color}">{tags}</div></div>',
 	
-	popupArtist: '<div class="i-item__popup i-item__popup_person" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup_map"><img src="{map}" alt=""></div><img src="{artist}" alt="" class="i-item__popup-artist"><a href="{artistUrl}" class="i-item__popup-name" style="color: {color}">{name}</a><div class="i-item__popup-place" style="color: {color}">{place}</div><div class="i-item__popup-works">{works}</div></div>'
+	popupArtist: '<div class="i-item__popup i-item__popup_person" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup_map"><iframe src="{map}" width="100%" height="100%" frameborder="0" style="border:0"></iframe></div><img src="{artist}" alt="" class="i-item__popup-artist"><a href="{artistUrl}" class="i-item__popup-name" style="color: {color}">{name}</a><div class="i-item__popup-place" style="color: {color}">{place}</div><div class="i-item__popup-works">{works}</div></div>'
 };
 
 (function($) {
@@ -546,7 +546,7 @@ var tmpl = {
 						name = data.name.split("?");
 						
 					html = html
-						.replace('{map}', data.map)
+						.replace('{map}', data.mapSrc)
 						.replace('{artist}', data.artist)
 						.replace('{place}', data.place)
 						.replace('{name}', name[0])
