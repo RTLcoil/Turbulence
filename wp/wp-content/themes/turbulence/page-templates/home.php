@@ -9,10 +9,13 @@ get_header();
     $options = get_option( 'turbulence_theme_options' );
     $args = array(
 
-    'orderby'          => 'post_date',
-    'order'            => 'DESC',
-    'post_type'        => 'home_slide',
-    'post_status'      => 'publish'
+        'orderby'   => 'menu_order',
+        'order'   => 'ASC',
+        'posts_per_page' => -1,
+        'post_type'        => 'commission',
+        'post_status'      => 'publish',
+        'meta_key'		=> 'use_in_home_slides',
+        'meta_value'	=> true
 );
     $homeSlides = get_posts( $args );
 
@@ -23,7 +26,8 @@ get_header();
                     <?php foreach($homeSlides as $ind => $slide): ?>
                         <div class="slider-medium__item">
                             <div class="slider-medium__item-img">
-                                <?php echo get_the_post_thumbnail( $slide->ID, 'full', array('class'	=> "slide-medium-img"))?>
+                                <a href="<?php echo get_the_title($slide->ID)?>"></a>
+                                <?php echo get_the_post_thumbnail( $slide->ID, array(420, 210), array('class'	=> "slide-medium-img"))?>
                             </div>
 
                             <span class="label-category">

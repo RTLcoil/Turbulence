@@ -53,10 +53,13 @@ $options = get_option( 'turbulence_theme_options' );
 <?php if(is_front_page() || $_thePost->post_type == 'commission'):
     $args = array(
 
-        'orderby'          => 'post_date',
-        'order'            => 'DESC',
-        'post_type'        => 'main_gallery',
-        'post_status'      => 'publish'
+        'orderby'   => 'menu_order',
+        'order'   => 'ASC',
+        'posts_per_page' => -1,
+        'post_type'        => 'commission',
+        'post_status'      => 'publish',
+        'meta_key'		=> 'use_in_main_gallery',
+        'meta_value'	=> true
     );
 
     if($_thePost->post_type == 'commission' && count($_theArtists)) {
@@ -75,12 +78,17 @@ $options = get_option( 'turbulence_theme_options' );
                     <?php foreach($mainSlides as $ind => $slide): ?>
                         <div class="main-gallery__content-slider-item">
                             <div class="main-gallery__content-inner">
-                                <a href="<?php echo get_field('slide_link', $slide->ID)?>" class="main-gallery__content-link">
-                                    <?php echo get_the_post_thumbnail( $slide->ID, 'full', array('class'	=> "slide-post-img"))?>
+                                <a href="<?php echo get_permalink($slide->ID)?>" class="main-gallery__content-link">
+                                    <?php if($value = get_field('use_the_video_in_main_gallery', $slide->ID)):?>
+                                        <iframe width="100%" height="490" src="<?php echo $value;?>?autoplay=1&cc_load_policy=1"" frameborder="0" allowfullscreen></iframe>
+                                    <?php else:?>
+                                        <?php echo get_the_post_thumbnail( $slide->ID, 'full', array('class'	=> "slide-post-img"))?>
+                                    <?php endif;?>
+
                                 </a>
                                 <?php if($_thePost->post_type == 'commission' && count($_theArtists)):?>
                                     <div class="main-gallery__content-slider-item-body">
-                                        <div class="main-gallery__title"><?php echo  $slide->post_content?></div>
+                                        <div class="main-gallery__title"><?php echo get_the_title($slide->ID)?></div>
                                         <div class="main-gallery__author"><?php _e('by')?> <?php
                                             $artists = get_field('artist', $slide->ID);
                                             $artists = is_array($artists) ? $artists : array($artists);
