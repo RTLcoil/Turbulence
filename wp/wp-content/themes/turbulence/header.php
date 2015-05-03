@@ -80,7 +80,7 @@ $options = get_option( 'turbulence_theme_options' );
                             <div class="main-gallery__content-inner">
                                 <a href="<?php echo get_permalink($slide->ID)?>" class="main-gallery__content-link">
                                     <?php if($value = get_field('use_the_video_in_main_gallery', $slide->ID)):?>
-                                        <iframe width="100%" height="490" src="<?php echo $value;?>?autoplay=1&cc_load_policy=1"" frameborder="0" allowfullscreen></iframe>
+                                        <iframe width="100%" height="490" src="<?php echo $value;?>" frameborder="0" allowfullscreen></iframe>
                                     <?php else:?>
                                         <?php echo get_the_post_thumbnail( $slide->ID, 'full', array('class'	=> "slide-post-img"))?>
                                     <?php endif;?>
