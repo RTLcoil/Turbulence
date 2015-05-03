@@ -27,7 +27,7 @@ get_header();
                         <div class="slider-medium__item">
                             <div class="slider-medium__item-img">
                                 <a href="<?php echo get_the_title($slide->ID)?>"></a>
-                                <?php echo get_the_post_thumbnail( $slide->ID, array(420, 210), array('class'	=> "slide-medium-img"))?>
+                                <?php echo get_the_post_thumbnail( $slide->ID, array(545, 270), array('class'	=> "slide-medium-img"))?>
                             </div>
 
                             <span class="label-category">
@@ -96,8 +96,9 @@ get_header();
 
             $entry = array();
             $entry['year_realise'] = get_field('year_realise', $pItem->ID);
+            $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'full');
+            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
 
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
@@ -155,8 +156,9 @@ get_header();
         )) as $pInd => $pItem) {
 
             $entry = array();
+
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'full');
+            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
@@ -297,7 +299,7 @@ get_header();
                         </div>
                     <?php endif;?>
 
-                    <div class="i-item i-item_icon type-icon"
+                    <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type']?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
 
                          data-sort-up="<?php echo $ind;?>"
@@ -333,7 +335,7 @@ get_header();
                         </div>
                     <?php endif;?>
 
-                    <div class="i-item i-item_icon_title type-icon-title"
+                    <div class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type']?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
 
                          data-sort-up-title="<?php echo $ind;?>"
