@@ -96,6 +96,7 @@ get_header();
 
             $entry = array();
             $entry['year_realise'] = get_field('year_realise', $pItem->ID);
+            $entry['color'] = get_field('color', $pItem->ID);
             $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
             list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
@@ -301,7 +302,7 @@ get_header();
 
                     <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type']?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
-
+                         <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up="<?php echo $ind;?>"
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
@@ -337,7 +338,7 @@ get_header();
 
                     <div class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type']?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
-
+                        <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up-title="<?php echo $ind;?>"
                          data-sort-down-title="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
