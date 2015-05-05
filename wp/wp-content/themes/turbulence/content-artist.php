@@ -9,14 +9,17 @@
  * @since Turbulence 1.0
  */
 ?>
+
+
 <section class="artist-details">
     <div class="artist-details__info">
         <h1 class="artist-details__name"><?php the_title(); ?></h1>
 
         <?php echo get_the_post_thumbnail( get_the_ID(), 'full', array('class'	=> "artist-details__photo"))?>
-        <?php if($mapLink = get_field('map_link')):?>
-            <div class="artist-details__map">
-                <iframe src="<?php echo $mapLink?>" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+       
+        <?php if($map = get_field('artist_map')):?>
+            <div class="acf-map">
+                <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
             </div>
         <?php else:?>
             <div class="artist-details__map">

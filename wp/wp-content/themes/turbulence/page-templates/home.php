@@ -165,7 +165,9 @@ get_header();?>
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
-            $entry['map_link'] = get_field('map_link', $pItem->ID);
+            $map = get_field('artist_map', $pItem->ID); 
+            $entry['map_lat'] = $map ? $map['lat'] : '';
+            $entry['map_lng'] = $map ? $map['lng'] : '';;
             $entry['letter'] = strtolower(substr($pItem->post_title, 0, 1));
 
             $entry['works'] = array();
@@ -393,7 +395,8 @@ get_header();?>
                          data-name="<?php echo $item['title']?>?<?php echo $item['url']?>"
                          data-url="<?php echo $item['url']?>"
                          data-place="<?php echo $item['location']?>"
-                         data-map-src="<?php echo $item['map_link']?>">
+                         data-map-lat="<?php echo $item['map_lat']?>">
+                         data-map-lng="<?php echo $item['map_lng']?>">
                         <?php echo $item['thumbnail']?>
                         <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>

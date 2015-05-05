@@ -14,6 +14,8 @@ $artists = is_array($artists) ? $artists : array($artists)
 <section class="commission">
     <div class="commission__work">
         <?php echo get_the_post_thumbnail()?>
+        
+        <div class="commission__work-overlay"></div>
     </div>
 
     <h1 class="commission__title"><?php the_title(); ?></h1>
@@ -96,9 +98,9 @@ $artists = is_array($artists) ? $artists : array($artists)
             <h1 class="artist-details__name"><?php echo $artist->post_title?></h1>
 
             <?php echo get_the_post_thumbnail( $artist->ID, 'full', array('class' => "artist-details__photo"))?>
-            <?php if($mapLink = get_field('map_link', $artist->ID)):?>
-                <div class="artist-details__map">
-                    <iframe src="<?php echo $mapLink?>" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+            <?php if($map = get_field('artist_map', $artist->ID)):?>
+                <div class="acf-map">
+                    <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
                 </div>
             <?php else:?>
                 <div class="artist-details__map">
