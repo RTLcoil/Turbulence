@@ -96,10 +96,15 @@ $artists = is_array($artists) ? $artists : array($artists)
             <h1 class="artist-details__name"><?php echo $artist->post_title?></h1>
 
             <?php echo get_the_post_thumbnail( $artist->ID, 'full', array('class' => "artist-details__photo"))?>
-            <div class="artist-details__map">
-                <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
-            </div>
-
+            <?php if($mapLink = get_field('map_link', $artist->ID)):?>
+                <div class="artist-details__map">
+                    <iframe src="<?php echo $mapLink?>" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+                </div>
+            <?php else:?>
+                <div class="artist-details__map">
+                    <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
+                </div>
+            <?php endif;?>
             <div class="artist-details__place"><?php echo get_field('location', $artist->ID)?></div>
         </div>
 
