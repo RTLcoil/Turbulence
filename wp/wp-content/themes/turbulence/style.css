@@ -1,0 +1,18 @@
+.home .card.social.join-us {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.home .card.social.join-us p.text {
+  margin-bottom: 0;
+  line-height: 20px;
+  line-height: 2rem;
+}
+
+.home .card.social.join-us .more {
+  margin-top: 12px !important;
+}
+
+.single-news .top-content .entry-content {
+margin-top: 0;
+}

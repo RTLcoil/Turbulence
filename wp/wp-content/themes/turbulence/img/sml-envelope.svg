@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="21px" height="16px" viewBox="0 0 21 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (232) - http://www.bohemiancoding.com/sketch -->
+    <title>sml-envelope</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="hp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="-hp_grid" sketch:type="MSArtboardGroup" transform="translate(-764.000000, -2236.000000)" fill="#9ACAE2">
+            <g id="Footer" sketch:type="MSLayerGroup" transform="translate(0.000000, 2192.000000)">
+                <g id="contact-icons-+-We-Socialize—" transform="translate(764.000000, 10.000000)" sketch:type="MSShapeGroup">
+                    <g id="contact-icons" transform="translate(0.000000, 34.000000)">
+                        <g id="sml-envelope">
+                            <path d="M20.2264038,2.1948 L19.4355681,1.4052 L11.9454648,8.8842 C10.9917746,9.8364 9.44015023,9.8364 8.48646009,8.8842 L0.996356808,1.4052 L0.205521127,2.1948 L5.79846009,7.7784 L0.205521127,13.3626 L0.996356808,14.1516 L6.58869484,8.568 L7.69622535,9.6732 C8.369277,10.3452 9.26407512,10.7154 10.2159624,10.7154 C11.1678498,10.7154 12.0626479,10.3452 12.7356995,9.6732 L13.84323,8.568 L19.4355681,14.1516 L20.2264038,13.3626 L14.6334648,7.7784 L20.2264038,2.1948" id="Fill-3"></path>
+                            <path d="M18.629108,15.6 L1.8028169,15.6 C0.80886385,15.6 0,14.7924 0,13.8 L0,1.8 C0,0.8076 0.80886385,0 1.8028169,0 L18.629108,0 C19.623061,0 20.4319249,0.8076 20.4319249,1.8 L20.4319249,13.8 C20.4319249,14.7924 19.623061,15.6 18.629108,15.6 L18.629108,15.6 Z M1.8028169,1.2 C1.47169953,1.2 1.20187793,1.4694 1.20187793,1.8 L1.20187793,13.8 C1.20187793,14.1306 1.47169953,14.4 1.8028169,14.4 L18.629108,14.4 C18.9602254,14.4 19.2300469,14.1306 19.2300469,13.8 L19.2300469,1.8 C19.2300469,1.4694 18.9602254,1.2 18.629108,1.2 L1.8028169,1.2 L1.8028169,1.2 Z" id="Fill-4"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
