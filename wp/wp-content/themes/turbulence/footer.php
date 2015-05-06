@@ -2,7 +2,7 @@
     $options = get_option( 'turbulence_theme_options' );
 ?>
 
-</div><!--container-->
+
 </div><!--wrap-->
 
 <footer class="footer">

@@ -153,9 +153,9 @@ $options = get_option( 'turbulence_theme_options' );
         <?php if($_thePost->post_type == 'commission'): ?>
             <div class="header-helper header-helper_fixed"></div>
         <?php else:?>
-            <div class="header-helper"></div>
+            <div class="<?php echo (is_front_page()) ? 'header-helper' : 'header_inner__helper' ?>"></div>
         <?php endif;?>
-        <header class="header header_front <?php echo is_front_page() ? 'header_index' : 'header_inner header_fixed'?>">
+        <header class="header <?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_inner header_fixed' : 'header_inner')?>">
             <div class="container">
                 <button type="button" class="nav-toggle <?php echo is_front_page() ? 'mobile-vs' : ''?>" data-toggle=".header__nav" data-toggle-dir="ltr"></button>
 
@@ -267,4 +267,4 @@ $options = get_option( 'turbulence_theme_options' );
                 </div>
             </div>
         </header>
-        <div class="container">
+

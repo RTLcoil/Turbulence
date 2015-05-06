@@ -5,7 +5,9 @@
  * @subpackage Turbulence
  * @since Turbulence 1.0
  */
-get_header();
+get_header();?>
+<div class="container">
+<?php
     $options = get_option( 'turbulence_theme_options' );
     $args = array(
 
@@ -163,6 +165,9 @@ get_header();
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
+            $map = get_field('artist_map', $pItem->ID); 
+            $entry['map_lat'] = $map ? $map['lat'] : '';
+            $entry['map_lng'] = $map ? $map['lng'] : '';;
             $entry['letter'] = strtolower(substr($pItem->post_title, 0, 1));
 
             $entry['works'] = array();
@@ -180,6 +185,7 @@ get_header();
         }
 
         $lettersSorters = array();
+        $usedLetters = array();
         $theLetter = '';
 
         $artistsNumber = count($artistsItems);
@@ -190,10 +196,14 @@ get_header();
 
             if(!isset($lettersSorters[$item['letter']])) {
                 $lettersSorters[$item['letter']] = array('from' => $pInd, 'to' => ($artistsNumber - $pInd));
+                $usedLetters[] = $item['letter'];
             }
 
             $lettersSorters[$item['letter']]['to'] = ($artistsNumber - $pInd);
         }
+        sort($usedLetters);
+        $firstLetter = array_shift($usedLetters);
+        $lastLetter = array_pop($usedLetters);
     ?>
     <section class="search-block">
 
@@ -203,36 +213,36 @@ get_header();
                 <div class="search-block__period-years">
                     <div class="search-block__period-left active">
                         <?php echo $maxYear;?>
-                        <span>&rarr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
 
                     <div class="search-block__period-right">
                         <?php echo $minYear;?>
-                        <span>&larr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
                 </div>
 
                 <div class="search-block__period-years-titles" style="display: none">
                     <div class="search-block__period-left active">
                         <?php echo $maxYear;?>
-                        <span>&rarr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
 
                     <div class="search-block__period-right">
                         <?php echo $minYear;?>
-                        <span>&larr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
                 </div>
 
                 <div class="search-block__period-letters" style="display: none">
                     <div class="search-block__period-left active">
-                        <?php _e('A')?>
-                        <span>&rarr;</span>
+                        <?php echo strtoupper($firstLetter)?>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
 
                     <div class="search-block__period-right">
-                        <?php _e('Z')?>
-                        <span>&larr;</span>
+                        <?php echo strtoupper($lastLetter)?>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
                 </div>
             </div>
@@ -348,7 +358,7 @@ get_header();
                          data-labels="<?php echo implode(',', $item['tags'])?>"
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>">
                         <?php echo $item['thumbnail']?>
-                        <span><?php echo $item['title']?></span>
+                        <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>
 
                 <?php endforeach;?>
@@ -384,13 +394,16 @@ get_header();
                          data-artist="<?php echo $item['image']?>"
                          data-name="<?php echo $item['title']?>?<?php echo $item['url']?>"
                          data-url="<?php echo $item['url']?>"
-                         data-place="<?php echo $item['location']?>">
+                         data-place="<?php echo $item['location']?>"
+                         data-map-lat="<?php echo $item['map_lat']?>">
+                         data-map-lng="<?php echo $item['map_lng']?>">
                         <?php echo $item['thumbnail']?>
-                        <span><?php echo $item['title']?></span>
+                        <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>
                 <?php endforeach;?>
             </div>
         </div>
 
     </section>
+</div>
 <?php get_footer(); ?>
