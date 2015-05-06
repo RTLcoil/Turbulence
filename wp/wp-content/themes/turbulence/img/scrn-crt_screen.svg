@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="64px" viewBox="0 0 60 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (232) - http://www.bohemiancoding.com/sketch -->
+    <title>scrn-crt_screen</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="hp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="-hp_grid" sketch:type="MSArtboardGroup" transform="translate(-195.000000, -1981.000000)" stroke="#C6D0DA" fill="#FFFFFF">
+            <g id="hovers" sketch:type="MSLayerGroup" transform="translate(20.000000, 719.000000)">
+                <g id="commission-hovers" transform="translate(175.000000, 615.000000)" sketch:type="MSShapeGroup">
+                    <g id="scrn-crt_screen" transform="translate(0.000000, 647.000000)">
+                        <rect id="Rectangle-215" stroke-width="2" x="11" y="56" width="38" height="3"></rect>
+                        <rect id="Rectangle-214" x="9" y="59" width="42" height="5"></rect>
+                        <path d="M0,1.99523815 C0,0.893298547 0.894730389,0 1.99630737,0 L58.0036926,0 C59.1062227,0 60,0.895333886 60,1.99523815 L60,55.0047619 C60,56.1067015 59.1052696,57 58.0036926,57 L1.99630737,57 C0.893777255,57 0,56.1046661 0,55.0047619 L0,1.99523815 Z M5,7.99749218 C5,6.89430771 5.88906428,6 6.99091407,6 L53.0090859,6 C54.1086374,6 55,6.89666034 55,7.99749218 L55,46.0025078 C55,47.1056923 54.1109357,48 53.0090859,48 L6.99091407,48 C5.89136259,48 5,47.1033397 5,46.0025078 L5,7.99749218 Z" id="Rectangle-211"></path>
+                        <circle id="Oval-105" cx="47" cy="54" r="5"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
