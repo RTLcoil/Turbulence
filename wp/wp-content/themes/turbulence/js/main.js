@@ -72,11 +72,11 @@
 }(jQuery));
 
 var tmpl = {
-	popupIcon: '<div class="i-item__popup"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
+	popupIcon: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span style="color: {color}">{author}</span></div><div class="i-item__popup-tags" style="color: {color}">{tags}</div></div>',
 
-	popupIconTitle: '<div class="i-item__popup"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
+	popupIconTitle: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title" style="color: {color}">{title}<span style="color: {color}">{author}</span></div><div class="i-item__popup-tags" style="color: {color}">{tags}</div></div>',
 	
-	popupArtist: '<div class="i-item__popup i-item__popup_person"><div class="i-item__popup_map"><img src="{map}" alt=""></div><img src="{artist}" alt="" class="i-item__popup-artist"><a href="{artistUrl}" class="i-item__popup-name">{name}</a><div class="i-item__popup-place">{place}</div><div class="i-item__popup-works">{works}</div></div>'
+	popupArtist: '<div class="i-item__popup i-item__popup_person" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup_map"><div class="acf-map"><div class="marker" data-lat="{mapLat}" data-lng="{mapLng}"></div></div></div><img src="{artist}" alt="" class="i-item__popup-artist"><a href="{artistUrl}" class="i-item__popup-name" style="color: {color}">{name}</a><div class="i-item__popup-place" style="color: {color}">{place}</div><div class="i-item__popup-works">{works}</div></div>'
 };
 
 (function($) {
@@ -171,9 +171,9 @@ var tmpl = {
 			$(window).on("scroll", function() {
 				var st = $(window).scrollTop();
 				
-				if('matchMedia' in window && window.matchMedia('(min-width: 768px)').matches) {
+				//if('matchMedia' in window && window.matchMedia('(min-width: 768px)').matches) {
 					$("body")[st >= $(window).height() ? "addClass" : "removeClass"]("header-fixed");
-				}
+				//}
 			});
 		}
 		
@@ -185,7 +185,7 @@ var tmpl = {
 
 				if(dir) {
 					var flag = !!($elem.width() > 80),
-						width = flag ? 0 : $elem.children(":first").outerWidth();
+						width = flag ? 0 : ($elem.children(":first").outerWidth() + $elem.children(":first").position().left);
 
 					if(!flag) {
 						$elem.css("visibility", "visible");
@@ -260,6 +260,7 @@ var tmpl = {
 				
 				$sortByYearsDown.on("click", function() { // sort by years
 					changeActive($(this));
+					reverseValue($(this), !1);
 					
 					$container.isotope({
 						sortBy: 'yearDown'
@@ -268,6 +269,7 @@ var tmpl = {
 				
 				$sortByYearsUp.on("click", function() { // sort by years
 					changeActive($(this));
+					reverseValue($(this), !0);
 					
 					$container.isotope({
 						sortBy: 'yearUp'
@@ -276,6 +278,7 @@ var tmpl = {
 				
 				$sortByLettersDown.on("click", function() { // sort by letters
 					changeActive($(this));
+					reverseValue($(this), !1);
 					
 					$container.isotope({
 						sortBy: 'letterDown'
@@ -284,6 +287,7 @@ var tmpl = {
 				
 				$sortByLettersUp.on("click", function() { // sort by letters
 					changeActive($(this));
+					reverseValue($(this), !0);
 					
 					$container.isotope({
 						sortBy: 'letterUp'
@@ -292,6 +296,7 @@ var tmpl = {
 				
 				$sortByTitleDown.on("click", function() { // sort by title
 					changeActive($(this));
+					reverseValue($(this), !1);
 					
 					$container.isotope({
 						sortBy: 'titleDown'
@@ -300,6 +305,7 @@ var tmpl = {
 				
 				$sortByTitleUp.on("click", function() { // sort by title
 					changeActive($(this));
+					reverseValue($(this), !0);
 					
 					$container.isotope({
 						sortBy: 'titleUp'
@@ -455,11 +461,17 @@ var tmpl = {
 				
 				function changeActive($this) {
 					if($this.hasClass("active")) {
-						return;
+						//return;
 					}
 					
 					$this.addClass("active").siblings(".active").removeClass("active");
 				}
+				
+				function reverseValue($elem, bol) {
+					$elem.parent()[bol ? "removeClass" : "addClass"]("revert");
+				}
+
+				////////////////////////////////////
 				
 				function createIconPopup($root) {
 					var data = $root.data(),
@@ -475,6 +487,15 @@ var tmpl = {
 					tags = data.labels.split(",");
 					tagsUrl = data.labelsUrl.split(",");
 					links = '';
+
+					if("customColor" in data && data.customColor) {
+						var re = new RegExp("{color}", "gi");
+						while(re.test(html)) {
+							html = html.replace("{color}", data.customColor);
+						}
+
+						html = html.replace("i-item__popup", "i-item__popup i-item__popup_custom-color");
+					}
 					
 					for(var i = 0, j = tags.length; i < j; i += 1) {
 						links += ('<a href="' + (""+tagsUrl[i]) + '">' + tags[i] + '</a>');
@@ -499,6 +520,15 @@ var tmpl = {
 					tags = data.labels.split(",");
 					tagsUrl = data.labelsUrl.split(",");
 					links = '';
+
+					if("customColor" in data && data.customColor) {
+						var re = new RegExp("{color}", "gi");
+						while(re.test(html)) {
+							html = html.replace("{color}", data.customColor);
+						}
+
+						html = html.replace("i-item__popup", "i-item__popup i-item__popup_custom-color");
+					}
 					
 					for(var i = 0, j = tags.length; i < j; i += 1) {
 						links += ('<a href="' + (""+tagsUrl[i]) + '">' + tags[i] + '</a>');
@@ -516,11 +546,22 @@ var tmpl = {
 						name = data.name.split("?");
 						
 					html = html
-						.replace('{map}', data.map)
+						.replace('{map}', data.mapSrc)
 						.replace('{artist}', data.artist)
 						.replace('{place}', data.place)
 						.replace('{name}', name[0])
-						.replace('{artistUrl}', name[1]);
+						.replace('{artistUrl}', name[1])
+						.replace('{mapLng}', data.mapLng)
+						.replace('{mapLat}', data.mapLat);
+					
+					if("customColor" in data && data.customColor) {
+						var re = new RegExp("{color}", "gi");
+						while(re.test(html)) {
+							html = html.replace("{color}", data.customColor);
+						}
+
+						html = html.replace("i-item__popup", "i-item__popup i-item__popup_custom-color");
+					}
 					
 					works = data.works.split(",");
 					
@@ -535,7 +576,7 @@ var tmpl = {
 					return html;
 				}
 				
-				$("> img", $itemIcon).each(function(i) {
+				$("> img, > a", $itemIcon).each(function(i) {
 					var timerIcon;
 
 					$(this).on("mouseenter.desktopPopupOpen", function(e) {
@@ -579,10 +620,10 @@ var tmpl = {
 					});
 				});
 				
-				$("> img", $itemIconTitle).each(function(i) {
+				$("> img, > a", $itemIconTitle).each(function(i) {
 					var timerIconTitle;
 
-					$(this).on("mouseenter.desktopPopupTitleOpen", function(e) {
+					$(this).on("mouseenter.desktopPopupOpen", function(e) {
 						var $opened  = $(".opened-popup"),
 							$closest = $(this).closest(".i-item"),
 							$popup   = $(".i-item__popup", $closest);
@@ -604,7 +645,7 @@ var tmpl = {
 						} else {
 							$closest.append(createIconPopup($closest)).addClass("opened-popup");
 						}
-					}).closest(".i-item").on("mouseleave.desktopPopupTitleOpen", function() {
+					}).closest(".i-item").on("mouseleave.desktopPopupOpen", function() {
 						var _this = $(this);
 
 						if(timerIconTitle) {
@@ -615,7 +656,7 @@ var tmpl = {
 						timerIconTitle = setTimeout(function() {
 							_this.removeClass("opened-popup").find(".i-item__popup").hide();
 						}, 150);
-					}).on("mouseenter.desktopPopupTitleOpen", function() {
+					}).on("mouseenter.desktopPopupOpen", function() {
 						if(timerIconTitle) {
 							clearTimeout(timerIconTitle);
 							timerIconTitle = null;
@@ -623,7 +664,7 @@ var tmpl = {
 					});
 				});
 
-				$("> img", $itemArtist).each(function() {
+				$("> img, > a", $itemArtist).each(function() {
 					var timerItemArtist;
 
 					$(this).on("mouseenter.desktopPopupOpen", function(e) {
@@ -654,6 +695,11 @@ var tmpl = {
 								$(".i-item__popup", $closest).css("left", -offsetLeft+1);
 							} else {
 								$(".i-item__popup", $closest).css("left", -75);
+							}
+							
+							if($(".marker", $closest).length && !$(".marker", $closest).hasClass("marker-ready")) { // marker-ready
+								render_map($('.acf-map', $closest));
+								$(".marker", $closest).addClass("marker-ready");
 							}
 						}
 					}).closest(".i-item").on("mouseleave.desktopPopupOpen", function() {
@@ -737,12 +783,23 @@ var tmpl = {
 				
 				(function() {
 					if(isSmallScreen) {
-						var $imgIcon = $("> img", $itemIcon),
+						var $imgIcon       = $("> img", $itemIcon),
 							$imgIconTitles = $("> img", $itemIconTitle),
-							$imgArtist = $("> img", $itemArtist),
+							$imgArtist     = $("> img", $itemArtist),
+							$aIcon         = $("> a", $itemIcon),
+							$aIconTitles   = $("> a", $itemIconTitle),
+							$aArtist       = $("> a", $itemArtist),
 							sliderIcon, sliderIconTitle, sliderArtist;
+
+						$aIcon.add($aArtist).add($aIconTitles).off(".desktopPopupOpen").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
+							$(this).siblings("img").click();
+						});
 						
-						$imgIcon.off(".desktopPopupOpen").on("click.mobilePopupOpen", function() {
+						$imgIcon.off(".desktopPopupOpen").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
 							$("#overlay").fadeIn();
 							$("#popup-icons").fadeIn();
 							
@@ -762,7 +819,9 @@ var tmpl = {
 							}
 						});
 						
-						$imgIconTitles.off(".desktopPopupTitleOpen").on("click.mobilePopupTitleIconOpen", function() {
+						$imgIconTitles.off(".desktopPopupOpen").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
 							$("#overlay").fadeIn();
 							$("#popup-icons-titles").fadeIn();
 							
@@ -782,11 +841,14 @@ var tmpl = {
 							}
 						});
 						
-						$imgArtist.off(".desktopPopupOpen").closest(".i-item_artist").on("click.mobilePopupOpen", function() {
+						$imgArtist.off(".desktopPopupOpen").closest(".i-item_artist").on("click.mobilePopupOpen", function(e) {
+							e.preventDefault();
+
 							$("#overlay").fadeIn();
 							$("#popup-artist").fadeIn();
 
-							var index = $imgIcon.index($("> img", this));
+							var index = $imgArtist.index($("> img", this)),
+								$elem;
 							
 							if(!$("#popup-artist").hasClass("slider-ready")) {
 								$("#popup-artist").addClass("slider-ready");
@@ -795,10 +857,31 @@ var tmpl = {
 									pager: false,
 									controls: false,
 									slideWidth: 230,
-									startSlide: index
+									startSlide: index,
+									
+									onSlideBefore: function($slideElement, oldIndex, newIndex) {
+										if($(".marker", $slideElement).length && !$(".marker", $slideElement).hasClass("marker-ready")) {
+											render_map($('.acf-map', $slideElement));
+											$(".marker", $slideElement).addClass("marker-ready");
+										}
+									}
 								});
+								
+								$elem = $("#popup-artist .popup-gallery__slider").children(":not(.bx-clone)").eq(sliderArtist.getCurrentSlide());
+								
+								if($(".marker", $elem).length && !$(".marker", $elem).hasClass("marker-ready")) {
+									render_map($('.acf-map', $elem));
+									$(".marker", $elem).addClass("marker-ready");
+								}
 							} else {
 								sliderArtist.goToSlide(index);
+								
+								$elem = $("#popup-artist .popup-gallery__slider").children(":not(.bx-clone)").eq(sliderArtist.getCurrentSlide());
+								
+								if($(".marker", $elem).length && !$(".marker", $elem).hasClass("marker-ready")) {
+									render_map($('.acf-map', $elem));
+									$(".marker", $elem).addClass("marker-ready");
+								}
 							}
 						});
 						
@@ -824,10 +907,8 @@ var tmpl = {
 			}());
 		});
 	});
-
-
-
-    /*
+	
+	    /*
      *  render_map
      *
      *  This function will render a Google Map onto the selected jQuery element

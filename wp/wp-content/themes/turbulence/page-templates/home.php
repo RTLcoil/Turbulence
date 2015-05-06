@@ -395,7 +395,7 @@ get_header();?>
                          data-name="<?php echo $item['title']?>?<?php echo $item['url']?>"
                          data-url="<?php echo $item['url']?>"
                          data-place="<?php echo $item['location']?>"
-                         data-map-lat="<?php echo $item['map_lat']?>">
+                         data-map-lat="<?php echo $item['map_lat']?>"
                          data-map-lng="<?php echo $item['map_lng']?>">
                         <?php echo $item['thumbnail']?>
                         <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
