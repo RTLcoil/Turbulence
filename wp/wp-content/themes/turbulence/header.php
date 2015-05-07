@@ -155,7 +155,7 @@ $options = get_option( 'turbulence_theme_options' );
         <?php else:?>
             <div class="<?php echo (is_front_page()) ? 'header-helper' : 'header_inner__helper' ?>"></div>
         <?php endif;?>
-        <header class="header <?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_inner header_fixed' : 'header_inner')?>">
+        <header class="header <?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_front header_fixed' : 'header_inner')?>">
             <div class="container">
                 <button type="button" class="nav-toggle <?php echo is_front_page() ? 'mobile-vs' : ''?>" data-toggle=".header__nav" data-toggle-dir="ltr"></button>
 
@@ -230,7 +230,7 @@ $options = get_option( 'turbulence_theme_options' );
                             </ul>
                         </div>
 
-                        <div class="nav-socialize header__nav-item mobile-visible">
+                        <div class="nav-socialize header__nav-item <?php echo (is_front_page()) ? ' mobile-visible' : '' ?>">
                             <div class="nav-title"><?php _e('We Socialize')?></div>
 
                             <ul class="drop-list">
@@ -248,20 +248,20 @@ $options = get_option( 'turbulence_theme_options' );
                                 <?php endif;?>
                             </ul>
                         </div>
+                    </div>
 
-                        <div class="header__search-mobile mobile-visible">
-                            <form role="search" method="get" id="searchform-mobile" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search">" />
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
+                    <div class="header__search-mobile mobile-visible">
+                        <form role="search" method="get" id="searchform-mobile" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                            <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                 </nav>
 
                 <div class="header__search">
 
                     <form role="search" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                        <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search or filter" />
+                        <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search or filter">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
