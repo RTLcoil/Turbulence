@@ -139,6 +139,12 @@ body *:focus {
   padding-top: 31px;
   position: relative;
   z-index: 99;
+  opacity: 0;
+  -webkit-transition: opacity .25s;
+     -moz-transition: opacity .25s;
+      -ms-transition: opacity .25s;
+       -o-transition: opacity .25s;
+          transition: opacity .25s;
 }
 .header_front .header__nav {
   float: left;
@@ -310,6 +316,14 @@ body *:focus {
   /*bottom: 0;*/
 }
 
+.header-fixed .header_front {
+  opacity: 1;
+}
+
+.header_index .container {
+  max-width: 100%;
+}
+
 .header-fixed .header_front.header_fixed .header__nav {
   position: fixed;
   bottom: 0;
@@ -431,13 +445,32 @@ body *:focus {
   white-space: nowrap;
   border: 0;
   padding: 0;
-  background: url(../img/turburger_blk-dark.svg) 0 0 no-repeat;
+  /*background: url(../img/turburger_blk-dark.svg) 0 0 no-repeat;*/
   background-size: 100% auto;
   margin-top: 15px;
   position: relative;
   z-index: 2;
   width: 122px;
   height: 22px;
+}
+.nav-toggle-btn {
+  float: left;
+  width: 20px;
+  height: 22px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.link-logo {
+  float: right;
+  width: 100px;
+  height: 22px;
+  overflow: hidden;
+  position: relative;
+}
+.link-logo svg {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .nav-toggle span {
   display: table-cell;
@@ -812,14 +845,20 @@ body *:focus {
   font-weight: 100;
 }
 .main-gallery__header {
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;
   margin: 0 auto;
   padding: 0 25px;
   max-width: 100%;
+  opacity: 1;
+  -webkit-transition: opacity .25s, z-index .25s;
+     -moz-transition: opacity .25s, z-index .25s;
+      -ms-transition: opacity .25s, z-index .25s;
+       -o-transition: opacity .25s, z-index .25s;
+          transition: opacity .25s, z-index .25s;
 }
 .main-gallery__header-logo {
   float: left;
@@ -828,6 +867,7 @@ body *:focus {
   background: url(../img/turbloop_wht.svg);
   background-size: 100%;
   margin-top: 14px;
+  display: block;
 }
 .main-gallery__header-form {
   float: right;
@@ -875,6 +915,12 @@ body *:focus {
 .main-gallery__header-form input[type='search']::-webkit-input-placeholder {
   color: #6e6f66;
 }
+
+.header-fixed .main-gallery__header {
+  opacity: 0;
+  z-index: -10;
+}
+
 .main-gallery__pager {
   position: absolute;
   right: 0;
@@ -2189,6 +2235,7 @@ body *:focus {
   max-width: 680px;
   padding: 0 20px;
   margin: 0 auto;
+  -webkit-transform: translateY(0);
 }
 .artist-details__desc {
   font-size: 20px;
@@ -2915,7 +2962,8 @@ body {
 
 .color-custom #content *,
 .color-custom .main-gallery__footer *,
-.color-custom .header__search * {
+.color-custom .header__search *,
+.color-custom .nav-toggle .link-logo {
   color: inherit !important;
 }
 
@@ -2923,9 +2971,13 @@ body {
   background: none;
 }
 
-.color-custom .nav-toggle path {
+.color-custom .nav-toggle .nav-toggle-btn path {
   fill: currentColor !important;
   stroke: currentColor !important;
+}
+
+.color-custom .nav-toggle .link-logo path {
+  fill: currentColor !important;
 }
 
 .color-custom .show-site {
@@ -2988,7 +3040,9 @@ body {
   top: 0;
 }
 
-
+.header__nav {
+  -webkit-transform: translateZ(0);
+}
 
 
 /* ==========================================================================

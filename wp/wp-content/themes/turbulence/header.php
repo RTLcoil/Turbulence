@@ -116,17 +116,6 @@ $options = get_option( 'turbulence_theme_options' );
             </div>
         </div>
 
-        <?php if($_thePost->post_type == 'commission'): ?>
-            <div class="container main-gallery__header">
-                <div class="main-gallery__header-logo"></div>
-
-                <div class="main-gallery__header-form">
-                    <form role="search" method="get" id="searchform-main-gallery" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                        <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search or filter by keyword" />
-                    </form>
-                </div>
-            </div>
-        <?php endif;?>
         <div class="main-gallery__footer">
             <div class="container">
                 <ul class="main-gallery__titles">
@@ -148,6 +137,18 @@ $options = get_option( 'turbulence_theme_options' );
     <?php endif;?>
 <?php endif;?>
 
+    <?php if($_thePost->post_type == 'commission' or is_front_page()): ?>
+        <div class="container main-gallery__header">
+            <a href="/turbulence/" class="main-gallery__header-logo"></a>
+
+            <div class="main-gallery__header-form">
+                <form role="search" method="get" id="searchform-main-gallery" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search or filter by keyword" />
+                </form>
+            </div>
+        </div>
+    <?php endif;?>
+
     <div id="wrap">
 
         <?php if($_thePost->post_type == 'commission'): ?>
@@ -157,7 +158,10 @@ $options = get_option( 'turbulence_theme_options' );
         <?php endif;?>
         <header class="header <?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_front header_fixed' : 'header_inner')?>">
             <div class="container">
-                <button type="button" class="nav-toggle <?php echo is_front_page() ? 'mobile-vs' : ''?>" data-toggle=".header__nav" data-toggle-dir="ltr"></button>
+                <div class="nav-toggle  <?php echo is_front_page() ? 'mobile-vs' : ''?>">
+                    <a href="/turbulence/" class="link-logo"></a>
+                    <div class="nav-toggle-btn"  data-toggle=".header__nav" data-toggle-dir="ltr"></div>
+                </div>
 
                 <nav class="header__nav">
                     <div class="header__nav-inner">
