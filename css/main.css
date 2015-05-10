@@ -3004,8 +3004,8 @@ body {
 
 .i-item.side-right .i-item__popup.i-item__popup_custom-color:before {
   border-left-color: transparent;
-  border-width: 8px;
-  margin-top: -3px;
+  border-width: 9px;
+  margin-top: -4px;
   border-right-color: inherit;
 }
 .i-item.side-right .i-item__popup.i-item__popup_custom-color:after {
@@ -3014,8 +3014,8 @@ body {
 
 .i-item.side-left .i-item__popup.i-item__popup_custom-color:before {
   border-right-color: transparent;
-  border-width: 8px;
-  margin-top: -3px;
+  border-width: 9px;
+  margin-top: -4px;
   border-left-color: inherit;
 }
 .i-item.side-left .i-item__popup.i-item__popup_custom-color:after {
