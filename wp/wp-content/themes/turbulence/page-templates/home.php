@@ -5,7 +5,9 @@
  * @subpackage Turbulence
  * @since Turbulence 1.0
  */
-get_header();?>
+get_header();
+
+?>
 <div class="container">
 <?php
     $options = get_option( 'turbulence_theme_options' );
@@ -101,7 +103,7 @@ get_header();?>
             $entry['color'] = get_field('color', $pItem->ID);
             $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 310));
+            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
 
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
@@ -310,7 +312,7 @@ get_header();?>
                         </div>
                     <?php endif;?>
 
-                    <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type']?>"
+                    <a href="<?php echo $item['url']?>" title="<?php echo $item['title']?>" class="i-item i-item_icon type-icon <?php echo $item['list_frame_type']?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
                          <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up="<?php echo $ind;?>"
@@ -322,7 +324,7 @@ get_header();?>
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>"
                          data-url="<?php echo $item['url']?>">
                         <?php echo $item['thumbnail']?>
-                    </div>
+                    </a>   
                 <?php endforeach;?>
 
                 <?php
