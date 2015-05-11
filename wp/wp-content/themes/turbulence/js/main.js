@@ -1036,7 +1036,9 @@ var tmpl = {
         var args = {
             zoom        : 5,
             styles:      acfMapStyle,
-            center        : new google.maps.LatLng(0, 0),
+//            center        : new google.maps.LatLng(0, 0),
+            center: new google.maps.LatLng($el.find('.marker:first').attr('data-lat'), $el.find('.marker:first').attr('data-lng')),
+//            center: new google.maps.LatLng(50.871768297397445, -113.93932679662703),
             mapTypeId    : google.maps.MapTypeId.ROADMAP,
             disableDoubleClickZoom: true,
             draggable: false,
@@ -1049,21 +1051,21 @@ var tmpl = {
 
         };
 
-        // create map
+//        // create map
         var map = new google.maps.Map( $el[0], args);
-
-        // add a markers reference
-        map.markers = [];
-
-        // add markers
-        $markers.each(function(){
-
-            add_marker( $(this), map );
-
-        });
-
-        // center map
-        center_map( map );
+//
+//        // add a markers reference
+//        map.markers = [];
+//
+//        // add markers
+//        $markers.each(function(){
+//
+//            add_marker( $(this), map );
+//
+//        });
+//
+//        // center map
+//        center_map( map );
 
     }
 
