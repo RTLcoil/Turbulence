@@ -101,7 +101,7 @@ get_header();?>
             $entry['color'] = get_field('color', $pItem->ID);
             $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 310));
 
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
@@ -161,7 +161,7 @@ get_header();?>
             $entry = array();
 
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 200));
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
