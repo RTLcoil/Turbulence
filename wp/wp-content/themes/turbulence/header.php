@@ -151,7 +151,7 @@ endif;?>
                 'title' => $row['commision_gallery_slide']['title'],
                 'sub_title' => $row['commision_gallery_slide']['description'],
                 'video' => false,
-                'background' => $row('commision_gallery_background'),
+                'background' => $row['commision_gallery_background'],
                 'autoplay_video' => false,
                 'link' => '#',
                 'thumbnail' => '<img src="'.$row['commision_gallery_slide']['url'].'" alt="'.$row['commision_gallery_slide']['alt'].'">',
