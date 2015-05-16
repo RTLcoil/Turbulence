@@ -1037,7 +1037,7 @@ var tmpl = {
             zoom        : 5,
             styles:      acfMapStyle,
 //            center        : new google.maps.LatLng(0, 0),
-            center: new google.maps.LatLng($el.find('.marker:first').attr('data-lat'), $el.find('.marker:first').attr('data-lng')),
+            center: new google.maps.LatLng(parseFloat($el.find('.marker:first').attr('data-lat')) + 1.2, $el.find('.marker:first').attr('data-lng')),
 //            center: new google.maps.LatLng(50.871768297397445, -113.93932679662703),
             mapTypeId    : google.maps.MapTypeId.ROADMAP,
             disableDoubleClickZoom: true,

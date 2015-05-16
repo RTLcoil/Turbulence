@@ -131,6 +131,7 @@ if(is_front_page()):
             'title' => $_thePost->post_type == 'commission' ? $slide->post_title : '',
             'sub_title' => count($arr) ? (_('by') . implode(' && ', $arr)) : '',
             'video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
+            'background' => get_field('main_gallery_background', $slide->ID),
             'autoplay_video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
             'link' => get_permalink($slide->ID),
             'thumbnail' => get_the_post_thumbnail( $slide->ID, 'full', array('class'    => "slide-post-img")),
@@ -150,6 +151,7 @@ endif;?>
                 'title' => $row['commision_gallery_slide']['title'],
                 'sub_title' => $row['commision_gallery_slide']['description'],
                 'video' => false,
+                'background' => $row('commision_gallery_background'),
                 'autoplay_video' => false,
                 'link' => '#',
                 'thumbnail' => '<img src="'.$row['commision_gallery_slide']['url'].'" alt="'.$row['commision_gallery_slide']['alt'].'">',
@@ -166,7 +168,7 @@ if(count($mainSlides)): ?>
         <div class="main-gallery__content">
             <div class="main-gallery__content-slider">
                 <?php foreach($mainSlides as $ind => $slide): ?>
-                <div class="main-gallery__content-slider-item">
+                <div class="main-gallery__content-slider-item" <?php echo $slide['background'] ? "style='background: {$slide['background']}'" : ''?>>
                     <div class="main-gallery__content-inner">
                         <a href="<?php echo $slide['link']?>" class="main-gallery__content-link">
                             <?php if($slide['video']):?>
