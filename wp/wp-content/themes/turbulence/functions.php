@@ -750,3 +750,4 @@ function turbulence_add_scripts() {
 }
  
 add_action( 'wp_enqueue_scripts', 'turbulence_add_scripts' );
+add_image_size( 'custom-commision-size', 180, 180, true );
