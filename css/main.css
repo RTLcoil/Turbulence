@@ -2438,22 +2438,33 @@ body *:focus {
 .commission__work {
   margin: 0 auto 70px;
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  width: 180px;
   display: block;
+  height: 180px;
+  color: inherit;
+}
+.commission__work img {
+  max-height: 180px;
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0; 
+  right: 0; 
+  bottom: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
 }
 .commission__work-overlay {
   position: absolute;
-  width: 282px;
-  height: 146px;
-  left: 0;
+  width: 280px;
+  height: 223px;
+  left: -50px;
   right: 0;
   top: 0;
-  bottom: 0;
   margin: auto;
-  outline: solid 200px #fff;
   opacity: 0;
-  color: #fff;
+  z-index: 2;
   -webkit-transition: opacity .4s;
      -moz-transition: opacity .4s;
       -ms-transition: opacity .4s;
@@ -2463,20 +2474,58 @@ body *:focus {
 .commission__work:hover .commission__work-overlay {
   opacity: 1;
 }
-.commission__work-overlay:before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 190px;
-  height: 128px;
-  border-radius: 6px;
-  box-shadow: 0 0 0 100px #fff;
+
+.frame-type-i-item_scrn-Power_Mac_5000 .commission__work-overlay {
+  background: url(../img/scrn-Power_Mac_5000.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
 }
+
+.frame-type-i-item_scrn-crt_screen .commission__work-overlay {
+  background: url(../img/scrn-crt_screen.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+}
+
+.frame-type-i-item_scrn-imac_G3 .commission__work-overlay {
+  background: url(../img/scrn-imac_G3.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+  top: -10px;
+}
+
+.frame-type-i-item_scrn-laptop .commission__work-overlay {
+  background: url(../img/scrn-laptop.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+  top: -20px;
+}
+
+.frame-type-i-item_scrn-smartphone .commission__work-overlay {
+  background: url(../img/scrn-smartphone.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+  top: -20px;
+  width: 280px;
+  height: 250px;
+}
+
+.frame-type-i-item_scrn-smartphone_horizontal .commission__work-overlay {
+  background: url(../img/scrn-smartphone_horizontal.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+  top: -20px;
+}
+
+.frame-type-i-item_scrn-tablet .commission__work-overlay {
+  background: url(../img/scrn-tablet.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+  top: -20px;
+}
+
+.frame-type-i-item_scrn-wide_screen .commission__work-overlay,
+.frame-type-default .commission__work-overlay {
+  background: url(../img/scrn-wide_screen.svg) 50% 0 no-repeat;
+  background-size: auto 100%;
+  top: -7px;
+  width: 320px;
+  left: -70px;
+}
+
 .commission__work-overlay:after {
   content: "";
   display: block;
@@ -2485,7 +2534,6 @@ body *:focus {
   top: 0;
   width: 100%;
   height: 146px;
-  border: solid 1px #d9d9d9;
   border-radius: 10px;
   text-align: center;
   content: "Enter";
