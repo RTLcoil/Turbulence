@@ -148,7 +148,7 @@ endif;?>
 
             $mainSlides[] = array(
                 'id' => $row['commision_gallery_slide']['id'],
-                'title' => $row['commision_gallery_slide']['title'],
+                'title' => $_thePost->post_title,
                 'sub_title' => $row['commision_gallery_slide']['description'],
                 'video' => false,
                 'background' => $row['commision_gallery_background'],
