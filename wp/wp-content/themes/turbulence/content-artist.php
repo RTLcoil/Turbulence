@@ -16,14 +16,14 @@
         <h1 class="artist-details__name"><?php the_title(); ?></h1>
 
         <?php
-	$email = get_field('artist_email');
-	if(has_post_thumbnail()){
-		echo get_the_post_thumbnail( get_the_ID(), 'full', array('class'	=> "artist-details__photo"));
-	} else {
-		echo '<div class="artist-details__photo">' . get_avatar( $email, $size = '200') . '</div>'; 
-	}
-	?>
-       
+      	$twitter = get_field('twitter_link');        $email = get_field('artist_email');
+
+      	if(has_post_thumbnail()){
+      		echo get_the_post_thumbnail( get_the_ID(), 'full', array('class'	=> "artist-details__photo"));        } elseif ($twitter == true ) {          echo '<img src="https://twitter.com/' . $twitter . '/profile_image?size=original" class="artist-details__photo"></img>';        } else {
+      		echo '<div class="artist-details__photo">' . get_avatar( $email, $size = '200') . '</div>';
+      	}
+      	?>
+
         <?php if($map = get_field('artist_map')):?>
             <div class="acf-map">
                 <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
@@ -81,4 +81,3 @@
 
     </div>
 </section>
-

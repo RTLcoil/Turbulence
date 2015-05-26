@@ -270,7 +270,7 @@ body *:focus {
   height: 62px;
   margin: 0 0 150px;
 }
-.header_inner .container, 
+.header_inner .container,
 .header_fixed .container/*,
 .header_index .container*/ {
   position: relative;
@@ -369,26 +369,26 @@ body *:focus {
   position: static;
   background: none;
 }
-.header_inner .header__nav .drop-list li, 
+.header_inner .header__nav .drop-list li,
 .header_fixed .header__nav .drop-list li {
   margin-top: 4px;
   padding: 0;
 }
-.header_inner .header__nav .drop-list li:first-child, 
+.header_inner .header__nav .drop-list li:first-child,
 .header_fixed .header__nav .drop-list li:first-child {
   margin-top: 0;
 }
-.header_inner .header__nav .drop-list a, 
+.header_inner .header__nav .drop-list a,
 .header_fixed .header__nav .drop-list a {
   color: inherit;
   text-decoration: none;
 }
-.header_inner .header__nav .drop-list a:hover, 
+.header_inner .header__nav .drop-list a:hover,
 .header_fixed .header__nav .drop-list a:hover {
   text-decoration: underline;
 }
-.header_inner .header__search, 
-.header_fixed .header__search, 
+.header_inner .header__search,
+.header_fixed .header__search,
 .header_front .header__search {
   float: right;
   width: 44.421052631578945%;
@@ -400,7 +400,7 @@ body *:focus {
 .header_front.header_index .header__search {
   margin-top: 0;
 }
-.header_inner .header__search input[type='search'], 
+.header_inner .header__search input[type='search'],
 .header_fixed .header__search input[type='search'] {
   -webkit-appearance: textfield;
   display: block;
@@ -1040,7 +1040,7 @@ body *:focus {
 .main-gallery_light #main-gallery__pager a {
   border-color: #32477D;
 }
-.main-gallery_light #main-gallery__pager a.active, 
+.main-gallery_light #main-gallery__pager a.active,
 .main-gallery_light #main-gallery__pager a:hover {
   background: #32477D;
 }
@@ -1555,24 +1555,24 @@ body *:focus {
   font-size: 16px;
   font-family: "Merriweather", serif;
 }
-.i-item_icon_title span, 
+.i-item_icon_title span,
 .i-item_artist span,
-.i-item_icon_title > a, 
+.i-item_icon_title > a,
 .i-item_artist > a {
   display: inline-block;
   vertical-align: middle;
   /*padding-right: 20px;*/
   color: #5b698d;
 }
-.i-item_icon_title > span, 
+.i-item_icon_title > span,
 .i-item_artist > span,
-.i-item_icon_title > a, 
+.i-item_icon_title > a,
 .i-item_artist > a {
   padding-right: 20px;
   text-decoration: none;
   color: inherit;
 }
-.i-item_icon_title > a:hover, 
+.i-item_icon_title > a:hover,
 .i-item_artist > a:hover {
   text-decoration: underline;
 }
@@ -2185,7 +2185,7 @@ body *:focus {
   border-radius: 50%;
   -moz-box-shadow: 0 0 0 1px white;
   -webkit-box-shadow: 0 0 0 1px white;
-  box-shadow: 0 0 0 1px white;
+  box-shadow: 0 0 0 1px white;  overflow: hidden;
 }
 .artist-details__map {
   position: absolute;
@@ -2448,8 +2448,8 @@ body *:focus {
   max-width: 100%;
   position: absolute;
   left: 0;
-  top: 0; 
-  right: 0; 
+  top: 0;
+  right: 0;
   bottom: 0;
   margin: auto;
   width: auto;
@@ -3039,19 +3039,19 @@ body {
   border-bottom-color: inherit !important;
 }
 
-.color-custom .header_inner .header__search input[type='search']:-moz-placeholder, 
+.color-custom .header_inner .header__search input[type='search']:-moz-placeholder,
 .color-custom .header_fixed .header__search input[type='search']:-moz-placeholder {
   color: inherit !important;
 }
-.color-custom .header_inner .header__search input[type='search']::-moz-placeholder, 
+.color-custom .header_inner .header__search input[type='search']::-moz-placeholder,
 .color-custom .header_fixed .header__search input[type='search']::-moz-placeholder {
   color: inherit !important;
 }
-.color-custom .header_inner .header__search input[type='search']:-ms-input-placeholder, 
+.color-custom .header_inner .header__search input[type='search']:-ms-input-placeholder,
 .color-custom .header_fixed .header__search input[type='search']:-ms-input-placeholder {
   color: inherit !important;
 }
-.color-custom .header_inner .header__search input[type='search']::-webkit-input-placeholder, 
+.color-custom .header_inner .header__search input[type='search']::-webkit-input-placeholder,
 .color-custom .header_fixed .header__search input[type='search']::-webkit-input-placeholder {
   color: inherit !important;
 }
