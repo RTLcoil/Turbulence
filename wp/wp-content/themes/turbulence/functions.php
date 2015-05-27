@@ -722,7 +722,7 @@ function current_type_nav_class($classes, $item) {
     return $classes;
 }
 
-function getCommissionsPostIds($artists) {
+function getCommissionsPostIds($artists, $exclude = array()) {
 
     $metaQuery = array();
     $metaQueryREGEXP = array();
@@ -739,6 +739,8 @@ function getCommissionsPostIds($artists) {
     $postIds = array(0);
     foreach ( $res as $r )
     {
+        if(in_array($r->post_id, $exclude)) continue;
+
         $postIds[] = $r->post_id;
     }
 

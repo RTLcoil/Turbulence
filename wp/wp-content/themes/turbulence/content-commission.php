@@ -140,7 +140,7 @@ $artists = is_array($artists) ? $artists : array($artists)
                 'numberposts'	=> 6,
                 'exclude'       => get_the_ID(),
                 'post_type'		=> 'commission',
-                'post__in'      => getCommissionsPostIds(array($artist)),
+                'post__in'      => getCommissionsPostIds(array($artist), array(get_the_ID())),
                 'orderby'		=> 'rand',
             ));
 
