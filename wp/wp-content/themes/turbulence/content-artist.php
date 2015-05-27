@@ -51,11 +51,11 @@
             <?php endif;?>
 
             <?php if($value = get_field('twitter_link')):?>
-                <a href="<?php echo $value?>" class="social-tw"></a>
+                <a href="http://twitter.com/<?php echo $value?>" class="social-tw"></a>
             <?php endif;?>
 
             <?php if($value = get_field('github_link')):?>
-                <a href="<?php echo $value?>" class="social-git"></a>
+                <a href="http://github.com/<?php echo $value?>" class="social-git"></a>
             <?php endif;?>
         </div>
 
