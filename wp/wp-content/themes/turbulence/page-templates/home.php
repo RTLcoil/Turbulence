@@ -132,6 +132,8 @@ get_header();
 
             $commissionsItems[] = $entry;
 //            *****************
+            $date = new DateTime($entry['year_realise']);
+            $entry['year_realise'] = $date->format('Y');
             $maxYear = $entry['year_realise'] > $maxYear ? $entry['year_realise'] : $maxYear;
             $minYear = $entry['year_realise'] < $minYear ? $entry['year_realise'] : $minYear;
 
@@ -142,6 +144,9 @@ get_header();
         $commissionsNumber = count($commissionsItems);
 
         foreach($commissionsItems as $pInd => $item) {
+
+            $date = new DateTime($item['year_realise']);
+            $item['year_realise'] = $date->format('Y');
 
             if(!isset($yearsSorters[$item['year_realise']])) {
                 $yearsSorters[$item['year_realise']] = array('from' => $pInd, 'to' => $commissionsNumber - $pInd);
@@ -167,7 +172,7 @@ get_header();
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
-            $map = get_field('artist_map', $pItem->ID); 
+            $map = get_field('artist_map', $pItem->ID);
             $entry['map_lat'] = $map ? $map['lat'] : '';
             $entry['map_lng'] = $map ? $map['lng'] : '';;
             $entry['letter'] = strtolower(substr($pItem->post_title, 0, 1));
@@ -300,10 +305,12 @@ get_header();
                     <?php echo $theYear?>
                 </div>
 
-                <?php foreach($commissionsItems as $ind => $item):?>
+                <?php foreach($commissionsItems as $ind => $item):
 
+                  $date = new DateTime($item['year_realise']);
+                  $item['year_realise'] = $date->format('Y');
 
-                    <?php if($theYear != $item['year_realise']): $theYear = $item['year_realise'];?>
+                   if($theYear != $item['year_realise']): $theYear = $item['year_realise'];?>
                         <div class="i-item i-item_year type-icon"
                              data-sort-up="<?php echo $yearsSorters[$theYear]['from']?>"
                              data-sort-down="<?php echo $yearsSorters[$theYear]['to']?>"
@@ -324,7 +331,7 @@ get_header();
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>"
                          data-url="<?php echo $item['url']?>">
                         <?php echo $item['thumbnail']?>
-                    </a>   
+                    </a>
                 <?php endforeach;?>
 
                 <?php
@@ -337,9 +344,12 @@ get_header();
                     <?php echo $theYear?>
                 </div>
 
-                <?php foreach($commissionsItems as $ind => $item):?>
+                <?php foreach($commissionsItems as $ind => $item):
 
-                    <?php if($theYear != $item['year_realise']): $theYear = $item['year_realise'];?>
+                  $date = new DateTime($item['year_realise']);
+                  $item['year_realise'] = $date->format('Y');
+
+                  if($theYear != $item['year_realise']): $theYear = $item['year_realise'];?>
                         <div class="i-item i-item_year type-icon-title"
                              data-sort-up-title="<?php echo $yearsSorters[$theYear]['from']?>"
                              data-sort-down-title="<?php echo $yearsSorters[$theYear]['to']?>"
