@@ -14,7 +14,7 @@ $artists = is_array($artists) ? $artists : array($artists)
 <section class="commission">
     <div class="commission__work frame-type-<?php echo (get_field('list_frame_type') ? : 'default')?>">
         <?php echo get_the_post_thumbnail()?>
-
+        
         <div class="commission__work-overlay"></div>
     </div>
 
@@ -28,8 +28,7 @@ $artists = is_array($artists) ? $artists : array($artists)
         echo implode(' && ', $arr);
     ?></div>
 
-    <?php $date = new DateTime(get_field('year_realise')); ?>
-    <div class="commission__year"><span><?php echo $date->format('Y')?></span></div>
+    <div class="commission__year"><span><?php echo get_field('year_realise')?></span></div>
 
     <div class="commission__small-desc">
         <?php echo get_the_excerpt()?>
@@ -161,3 +160,6 @@ $artists = is_array($artists) ? $artists : array($artists)
         </div>
     </section>
 <?php endforeach;?>
+
+
+
