@@ -1685,7 +1685,7 @@ body *:focus {
   line-height: 18px;
   font-family: "Merriweather", serif;
   font-weight: 700;
-  white-space: normal;  position: absolute;  z-index: 10;  width: 180px;
+  white-space: normal;  position: absolute;  z-index: 10;  width: 180px;  background: #FAFAFA;
 }
 .i-item__popup-title span {
   font-weight: 400;
