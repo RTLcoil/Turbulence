@@ -746,8 +746,8 @@ function getCommissionsPostIds($artists) {
 }
 
 function turbulence_add_scripts() {
-    wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', array(), '3', true );                        
+    wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', array(), '3', true );
 }
- 
+
 add_action( 'wp_enqueue_scripts', 'turbulence_add_scripts' );
-add_image_size( 'custom-commision-size', 180, 180, true );
+add_image_size( 'custom-commision-size', 200, 200, true );
