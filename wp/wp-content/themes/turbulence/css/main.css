@@ -139,7 +139,6 @@ body *:focus {
   padding-top: 31px;
   position: relative;
   z-index: 99;
-  opacity: 0;
   -webkit-transition: opacity .25s;
      -moz-transition: opacity .25s;
       -ms-transition: opacity .25s;
@@ -737,8 +736,7 @@ body *:focus {
   top: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
-}
+  overflow: hidden;}.main-gallery::after {  background: -moz-linear-gradient(top,  rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */  background: -o-linear-gradient(top,  rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */  background: -ms-linear-gradient(top,  rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%); /* IE10+ */  background: linear-gradient(to bottom,  rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%); /* W3C */  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */  height: 100px;  display: block;  content: "";  position: absolute;  top: 0px;  left: 0px;  right: 0px;  z-index: 10;}
 .main-gallery__helper {
   height: 100vh;
 }
@@ -824,19 +822,26 @@ body *:focus {
 }
 .main-gallery__content-slider-item-body {
   position: absolute;
-  bottom: 90px;
+  bottom: 0px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  padding: 0 25px;
+  padding: 40px 25px 70px;
   max-width: 1230px;
   color: #fff;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 1%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(1%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(0,0,0,0.5) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(0,0,0,0.5) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(0,0,0,0.5) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 ); /* IE6-9 */
+
 }
 .main-gallery_light .main-gallery__content-slider-item-body {
   color: #32477D;
 }
 .main-gallery__content-slider-item .main-gallery__title {
-  max-width: 270px;
   font: italic 36px/1.3 "Merriweather", serif;
   font-weight: 100;
 }
@@ -846,7 +851,7 @@ body *:focus {
 }
 .main-gallery__header {
   position: fixed;
-  z-index: 1000;
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;
@@ -858,8 +863,7 @@ body *:focus {
      -moz-transition: opacity .25s, z-index .25s;
       -ms-transition: opacity .25s, z-index .25s;
        -o-transition: opacity .25s, z-index .25s;
-          transition: opacity .25s, z-index .25s;
-}
+          transition: opacity .25s, z-index .25s;}
 .main-gallery__header-logo {
   float: left;
   width: 122px;
@@ -898,13 +902,13 @@ body *:focus {
   line-height: 22px;
   width: 100%;
   padding: 6px 0;
-  color: #6e6f66;
+  color: rgba(255, 255, 255, 0.8);
   font-family: "Merriweather", serif;
   font-size: 16px;
   background: none;
 }
 .main-gallery__header-form input[type='search']:-moz-placeholder {
-  color: #6e6f66;
+  color: rgba(255, 255, 255, 0.5);
 }
 .main-gallery__header-form input[type='search']::-moz-placeholder {
   color: #6e6f66;
@@ -937,7 +941,7 @@ body *:focus {
 }
 .main-gallery__footer {
   position: relative;
-  z-index: 12;
+  z-index: 1200;
   height: 50px;
   overflow: hidden;
   background: #f1f4f8;
@@ -1029,7 +1033,7 @@ body *:focus {
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
-  transition: all 0.4s;
+  transition: all 0.4s;  box-shadow: 0 0 4px rgba(0,0,0,0.4);  background: rgba(0,0,0,0.1);
 }
 #main-gallery__pager a:first-child {
   margin-top: 0;
@@ -2533,14 +2537,14 @@ body *:focus {
   left: 0;
   top: 0;
   width: 100%;
-  height: 146px;
+  height: 216px;
   border-radius: 10px;
   text-align: center;
   content: "Enter";
   font-style: italic;
-  color: inherit;
+  color: white;  text-shadow: 0 0 10px rgba(0,0,0,0.75);
   text-align: center;
-  line-height: 146px;
+  line-height: 216px;
   font-size: 30px;
 }
 .commission__title {
