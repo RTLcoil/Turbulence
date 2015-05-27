@@ -55,7 +55,7 @@
             <?php endif;?>
 
             <?php if($value = get_field('github_link')):?>
-                <a href="<?php echo $value?>" class="social-git"></a>
+                <a href="http://github.com/<?php echo $value?>" class="social-git"></a>
             <?php endif;?>
         </div>
 
