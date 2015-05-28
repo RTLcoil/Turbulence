@@ -13,7 +13,9 @@ $artists = is_array($artists) ? $artists : array($artists)
 ?>
 <section class="commission">
     <div class="commission__work frame-type-<?php echo (get_field('list_frame_type') ? : 'default')?>">
-        <?php echo get_the_post_thumbnail(null, array(240,180))?>
+        <div class="commission__work-img">
+            <?php echo get_the_post_thumbnail(null, array(240,180))?>
+        </div>
 
         <a href="<?php echo get_field('commission_link') ?>" target"_blank" class="commission__work-overlay"></a>
     </div>
