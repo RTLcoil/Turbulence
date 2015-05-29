@@ -97,7 +97,13 @@ var acfMapStyle = [
         ]
     }
 ];
-    (function($) {
+
+var mapArtistPopupOffsets = {
+	x: 0,
+	y: 0.005
+};
+
+(function($) {
 	$.fn.sliderCSS = function(params) {
 		var opts = $.extend({
 			timeout: 5000,
@@ -649,7 +655,17 @@ var tmpl = {
 					var data = $root.data(),
 						html = tmpl.popupArtist,
 						works, worksResult = '',
-						name = data.name.split("?");
+						name = data.name.split("?"),
+						mapLng = data.mapLng, 
+						mapLat = data.mapLat;
+
+					if(mapLng) {
+						mapLng = mapLng + mapArtistPopupOffsets.x;
+					}
+
+					if(mapLat) {
+						mapLat = mapLat + mapArtistPopupOffsets.y;
+					}
 
 					html = html
 						.replace('{map}', data.mapSrc)
@@ -657,11 +673,12 @@ var tmpl = {
 						.replace('{place}', data.place)
 						.replace('{name}', name[0])
 						.replace('{artistUrl}', name[1])
-						.replace('{mapLng}', data.mapLng)
-						.replace('{mapLat}', data.mapLat);
+						.replace('{mapLng}', mapLng)
+						.replace('{mapLat}', mapLat);
 
 					if("customColor" in data && data.customColor) {
 						var re = new RegExp("{color}", "gi");
+
 						while(re.test(html)) {
 							html = html.replace("{color}", data.customColor);
 						}
