@@ -2514,7 +2514,7 @@ body *:focus {
 
   margin: 0 0 0 20px;
 
-  width: 81px;
+  /*width: 81px;*/
 
   position: relative;
 
@@ -2526,7 +2526,7 @@ body *:focus {
 
   position: absolute;
 
-  left: 40px;
+  left: 50%;
 
   height: 36px;
 
@@ -2538,7 +2538,7 @@ body *:focus {
 
   bottom: 0;
 
-  margin: auto 0;
+  margin: auto 0 auto -2px;
 
   -moz-transform: rotate(18deg);
 
@@ -2666,6 +2666,13 @@ body *:focus {
 
   cursor: default;
 
+}
+
+.search-block__period-years .search-block__period-right,
+.search-block__period-years .search-block__period-left,
+.search-block__period-years-titles .search-block__period-right,
+.search-block__period-years-titles .search-block__period-left {
+  width: 66px;
 }
 
 .search-block__field {
@@ -3146,6 +3153,11 @@ body *:focus {
 
 }
 
+.i-item_icon_title > a,
+.i-item_artist > a{
+  line-height: 50px;
+}
+
 .i-item_icon_title > a:hover,
 
 .i-item_artist > a:hover {
@@ -3156,7 +3168,7 @@ body *:focus {
 
 .i-item_year, .i-item_letter {
 
-  width: 78px;
+  /*width: 78px;*/
 
   margin-right: 12px;
 
@@ -3164,6 +3176,10 @@ body *:focus {
 
   font-size: 26px;
 
+}
+
+.i-item_year {
+  padding-right: 25px;
 }
 
 .i-item_year:after, .i-item_letter:after {
@@ -3549,6 +3565,8 @@ body *:focus {
   font-weight: 700;
 
   text-decoration: none;
+
+  white-space: normal;
 
 }
 
