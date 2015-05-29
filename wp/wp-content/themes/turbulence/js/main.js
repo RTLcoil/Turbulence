@@ -100,7 +100,7 @@ var acfMapStyle = [
 
 var mapArtistPopupOffsets = {
 	x: 0,
-	y: 0.005
+	y: 1.2
 };
 
 (function($) {
@@ -144,6 +144,18 @@ var mapArtistPopupOffsets = {
 			});
 
 			function init() {
+				$elems.each(function() {
+					var $img = $("img", this);
+
+					if($img && $img.length) {
+						if($(".slider-medium__item-img", this).length) {
+							$(".slider-medium__item-img", this).css("background-image", "url(" + $img.attr("src") + ")");
+						} else if ($(".main-gallery__content-inner", this).length) {
+							$(".main-gallery__content-inner", this).css("background-image", "url(" + $img.attr("src") + ")");
+						}
+					}
+				});
+
 				if(!$elems.filter(".current").length) {
 					$elems.eq(0).addClass("current");
 				}
