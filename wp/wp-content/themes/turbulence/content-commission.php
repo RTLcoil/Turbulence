@@ -190,7 +190,7 @@ $artists = is_array($artists) ? $artists : array($artists)
             <div class="artist-details__photo">
               <?php echo get_artist_pic($artist->ID); ?>
             </div>
-            
+
             <?php if($map = get_field('artist_map', $artist->ID)):?>
 
                 <div class="acf-map">
@@ -259,18 +259,16 @@ $artists = is_array($artists) ? $artists : array($artists)
 
             </div>
 
-
-
-                <div class="artist-details__relevant">
-
-                    <div class="artist-details__relevant-title"><?php _e('Other possibly relevant commissions')?></div>
-
-                    <?php if ( function_exists( 'echo_ald_crp' ) ) echo_ald_crp(); ?>
-
-                </div>
-
         </div>
 
     </section>
 
 <?php endforeach;?>
+
+<div class="artist-details__relevant">
+
+    <div class="artist-details__relevant-title"><?php _e('Other possibly relevant commissions')?></div>
+
+    <?php if ( function_exists( 'echo_ald_crp' ) ) echo_ald_crp(); ?>
+
+</div>

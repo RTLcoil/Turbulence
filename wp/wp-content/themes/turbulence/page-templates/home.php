@@ -100,7 +100,10 @@ get_header();
         )) as $pItem) {
 
             $entry = array();
-            $entry['year_realise'] = get_field('year_realise', $pItem->ID);
+
+            $date = date_create('2000-01-01');
+            $launch_date = date_create(get_field('year_realise', $pItem->ID));
+            $entry['year_realise'] = date_format($launch_date,'Y');
             $entry['color'] = get_field('color', $pItem->ID);
             $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
