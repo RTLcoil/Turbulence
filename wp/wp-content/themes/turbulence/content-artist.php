@@ -11,7 +11,7 @@
 ?>
 
 
-<section class="artist-details">    <div class="artist-details__info">        <h1 class="artist-details__name"><?php the_title(); ?></h1>        <?php get_artist_pic(get_the_ID()); ?>        <?php if($map = get_field('artist_map')):?>            <div class="acf-map">
+<section class="artist-details">    <div class="artist-details__info">        <h1 class="artist-details__name"><?php the_title(); ?></h1>        <div class="artist-details__photo">          <?php echo get_artist_pic(get_the_ID()); ?>        </div>        <?php if($map = get_field('artist_map')):?>            <div class="acf-map">
                 <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
             </div>
         <?php else:?>            <div class="artist-details__map">                <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
@@ -42,24 +42,5 @@
         </div>
 
         <?php
-        $commissions = get_posts(array(
-            'post_type'		=> 'commission',
-            'meta_key'		=> 'artist',
-            'meta_value'	=> get_the_ID()
-        ));
-
-        if(count($commissions)):?>
-
-            <div class="artist-details__works">
-                <?php foreach($commissions as $pItem):?>
-                <a href="<?php echo get_permalink($pItem)?>">
-                    <?php echo get_the_post_thumbnail( $pItem->ID, array(200, 200))?>
-                    <span><?php echo get_the_title($pItem)?><br>(<?php echo get_field('year_realise', $pItem->ID)?>)</span>
-                </a>
-                <?php endforeach;?>
-            </div>
-
-        <?php endif;?>
-
-    </div>
-</section>
+        $commissions = get_posts(array(            'post_type'		=> 'commission',            'meta_key'		=> 'artist',            'meta_value'	=> get_the_ID()        ));
+        if(count($commissions)):?>            <div class="artist-details__works">                <?php foreach($commissions as $pItem):?>                <a href="<?php echo get_permalink($pItem)?>">                    <?php echo get_the_post_thumbnail( $pItem->ID, array(200, 200))?>                    <span><?php echo get_the_title($pItem)?><br>(<?php echo get_field('year_realise', $pItem->ID)?>)</span>                </a>                <?php endforeach;?>            </div>        <?php endif;?>    </div></section>

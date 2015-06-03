@@ -187,8 +187,10 @@ $artists = is_array($artists) ? $artists : array($artists)
 
             <h1 class="artist-details__name"><?php echo $artist->post_title?></h1>
 
-            <?php get_artist_pic($artist->ID); ?>
-
+            <div class="artist-details__photo">
+              <?php echo get_artist_pic($artist->ID); ?>
+            </div>
+            
             <?php if($map = get_field('artist_map', $artist->ID)):?>
 
                 <div class="acf-map">

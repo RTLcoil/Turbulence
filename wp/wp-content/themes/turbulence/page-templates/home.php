@@ -164,12 +164,13 @@ get_header();
 
             $entry = array();
 
+            $entry['ID'] = $pItem->ID;
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
             list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 200));
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
-            $map = get_field('artist_map', $pItem->ID); 
+            $map = get_field('artist_map', $pItem->ID);
             $entry['map_lat'] = $map ? $map['lat'] : '';
             $entry['map_lng'] = $map ? $map['lng'] : '';;
             $entry['letter'] = strtolower(substr($pItem->post_title, 0, 1));
@@ -326,7 +327,7 @@ get_header();
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>"
                          data-url="<?php echo $item['url']?>">
                         <?php echo $item['thumbnail']?>
-                    </a>   
+                    </a>
                 <?php endforeach;?>
 
                 <?php
@@ -395,13 +396,13 @@ get_header();
                          data-sort-up-letter="<?php echo $ind;?>"
                          data-sort-down-letter="<?php echo ($commissionsNumber - $ind);?>"
                          data-search="<?php echo $item['title']?>"
-                         data-artist="<?php echo $item['image']?>"
+                         data-artist="<?php echo get_artist_pic($item['ID'],'uri')?>"
                          data-name="<?php echo $item['title']?>?<?php echo $item['url']?>"
                          data-url="<?php echo $item['url']?>"
                          data-place="<?php echo $item['location']?>"
                          data-map-lat="<?php echo $item['map_lat']?>"
                          data-map-lng="<?php echo $item['map_lng']?>">
-                        <?php echo $item['thumbnail']?>
+                         <?php echo get_artist_pic($item['ID'],'normal')?>
                         <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>
                 <?php endforeach;?>
