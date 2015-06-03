@@ -11,30 +11,12 @@
 ?>
 
 
-<section class="artist-details">
-    <div class="artist-details__info">
-        <h1 class="artist-details__name"><?php the_title(); ?></h1>
-
-        <?php
-      	$twitter = get_field('twitter_link');        $email = get_field('artist_email');
-
-      	if(has_post_thumbnail()){
-      		echo get_the_post_thumbnail( get_the_ID(), 'full', array('class'	=> "artist-details__photo"));        } elseif ($twitter == true ) {          echo '<img src="https://twitter.com/' . $twitter . '/profile_image?size=original" class="artist-details__photo"></img>';        } else {
-      		echo '<div class="artist-details__photo">' . get_avatar( $email, $size = '200') . '</div>';
-      	}
-      	?>
-
-        <?php if($map = get_field('artist_map')):?>
-            <div class="acf-map">
-                <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
-            </div>
-        <?php else:?>
-            <div class="artist-details__map">
-                <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
-            </div>
-        <?php endif;?>
-        <div class="artist-details__place"><?php echo get_field('location')?></div>
-    </div>
+<section class="artist-details">    <div class="artist-details__info">        <h1 class="artist-details__name"><?php the_title(); ?></h1>        <?php get_artist_pic(get_the_ID()); ?>        <?php if($map = get_field('artist_map')):?>            <div class="acf-map">
+                <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
+            </div>
+        <?php else:?>            <div class="artist-details__map">                <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
+            </div>        <?php endif;?>
+        <div class="artist-details__place"><?php echo get_field('location')?></div>    </div>
 
     <div class="artist-details__content">
         <div class="artist-details__desc">

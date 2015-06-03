@@ -187,9 +187,7 @@ $artists = is_array($artists) ? $artists : array($artists)
 
             <h1 class="artist-details__name"><?php echo $artist->post_title?></h1>
 
-
-
-            <?php echo get_the_post_thumbnail( $artist->ID, 'full', array('class' => "artist-details__photo"))?>
+            <?php get_artist_pic($artist->ID); ?>
 
             <?php if($map = get_field('artist_map', $artist->ID)):?>
 

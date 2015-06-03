@@ -754,3 +754,19 @@ function turbulence_add_scripts() {
 add_action( 'wp_enqueue_scripts', 'turbulence_add_scripts' );
 add_image_size( 'custom-commision-size', 200, 200, true );
 add_image_size( 'thumbnail-commision-size', 50, 50, true );
+
+/* get artist image */
+function get_artist_pic($artist_id) {
+	$twitter = get_field('twitter_link', $artist_id);
+	$email = get_field('artist_email', $artist_id);
+	if(has_post_thumbnail($artist_id)){
+		echo get_the_post_thumbnail( $artist_id, 'full', array('class'	=> "artist-details__photo"));
+	} elseif ($twitter == true ) {
+		echo '<img src="https://twitter.com/' . $twitter . '/profile_image?size=original" class="artist-details__photo"></img>';
+	} else {
+		echo '<div class="artist-details__photo">' . get_avatar( $email, $size = '200') . '</div>';
+	}
+
+}
+
+?>
