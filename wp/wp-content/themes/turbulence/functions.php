@@ -765,8 +765,9 @@ function get_artist_pic($artist_id, $size = 'original') {
 		} elseif ($size == 'normal') {
 			return get_the_post_thumbnail( $artist_id, array(50, 50));
 		} elseif ($size == 'uri') {
-			return '';
-			// return wp_get_attachment_image_src( $artist_id, 'full')[0];
+			$tag = get_the_post_thumbnail( $artist_id, full);
+			$extracted = preg_replace('/<img [^>]*src=[\'"]([^\'"]+)[\'"][^>]*>/','\\1',$tag);
+			return $extracted;
 		}
 	} elseif ($twitter == true ) {
 		if ($size == 'uri') {
