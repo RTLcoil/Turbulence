@@ -101,7 +101,6 @@ get_header();
 
             $entry = array();
 
-            $date = date_create('2000-01-01');
             $launch_date = date_create(get_field('year_realise', $pItem->ID));
             $entry['year_realise'] = date_format($launch_date,'Y');
             $entry['color'] = get_field('color', $pItem->ID);

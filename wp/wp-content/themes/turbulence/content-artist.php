@@ -14,7 +14,7 @@
 <section class="artist-details">    <div class="artist-details__info">        <h1 class="artist-details__name"><?php the_title(); ?></h1>        <div class="artist-details__photo">          <?php echo get_artist_pic(get_the_ID()); ?>        </div>        <?php if($map = get_field('artist_map')):?>            <div class="acf-map">
                 <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
             </div>
-        <?php else:?>            <div class="artist-details__map">                <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
+        <?php else:?>            <div class="artist-details__map">                
             </div>        <?php endif;?>
         <div class="artist-details__place"><?php echo get_field('location')?></div>    </div>
 

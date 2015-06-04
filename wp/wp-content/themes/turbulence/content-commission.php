@@ -51,13 +51,13 @@ $artists = is_array($artists) ? $artists : array($artists)
 
 
 
-    <div class="commission__year"><span><?php echo get_field('year_realise')?></span></div>
+    <div class="commission__year"><span><?php $launch_date = date_create(get_field('year_realise')); echo date_format($launch_date,'F, Y')?></span></div>
 
 
 
     <div class="commission__small-desc">
 
-        <?php echo get_the_excerpt()?>
+        <p><?php echo get_the_excerpt()?></p>
 
     </div>
 
@@ -203,7 +203,7 @@ $artists = is_array($artists) ? $artists : array($artists)
 
                 <div class="artist-details__map">
 
-                    <img src="<?php echo get_template_directory_uri()?>/img/map-1.png" alt="" class="artist-details__map-img">
+                    
 
                 </div>
 
