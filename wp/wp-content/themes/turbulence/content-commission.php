@@ -73,9 +73,10 @@ $artists = is_array($artists) ? $artists : array($artists)
 
         <div class="commission__media">
 
-            <iframe src="<?php echo $media;?>" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-
+            <?php
+            $vid = apply_filters('the_content', "[embed]" . $media . "[/embed]");
+            echo $vid;
+            ?>
 
         </div>
 
@@ -203,7 +204,7 @@ $artists = is_array($artists) ? $artists : array($artists)
 
                 <div class="artist-details__map">
 
-                    
+
 
                 </div>
 
