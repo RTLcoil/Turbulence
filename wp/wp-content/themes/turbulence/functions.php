@@ -777,11 +777,11 @@ function get_artist_pic($artist_id, $size = 'original') {
 		}
 	} else {
 		if($size == 'original') {
-			return get_avatar( $email, '200');
+			return get_avatar( $email, '200', get_template_directory_uri() . '/img/default_profile.png');
 		} elseif($size == 'normal') {
-			return get_avatar( $email, '48');
+			return get_avatar( $email, '48', get_template_directory_uri() . '/img/default_profile.png');
 		} elseif($size == 'uri') {
-			$tag = get_avatar( $email, '73');
+			$tag = get_avatar( $email, '73', get_template_directory_uri() . '/img/default_profile.png');
 			$extracted = preg_replace('/<img [^>]*src=[\'"]([^\'"]+)[\'"][^>]*>/','\\1',$tag);
 			return $extracted;
 		}
