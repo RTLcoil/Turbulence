@@ -193,7 +193,7 @@ var tmpl = {
 
 	popupIconTitle: '<div class="i-item__popup" style="box-shadow: 0 0 0 4px {color}"><div class="i-item__popup-frame"></div><a href="{url}" class="i-item__popup-img"><img src="{img}" alt="" class="i-item__popup-work"></a><div class="i-item__popup-title">{title}<span>{author}</span></div><div class="i-item__popup-tags">{tags}</div></div>',
 
-	popupArtist: '<div class="i-item__popup i-item__popup_person" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup_map"><div class="acf-map"><div class="marker" data-lat="{mapLat}" data-lng="{mapLng}"></div></div></div><a href="{artistUrl}" class="i-item__popup-name"><img src="{artist}" alt="" class="i-item__popup-artist">{name}</a><div class="i-item__popup-place">{place}</div><div class="i-item__popup-works">{works}</div></div>'
+	popupArtist: '<div class="i-item__popup i-item__popup_person" style="box-shadow: 0 0 0 4px {color}; color: {color}"><div class="i-item__popup_map"><div class="acf-map"><div class="marker" data-lat="{mapLat}" data-lng="{mapLng}"></div></div></div><a href="{artistUrl}" class="i-item__popup-name"><img src="{artist}" alt="" class="i-item__popup-artist"><span class="i-item__popup-artist-name">{name}</span><span class="i-item__popup-place">{place}</span></a><div class="i-item__popup-works">{works}</div></div>'
 };
 
 (function($) {
