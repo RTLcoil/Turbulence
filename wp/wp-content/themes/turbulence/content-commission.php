@@ -19,7 +19,13 @@ $artists = is_array($artists) ? $artists : array($artists)
 
         <div class="commission__work-img">
 
-            <?php echo get_the_post_thumbnail(null, array(240,180))?>
+            <?php
+            if ( has_post_thumbnail() ) {
+              echo get_the_post_thumbnail(null, array(240,180));
+            } else {
+              echo '<img src="'.get_template_directory_uri() . '/img/default_profile.png" alt="default"></img>';
+            }
+            ?>
 
         </div>
 

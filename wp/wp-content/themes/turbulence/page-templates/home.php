@@ -105,8 +105,14 @@ get_header();
             $entry['year_realise'] = date_format($launch_date,'Y');
             $entry['color'] = get_field('color', $pItem->ID);
             $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
-            $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
+            if ( has_post_thumbnail($pItem->ID) ) {
+              $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
+              list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
+            } else {
+              $default_img = get_template_directory_uri() . '/img/default_profile.png';
+              $entry['thumbnail'] = '<img src="'. $default_img . '" alt=""></img>';
+              $entry['image'] = $default_img;
+            }
 
             $entry['title'] = $pItem->post_title;
             $entry['url'] = get_permalink($pItem->ID);
