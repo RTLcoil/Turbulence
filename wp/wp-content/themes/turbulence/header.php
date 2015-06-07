@@ -117,7 +117,9 @@ if(count($mainSlides)): ?>
                 <div class="main-gallery__content-inner">
                     <a href="<?php echo $slide['link']?>" class="main-gallery__content-link">
                         <?php if($slide['video']):?>
-                        <iframe width="100%" height="490" src="<?php echo $slide['video'] . ($slide['autoplay_video'] ? '?autoplay=1&cc_load_policy=1' : '');?>" frameborder="0" allowfullscreen></iframe>
+                            <?php
+                                echo apply_filters('the_content', "[embed]" . $slide['video'] . ($slide['autoplay_video'] ? '?autoplay=1&cc_load_policy=1' : '') . "[/embed]");
+                            ?>
                         <?php else:?>
                         <?php echo $slide['thumbnail']?>
                         <?php endif;?>
