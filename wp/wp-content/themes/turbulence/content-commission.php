@@ -39,6 +39,8 @@ $artists = is_array($artists) ? $artists : array($artists)
 
     <h1 class="commission__title"><?php the_title(); ?></h1>
 
+    <div class="commission__year"><span><?php $launch_date = date_create(get_field('year_realise')); echo date_format($launch_date,'F, Y')?></span></div>
+
     <div class="commission__author"><?php _e('by')?> <?php
 
 
@@ -47,26 +49,24 @@ $artists = is_array($artists) ? $artists : array($artists)
 
         foreach($artists as $o) {
 
-            $arr[] = $o->post_title;
+            $arr[] = '<a href="' . get_permalink( $o ) . '" title="'. $o->post_title .'">' . $o->post_title . '</a>';
 
         }
 
-        echo implode(' && ', $arr);
+        echo implode(' & ', $arr);
 
     ?></div>
 
 
-
-    <div class="commission__year"><span><?php $launch_date = date_create(get_field('year_realise')); echo date_format($launch_date,'F, Y')?></span></div>
-
-
-
+    <?php
+    $funder = get_field('funder');
+    if ($funder){ ?>
     <div class="commission__small-desc">
 
-        <p><?php echo get_the_excerpt()?></p>
+        <p>Supported by <?php echo $funder?></p>
 
     </div>
-
+    <?php } ?>
 
 
     <div class="commission__desc">

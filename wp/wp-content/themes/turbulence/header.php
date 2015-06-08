@@ -163,6 +163,7 @@ if(count($mainSlides)): ?>
 <?php if($_thePost->post_type == 'commission' or is_front_page()): ?>
 <div class="container main-gallery__header">
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="main-gallery__header-logo"></a>
+    <?php edit_post_link( 'edit'); ?>
     <div class="main-gallery__header-form">
         <form role="search" method="get" id="searchform-main-gallery" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
             <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search or filter by keyword" />
@@ -181,6 +182,7 @@ if(count($mainSlides)): ?>
         <div class="container">
             <div class="nav-toggle  <?php echo is_front_page() ? 'mobile-vs' : ''?>">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="link-logo"></a>
+                <?php edit_post_link( 'edit'); ?> 
                 <div class="nav-toggle-btn"  data-toggle=".header__nav" data-toggle-dir="ltr"></div>
             </div>
             <nav class="header__nav">
