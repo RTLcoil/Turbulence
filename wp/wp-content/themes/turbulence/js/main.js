@@ -202,7 +202,7 @@ var mapArtistPopupOffsets = {
 
 	x: 0,
 
-	y: 1.2
+	y: 0
 
 };
 
@@ -418,8 +418,8 @@ var tmpl = {
 					timeout: 10000,
 
 					before: function(cur, next) {
-						pager.eq(index).addClass("active").siblings(".active").removeClass("active");
-						$desc.eq(index).addClass("active").siblings(".active").removeClass("active");
+						pager.eq(next.index()).addClass("active").siblings(".active").removeClass("active");
+						$desc.eq(next.index()).addClass("active").siblings(".active").removeClass("active");
 					}
 				});
 
@@ -1341,7 +1341,7 @@ var tmpl = {
 
 					if(mapLng) {
 
-						mapLng = mapLng + mapArtistPopupOffsets.x;
+						//mapLng = mapLng + mapArtistPopupOffsets.x;
 
 					}
 
@@ -1349,7 +1349,7 @@ var tmpl = {
 
 					if(mapLat) {
 
-						mapLat = mapLat + mapArtistPopupOffsets.y;
+						//mapLat = mapLat + mapArtistPopupOffsets.y;
 
 					}
 
