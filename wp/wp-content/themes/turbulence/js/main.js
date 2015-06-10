@@ -678,514 +678,327 @@ var tmpl = {
 			(function() {
 
 				var $container         = $(".isotope"),
-
 					$inputsTypeFilter  = $("[name=filter-type]"),
-
 					$inputSearch       = $(".search-block__field input[type='search']"),
-
 					$labelsField       = $(".search-block__filter-labels"),
-
 					$menuFilter        = $(".search-block__filter-menu"),
-
 					$period            = $(".search-block__period"),
-
 					$labels            = $(".filter-label"),
-
 					$labelsInput       = $("[name=filter-labels]"),
-
 					$sortByYearsUp     = $(".search-block__period-years .search-block__period-left"),
-
 					$sortByYearsDown   = $(".search-block__period-years .search-block__period-right"),
-
 					$sortByLettersUp   = $(".search-block__period-letters .search-block__period-left"),
-
 					$sortByLettersDown = $(".search-block__period-letters .search-block__period-right"),
-
 					$sortByTitleUp     = $(".search-block__period-years-titles .search-block__period-left"),
-
 					$sortByTitleDown   = $(".search-block__period-years-titles .search-block__period-right"),
-
 					$itemIcon          = $(".i-item_icon"),
-
 					$itemIconTitle     = $(".i-item_icon_title"),
-
 					$itemArtist        = $(".i-item_artist"),
-
 
 
 					isSmallScreen      = !!$('.search-block__filter [class*="search-block__filter-item"] span:first').is(":hidden"),
 
 
-
 					columnWidth        = isSmallScreen ? 35 : 45;
 
 
-
 				var $typeIcons = $(".type-icon"),
-
 					typeIconsLength = $typeIcons.length;
 
-
-
 				$container.isotope({ // init isotope
-
 					layoutMode: 'fitRows',
 
-
-
 					masonry: {
-
 						columnWidth: columnWidth
-
 					},
 
-
-
 					getSortData: {
-
 						yearUp    : '[data-sort-up] parseInt',
-
 						yearDown  : '[data-sort-down] parseInt',
-
 						letterUp  : '[data-sort-up-letter] parseInt',
-
 						letterDown: '[data-sort-down-letter] parseInt',
-
 						titleUp   : '[data-sort-up-title] parseInt',
-
 						titleDown : '[data-sort-down-title] parseInt'
-
 					}
 
 				});
 
-
-
 				$sortByYearsDown.on("click", function() { // sort by years
-
 					changeActive($(this));
-
 					reverseValue($(this), !1);
 
-
-
 					$container.isotope({
-
 						sortBy: 'yearDown'
-
 					});
-
 				});
-
-
 
 				$sortByYearsUp.on("click", function() { // sort by years
-
 					changeActive($(this));
-
 					reverseValue($(this), !0);
 
-
-
 					$container.isotope({
-
 						sortBy: 'yearUp'
-
 					});
-
 				});
-
-
 
 				$sortByLettersDown.on("click", function() { // sort by letters
-
 					changeActive($(this));
-
 					reverseValue($(this), !1);
 
-
-
 					$container.isotope({
-
 						sortBy: 'letterDown'
-
 					});
-
 				});
-
-
 
 				$sortByLettersUp.on("click", function() { // sort by letters
-
 					changeActive($(this));
-
 					reverseValue($(this), !0);
 
-
-
 					$container.isotope({
-
 						sortBy: 'letterUp'
-
 					});
-
 				});
-
-
 
 				$sortByTitleDown.on("click", function() { // sort by title
-
 					changeActive($(this));
-
 					reverseValue($(this), !1);
 
-
-
 					$container.isotope({
-
 						sortBy: 'titleDown'
-
 					});
-
 				});
-
-
 
 				$sortByTitleUp.on("click", function() { // sort by title
-
 					changeActive($(this));
-
 					reverseValue($(this), !0);
 
-
-
 					$container.isotope({
-
 						sortBy: 'titleUp'
-
 					});
-
 				});
 
-
-
 				$labels.on("mousedown", function(e) {
-
 					e.preventDefault();
-
-
 
 					var _this = $(this);
 
-
-
 					$("input", _this).prop("checked", !$("input", _this).is(":checked"));
-
 					_this[$("input", _this).is(":checked") ? "addClass" : "removeClass"]("chosen");
 
+					if($("input", _this).is(":checked")) {
+						if($inputSearch.val()) {
+							$inputSearch.val($inputSearch.val() + ", " + $("span", _this).text());
+						} else {
+							$inputSearch.val($("span", _this).text());
+						}
+					} else {
+						if(~$inputSearch.val().indexOf(",")) {
+							try {
+								$inputSearch.val($inputSearch.val().replace(($("span", _this).text() + ", "), ""));
+							} catch(e) {}
+						} else {
+							try {
+								$inputSearch.val($inputSearch.val().replace($("span", _this).text(), ""));
+							} catch(e) {}
+						}
+					}
 
-
-					searchTags();
-
-
+					searchMatch($inputSearch.val());
 
 					if(!getChosen().length) {
-
 						$inputSearch.focus();
-
 						$period.show();
-
 					} else {
-
 						$period.hide();
-
 					}
-
 				}).on("click", function(e) {
-
 					e.preventDefault();
-
 				});
-
-
 
 				$inputSearch.on({
-
 					focus: function() {
-
-						if(!this.value) {
-
+						//if(!this.value) {
 							$menuFilter.hide();
-
 							$labelsField.show();
-
-							searchTags();
-
-						} else {
+							//searchTags();
 
 							searchMatch(this.value);
-
-						}
-
+						//} else {
+						//	searchMatch(this.value);
+						//}
 					},
-
-
 
 					blur: function() {
-
 						setTimeout(function() {
-
 							if(!getChosen().length) {
-
 								$menuFilter.show();
-
 								$labelsField.hide();
-
 								$period.show();
-
 							}
-
 						}, 0);
-
 					},
 
-
-
 					input: function() {
-
 						if(!this.value) {
-
 							$menuFilter.hide();
-
 							$labelsField.show();
-
 							$period.hide();
 
-
-
-							searchTags();
-
-						} else {
-
-							$menuFilter.show();
-
-							$labelsField.hide();
-
-							$period.show();
-
-
+							removeLabel(this.value);
 
 							searchMatch(this.value);
 
+							//searchTags();
+						} else {
+							$menuFilter.show();
+							$labelsField.hide();
+							$period.show();
+
+							removeLabel(this.value);
+
+							searchMatch(this.value);
 						}
-
 					}
-
 				}).autocomplete({
-
 					close: function(e, ui) {
-
 						searchMatch($inputSearch.val());
-
 					}
-
 				});
-
-
 
 				smallFilter();
-
 				fillAutocomplete();
 
-
-
 				$inputsTypeFilter.on("change", function() {
-
 					smallFilter();
-
 					fillAutocomplete();
 
-
-
 					if($inputSearch.val()) {
-
 						searchMatch($inputSearch.val());
-
 					}
-
 				});
 
-
-
 				function getType() {
-
 					return $inputsTypeFilter.filter(":checked").val();
-
 				}
-
-
 
 				function getChosen(a) {
-
 					return $labelsInput.filter(":checked");
-
 				}
-
-
 
 				function smallFilter() {
-
 					var filterValue = getType();
 
-
-
 					$container.isotope({
-
 						filter: filterValue
-
 					});
-
 				}
 
+				function removeLabel(value) {
+					var values = $inputSearch.val(),
+						chosen = getChosen();
 
+					if(~values.indexOf(",")) {
+						values = values.split(",");
+					} else {
+						values = [].concat(values);
+					}
+
+					if(chosen.length && value) {
+						for(var i = 0, j = values.length; i < j; i += 1) {
+							chosen.each(function(k) {
+								if(~this.value.indexOf($.trim(values[i])) && this.value != $.trim(values[i])) {
+									$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
+								}
+							});
+						}
+					} else if (!value && chosen.length) {
+						chosen.each(function(k) {
+							$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
+						});
+					}
+				}
 
 				function searchMatch(text) {
-
-					var className = getType().slice(1);
-
-
+					var className = getType().slice(1),
+						values = [].concat(text.split(","));
 
 					$container.isotope({
-
 						filter: function(e, elem) {
-
 							if(!$(elem).hasClass(className)) {
-
 								return !1;
-
 							}
 
+							for(var i = 0, j = values.length; i < j; i += 1) {
+								if(("" + $(elem).data('search')).toLowerCase().indexOf(values[i].toLowerCase()) !== -1) {
+									return true;
+								}
+							}
 
+							return false;
 
-							return !!(("" + $(elem).data('search')).toLowerCase().indexOf(text.toLowerCase()) !== -1);
-
+							//return !!(("" + $(elem).data('search')).toLowerCase().indexOf(text.toLowerCase()) !== -1);
 						}
-
 					});
-
 				}
-
-
 
 				function searchTags() {
 
-					var $chosen = getChosen(),
+return;
 
+
+					var $chosen = getChosen(),
 						values = [];
 
-
-
 					if($chosen.length) {
-
 						$chosen.each(function() {
-
 							values.push(this.value.toLowerCase());
-
 						});
-
-
 
 						$container.isotope({
-
 							filter: function(e, elem) {
-
 								var txt = ("" + $(elem).data('labels')).toLowerCase().split(",");
 
-
-
 								for(var i = 0, j = txt.length; i < j; i += 1) {
-
 									if($.inArray(txt[i], values) !== -1) {
-
 										return true;
-
 									}
-
 								}
 
-
-
 								return false;
-
 							}
-
 						});
-
 					} else {
-
 						smallFilter();
-
 					}
-
 				}
-
-
 
 				function fillAutocomplete() {
-
 					var sourse = [];
 
-
-
 					$(getType()).each(function() {
-
 						var data = $(this).data("search");
 
-
-
 						if(!data) {
-
 							return;
-
 						}
 
-
-
 						sourse.push(data);
-
 					});
 
-
-
 					$inputSearch.autocomplete("option", "source", sourse);
-
 				}
-
-
 
 				function changeActive($this) {
-
 					if($this.hasClass("active")) {
-
 						//return;
-
 					}
 
-
-
 					$this.addClass("active").siblings(".active").removeClass("active");
-
 				}
-
-
 
 				function reverseValue($elem, bol) {
-
 					$elem.parent()[bol ? "removeClass" : "addClass"]("revert");
-
 				}
-
-
 
 				////////////////////////////////////
 
