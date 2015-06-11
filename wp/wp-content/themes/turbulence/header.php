@@ -161,7 +161,7 @@ if(count($mainSlides)): ?>
     <?php endif;?>
 
 <?php if($_thePost->post_type == 'commission' or is_front_page()): ?>
-<div class="container main-gallery__header">
+<!--<div class="container main-gallery__header">
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="main-gallery__header-logo"></a>
     <?php edit_post_link( 'edit'); ?>
     <div class="main-gallery__header-form">
@@ -169,7 +169,7 @@ if(count($mainSlides)): ?>
             <input type="search" value="<?php echo get_search_query(); ?>" name="s"  placeholder="Search or filter by keyword" />
         </form>
     </div>
-</div>
+</div>-->
     <?php endif;?>
 
 <div id="wrap">
@@ -178,9 +178,9 @@ if(count($mainSlides)): ?>
     <?php else:?>
     <div class="<?php echo (is_front_page()) ? 'header-helper' : 'header_inner__helper' ?>"></div>
     <?php endif;?>
-    <header class="header <?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_front header_fixed' : 'header_inner')?>">
+    <header class="header header_fixed" data-old-classes="<?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_front header_fixed' : 'header_inner')?>">
         <div class="container">
-            <div class="nav-toggle  <?php echo is_front_page() ? 'mobile-vs' : ''?>">
+            <div class="nav-toggle" data-old-class="<?php echo is_front_page() ? 'mobile-vs' : ''?>">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="link-logo"></a>
                 <?php edit_post_link( 'edit'); ?> 
                 <div class="nav-toggle-btn"  data-toggle=".header__nav" data-toggle-dir="ltr"></div>
