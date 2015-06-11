@@ -115,15 +115,19 @@ if(count($mainSlides)): ?>
             <?php foreach($mainSlides as $ind => $slide): ?>
             <div class="main-gallery__content-slider-item" <?php echo $slide['background'] ? "style='background: {$slide['background']}'" : ''?>>
                 <div class="main-gallery__content-inner">
+                    <?php if($slide['video']):?>
+                    <div class="main-gallery__content-link main-gallery__content-link_video">
+                        <div class="main-gallery__content-link_video-inner">
+                        <?php
+                            echo apply_filters('the_content', "[embed]" . $slide['video'] . ($slide['autoplay_video'] ? '?autoplay=1&cc_load_policy=1' : '') . "[/embed]");
+                        ?>
+                        </div>
+                    </div>
+                    <?php else:?>
                     <a href="<?php echo $slide['link']?>" class="main-gallery__content-link">
-                        <?php if($slide['video']):?>
-                            <?php
-                                echo apply_filters('the_content', "[embed]" . $slide['video'] . ($slide['autoplay_video'] ? '?autoplay=1&cc_load_policy=1' : '') . "[/embed]");
-                            ?>
-                        <?php else:?>
                         <?php echo $slide['thumbnail']?>
-                        <?php endif;?>
                     </a>
+                    <?php endif;?>
                     <?php if($slide['title']):?>
                     <div class="main-gallery__content-slider-item-body">
                         <div class="main-gallery__title"><?php echo $slide['title'];?></div>
