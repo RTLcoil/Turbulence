@@ -360,7 +360,7 @@ get_header(); ?>
                         </div>
                     <?php endif;?>
 
-                    <a href="<?php echo $item['url']?>" title="<?php echo $item['title']?>" class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type']?>"
+                    <div title="<?php echo $item['title']?>" class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type']?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
                         <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up-title="<?php echo $ind;?>"
@@ -371,9 +371,9 @@ get_header(); ?>
                          data-author="<?php echo $item['author']?>"
                          data-labels="<?php echo implode(',', $item['tags'])?>"
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>">
-                        <?php echo $item['thumbnail']?>
+                        <a href="<?php echo $item['url']?>"><?php echo $item['thumbnail']?></a>
                         <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
-                    </a>
+                    </div>
 
                 <?php endforeach;?>
 

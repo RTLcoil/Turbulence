@@ -696,7 +696,7 @@ var tmpl = {
 					$itemArtist        = $(".i-item_artist"),
 
 
-					isSmallScreen      = !!$('.search-block__filter [class*="search-block__filter-item"] span:first').is(":hidden"),
+					isSmallScreen      = !!(('matchMedia' in window && window.matchMedia("(max-width: 767px)").matches) || $(window).width() < 767 || $('.search-block__filter [class*="search-block__filter-item"] span:first').is(":hidden")),
 
 
 					columnWidth        = isSmallScreen ? 35 : 45;
@@ -1220,111 +1220,59 @@ return;
 
 					}
 
-
-
 					html = html.replace('{works}', worksResult);
 
-
-
 					return html;
-
 				}
 
+				var $elemsIcons = $("> img, > a", $itemIcon).add(".artist-details__relevant-list .i-item > img").add(".artist-details__relevant-list .i-item > a");
 
-
-				$("> img, > a", $itemIcon).each(function(i) {
-
+				$elemsIcons.each(function(i) {
 					var timerIcon;
 
-
-
 					$(this).on("mouseenter.desktopPopupOpen", function(e) {
-
 						var $opened  = $(".opened-popup"),
-
 							$closest = $(this).closest(".i-item"),
-
 							$popup   = $(".i-item__popup", $closest);
 
-
-
 						if(timerIcon) {
-
 							clearTimeout(timerIcon);
-
 							timerIcon = null;
-
 						}
-
-
 
 						if($closest.offset().left + 300 > $(window).width()) {
-
 							$closest.addClass("side-left").removeClass("side-right");
-
 						} else {
-
 							$closest.addClass("side-right").removeClass("side-left");
-
 						}
-
-
 
 						if($popup.length) {
-
 							$popup.show();
-
 							$closest.addClass("opened-popup");
-
 						} else {
-
 							$closest.append(createIconPopup($closest)).addClass("opened-popup");
-
 						}
-
 					}).closest(".i-item").on("mouseleave.desktopPopupOpen", function() {
-
 						var _this = $(this);
 
-
-
 						if(timerIcon) {
-
 							clearTimeout(timerIcon);
-
 							timerIcon = null;
-
 						}
-
-
 
 						timerIcon = setTimeout(function() {
-
 							_this.removeClass("opened-popup").find(".i-item__popup").hide();
-
 						}, 150);
-
 					}).on("mouseenter.desktopPopupOpen", function() {
-
 						if(timerIcon) {
-
 							clearTimeout(timerIcon);
-
 							timerIcon = null;
-
 						}
-
 					});
-
 				});
 
-
-
 				$("> img, > a", $itemIconTitle).each(function(i) {
-
 					var timerIconTitle;
-
-
 
 					$(this).on("mouseenter.desktopPopupOpen", function(e) {
 
