@@ -63,18 +63,16 @@ if(is_front_page()):
     foreach(get_posts( $args ) as $ind => $slide) {
 
         $arr = array();
-        if($_thePost->post_type == 'commission') {
-            $artists = get_field('artist', $slide->ID);
-            $artists = is_array($artists) ? $artists : array($artists);
-            foreach($artists as $o) {
-                $arr[] = $o->post_title;
-            }
+        $artists = get_field('artist', $slide->ID);
+        $artists = is_array($artists) ? $artists : array($artists);
+        foreach($artists as $o) {
+            $arr[] = $o->post_title;
         }
 
         $mainSlides[] = array(
             'id' => $slide->ID,
-            'title' => $_thePost->post_type == 'commission' ? $slide->post_title : '',
-            'sub_title' => count($arr) ? (_('by') . implode(' && ', $arr)) : '',
+            'title' => $slide->post_title,
+            'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
             'video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
             'background' => get_field('main_gallery_background', $slide->ID),
             'autoplay_video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
@@ -86,6 +84,13 @@ endif;?>
 
 <?php if($_thePost->post_type == 'commission'):
     $rows = get_field('commision_gallery');
+    $arr = array();
+    $artists = get_field('artist');
+    $artists = is_array($artists) ? $artists : array($artists);
+    foreach($artists as $o) {
+        $arr[] = $o->post_title;
+    }
+
     if(is_array($rows))
     {
         foreach($rows as $row)
@@ -93,8 +98,8 @@ endif;?>
 
             $mainSlides[] = array(
                 'id' => $row['commision_gallery_slide']['id'],
-                'title' => $_thePost->post_title,
-                'sub_title' => $row['commision_gallery_slide']['description'],
+                'title' => $row['commision_gallery_slide']['description'] ? $row['commision_gallery_slide']['description'] : $_thePost->post_title,
+                'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
                 'video' => false,
                 'background' => $row['commision_gallery_background'],
                 'autoplay_video' => false,
@@ -119,7 +124,7 @@ if(count($mainSlides)): ?>
                     <div class="main-gallery__content-link main-gallery__content-link_video">
                         <div class="main-gallery__content-link_video-inner">
                         <?php
-                            echo apply_filters('the_content', "[embed]" . $slide['video'] . ($slide['autoplay_video'] ? '?autoplay=1&cc_load_policy=1' : '') . "[/embed]");
+                            echo apply_filters('the_content', "[embed]" . $slide['video'] . ($slide['autoplay_video'] ? '&autoplay=1&cc_load_policy=1' : '') . "[/embed]");
                         ?>
                         </div>
                     </div>

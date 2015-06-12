@@ -1582,10 +1582,10 @@ function ald_crp_commissions() {
                 <li>
                     <div
                         class="i-item"
-                        title="'.$pItem->post_title.'"
                         data-href="'.get_permalink($pItem->ID).'">
-                            <img width="50" height="50" class="wp-post-image" src="'.$thumb.'">
-
+                            <a title="'.$pItem->post_title.'" href="'.get_permalink($pItem->ID).'">
+                                <img width="50" height="50" class="wp-post-image" src="'.$thumb.'">
+                            </a>
                             <div style="'.($color ? "box-shadow: 0px 0px 0px 4px {$color}; color: {$color};" : '').' display: none;"
                                  class="i-item__popup '.($color ? 'i-item__popup_custom-color' : '').'">
                                 <div class="i-item__popup-frame frame-type-'.(get_field('list_frame_type', $pItem->ID) ? get_field('list_frame_type', $pItem->ID) : 'default').'"></div>
