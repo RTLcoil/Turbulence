@@ -610,55 +610,38 @@ var tmpl = {
 
 
 		if($("[data-toggle]").length) {
-
-			$("[data-toggle]").on("click", function() {
-
+			$("[data-toggle]").on("click", function(e) {
 				var $this = $(this),
-
 					$elem = $($this.data("toggle")),
-
 					dir   = $this.data("toggle-dir");
 
-
-
 				if(dir) {
-
 					var flag = !!($elem.width() > 80),
-
 						width = flag ? 0 : ($elem.children(":first").outerWidth() + $elem.children(":first").position().left);
 
-
-
 					if(!flag) {
-
 						$elem.css("visibility", "visible");
-
+						
+						if($(e.target).hasClass("nav-toggle-btn")) {
+							$(".nav-toggle").addClass("nav-toggle_dark");
+						}
+					} else {
+						if($(e.target).hasClass("nav-toggle-btn")) {
+							$(".nav-toggle").removeClass("nav-toggle_dark");
+						}
 					}
 
-
-
 					$elem.stop().animate({
-
 						width: width
-
 					}, 250, 'linear', function() {
-
 						if(flag) {
-
 							$elem.css("visibility", "hidden");
-
 						}
-
 					});
-
 				} else {
-
 					$elem.length && $elem.slideToggle(0);
-
 				}
-
 			});
-
 		}
 
 

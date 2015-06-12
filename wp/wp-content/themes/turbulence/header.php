@@ -187,7 +187,7 @@ if(count($mainSlides)): ?>
     <?php else:?>
     <div class="<?php echo (is_front_page()) ? 'header-helper' : 'header_inner__helper' ?>"></div>
     <?php endif;?>
-    <header class="header header_fixed" data-old-classes="<?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_front header_fixed' : 'header_inner')?>">
+    <header class="header header_fixed <?php echo is_front_page() ? 'header_nav-visible' : ''?>" data-old-classes="<?php echo is_front_page() ? 'header_front header_index' : ($_thePost->post_type == 'commission' ? 'header_front header_fixed' : 'header_inner')?>">
         <div class="container">
             <div class="nav-toggle" data-old-class="<?php echo is_front_page() ? 'mobile-vs' : ''?>">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="link-logo"></a>
@@ -260,7 +260,7 @@ if(count($mainSlides)): ?>
                         ));?>
                         </ul>
                     </div>
-                    <div class="nav-socialize header__nav-item <?php echo (is_front_page()) ? ' mobile-visible' : '' ?>">
+                    <div class="nav-socialize header__nav-item" data-old-class="<?php echo (is_front_page()) ? ' mobile-visible' : '' ?>">
                         <div class="nav-title"><?php _e('We Socialize')?></div>
                         <ul class="drop-list">
                             <?php if($options['email_link']):?>
