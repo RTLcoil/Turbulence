@@ -71,6 +71,8 @@ if(is_front_page()):
 
         $mainSlides[] = array(
             'id' => $slide->ID,
+            'top_title' => '',
+            'top_sub_title' => '',
             'title' => $slide->post_title,
             'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
             'video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
@@ -98,7 +100,9 @@ endif;?>
 
             $mainSlides[] = array(
                 'id' => $row['commision_gallery_slide']['id'],
-                'title' => $row['commision_gallery_slide']['title'] ? $row['commision_gallery_slide']['title'] : $_thePost->post_title,
+                'top_title' => $_thePost->post_title,
+                'top_sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
+                'title' => $row['commision_gallery_slide']['title'],
                 'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
                 'video' => false,
                 'background' => $row['commision_gallery_background'],
@@ -133,10 +137,10 @@ if(count($mainSlides)): ?>
                         <?php echo $slide['thumbnail']?>
                     </a>
                     <?php endif;?>
-                    <?php if($slide['title']):?>
+                    <?php if($slide['top_title']):?>
                     <div class="main-gallery__content-slider-item-body">
-                        <div class="main-gallery__title"><?php echo $slide['title'];?></div>
-                        <div class="main-gallery__author"><?php echo $slide['sub_title'];?></div>
+                        <div class="main-gallery__title"><?php echo $slide['top_title'];?></div>
+                        <div class="main-gallery__author"><?php echo $slide['top_sub_title'];?></div>
                     </div>
                     <?php endif?>
                 </div>
