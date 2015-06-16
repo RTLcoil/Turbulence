@@ -98,7 +98,7 @@ endif;?>
 
             $mainSlides[] = array(
                 'id' => $row['commision_gallery_slide']['id'],
-                'title' => $row['commision_gallery_slide']['description'] ? $row['commision_gallery_slide']['description'] : $_thePost->post_title,
+                'title' => $row['commision_gallery_slide']['title'] ? $row['commision_gallery_slide']['title'] : $_thePost->post_title,
                 'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
                 'video' => false,
                 'background' => $row['commision_gallery_background'],
