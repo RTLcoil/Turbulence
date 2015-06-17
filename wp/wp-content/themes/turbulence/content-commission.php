@@ -28,6 +28,7 @@ $artists = is_array($artists) ? $artists : array($artists)
         <a href="<?php echo get_field('commission_link') ?>" target="_blank" class="commission__work-overlay"></a>
     </div>
     <h1 class="commission__title"><?php the_title(); ?></h1>
+    <?php if (get_field('sub_heading')){ echo '<h2 class="commission__sub_heading">' . get_field('sub_heading') . '</h2>'; } ?>
     <div class="commission__year"><span><?php $launch_date = date_create(get_field('year_realise')); echo date_format($launch_date,'F, Y')?></span></div>
     <div class="commission__author"><?php _e('by')?> <?php
         $arr = array();
