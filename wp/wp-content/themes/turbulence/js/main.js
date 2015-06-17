@@ -564,6 +564,26 @@ var tmpl = {
 		}
 
 
+    // Make the site unveil on first scroll:
+
+    var lastScrollTop = $(window).scrollTop();
+    $(window).scroll(function(event){
+       var st = $(this).scrollTop();
+       if (st > lastScrollTop){
+           // downscroll code
+           if (lastScrollTop == 0) {
+             $('html, body').animate({
+               scrollTop: $(".main-gallery").height()+1
+             }, {
+               duration: 500,
+               easing: "easeOutQuart"
+             });
+           }
+       } else {
+          // upscroll code
+       }
+       lastScrollTop = st;
+    });
 
 		/*if($(".header_front").length) {
 
@@ -621,7 +641,7 @@ var tmpl = {
 
 					if(!flag) {
 						$elem.css("visibility", "visible");
-						
+
 						if($(e.target).hasClass("nav-toggle-btn")) {
 							$(".nav-toggle").addClass("nav-toggle_dark");
 						}
