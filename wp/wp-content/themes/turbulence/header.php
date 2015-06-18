@@ -1,4 +1,5 @@
 <?php
+
 $options = get_option( 'turbulence_theme_options' );
 setlocale(LC_ALL, 'en_US.UTF8');
 /**
@@ -84,7 +85,7 @@ if(is_front_page()):
     }
 endif;?>
 
-<?php if($_thePost->post_type == 'commission'):
+<?php if(is_single() && $_thePost->post_type == 'commission'):
     $rows = get_field('commision_gallery');
     $arr = array();
     $artists = get_field('artist');
@@ -128,7 +129,9 @@ if(count($mainSlides)): ?>
                     <div class="main-gallery__content-link main-gallery__content-link_video">
                         <div class="main-gallery__content-link_video-inner">
                         <?php
-                            echo apply_filters('the_content', "[embed]" . $slide['video'] . ($slide['autoplay_video'] ? '&autoplay=1&cc_load_policy=1' : '') . "[/embed]");
+                            $videoUrl = $slide['video'] . ($slide['autoplay_video'] ?
+                                (strpos($slide['video'], '?') === false ? '?' : '&') . 'autoplay=1&cc_load_policy=1' : '');
+                            echo apply_filters('the_content', "[embed]" . $videoUrl . "[/embed]");
                         ?>
                         </div>
                     </div>

@@ -1615,4 +1615,13 @@ function ald_crp_commissions() {
     echo $output;
 
 }
+
+function filter_search($query) {
+
+    if ($query->is_tag()) {
+        $query->set('post_type', array('artist', 'commission'));
+    };
+    return $query;
+};
+add_filter('pre_get_posts', 'filter_search');
 ?>

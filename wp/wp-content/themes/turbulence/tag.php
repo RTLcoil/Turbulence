@@ -11,6 +11,8 @@
  * @since Turbulence 1.0
  */
 
+$search_query = get_search_query();
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
