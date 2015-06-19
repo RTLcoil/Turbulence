@@ -13,20 +13,8 @@ $artists = get_field('artist');
 $artists = is_array($artists) ? $artists : array($artists)
 ?>
 
-<section class="commission">
+<section class="commission<?php $category = get_the_category(); if($category){ echo ' ' . $category[0]->slug; }?>">
 
-    <div class="commission__work frame-type-<?php echo (get_field('list_frame_type') ? get_field('list_frame_type') : 'default')?>">
-        <div class="commission__work-img">
-            <?php
-            if ( has_post_thumbnail() ) {
-              echo get_the_post_thumbnail(null, array(240,180));
-            } else {
-              echo '<img src="'.get_template_directory_uri() . '/img/default_profile.png" alt="default"></img>';
-            }
-            ?>
-        </div>
-        <a href="<?php echo get_field('commission_link') ?>" target="_blank" class="commission__work-overlay"></a>
-    </div>
     <h1 class="commission__title"><?php the_title(); ?></h1>
     <?php if (get_field('sub_heading')){ echo '<h2 class="commission__sub_heading">' . get_field('sub_heading') . '</h2>'; } ?>
     <div class="commission__year"><span><?php $launch_date = date_create(get_field('year_realise')); echo date_format($launch_date,'F, Y')?></span></div>
@@ -37,6 +25,27 @@ $artists = is_array($artists) ? $artists : array($artists)
         }
         echo implode(' & ', $arr);
     ?></div>
+
+      <div class="commission__work
+        <?php
+          if($category){
+            echo ' frame-type-' . $category[0]->slug;
+          } else {
+            echo ' frame-type-' . (get_field('list_frame_type') ? get_field('list_frame_type') : 'default');
+          }
+        ?>">
+          <div class="commission__work-img">
+              <?php
+              if ( has_post_thumbnail() ) {
+                echo get_the_post_thumbnail(null, array(240,180));
+              } else {
+                echo '<img src="'.get_template_directory_uri() . '/img/default_profile.png" alt="default"></img>';
+              }
+              ?>
+          </div>
+          <a href="<?php echo get_field('commission_link') ?>" target="_blank" class="commission__work-overlay"></a>
+      </div>
+
     <?php
     $funder = get_field('funder');
     if ($funder){ ?>

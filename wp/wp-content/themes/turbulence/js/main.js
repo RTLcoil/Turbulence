@@ -568,6 +568,7 @@ var tmpl = {
 
     var lastScrollTop = $(window).scrollTop();
     $(window).scroll(function(event){
+      if($(".main-gallery").length){      //if the main gallery exists
        var st = $(this).scrollTop();
        if (st > lastScrollTop){
            // downscroll code
@@ -583,6 +584,7 @@ var tmpl = {
           // upscroll code
        }
        lastScrollTop = st;
+     }
     });
 
 		/*if($(".header_front").length) {
