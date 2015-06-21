@@ -10,11 +10,13 @@
  */
 
 $artists = get_field('artist');
-$artists = is_array($artists) ? $artists : array($artists)
+$artists = is_array($artists) ? $artists : array($artists);
+$category = get_the_category();
 ?>
 
-<section class="commission<?php $category = get_the_category(); if($category){ echo ' ' . $category[0]->slug; }?>">
+<section class="commission<?php if($category){ echo ' feature-page ' . $category[0]->slug; }?>">
 
+    <?php if($category){ echo '<h2 class="label-category"> ' . $category[0]->slug . '</h2>'; }?>
     <h1 class="commission__title"><?php the_title(); ?></h1>
     <?php if (get_field('sub_heading')){ echo '<h2 class="commission__sub_heading">' . get_field('sub_heading') . '</h2>'; } ?>
     <div class="commission__year"><span><?php $launch_date = date_create(get_field('year_realise')); echo date_format($launch_date,'F, Y')?></span></div>
