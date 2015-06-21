@@ -78,7 +78,7 @@ if(is_front_page()):
             'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
             'video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
             'background' => get_field('main_gallery_background', $slide->ID),
-            'autoplay_video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
+            'autoplay_video' => (get_field('autoplay_video', $slide->ID) ? : false),
             'link' => get_permalink($slide->ID),
             'thumbnail' => get_the_post_thumbnail( $slide->ID, 'full', array('class'    => "slide-post-img")),
         );
@@ -127,12 +127,11 @@ if(count($mainSlides)): ?>
                 <div class="main-gallery__content-inner">
                     <?php if($slide['video']):?>
                     <div class="main-gallery__content-link main-gallery__content-link_video">
-                        <div class="main-gallery__content-link_video-inner">
-                        <?php
-                            $videoUrl = $slide['video'] . ($slide['autoplay_video'] ?
-                                (strpos($slide['video'], '?') === false ? '?' : '&') . 'autoplay=1&cc_load_policy=1' : '');
-                            echo apply_filters('the_content', "[embed]" . $videoUrl . "[/embed]");
-                        ?>
+                        <div data-autoplay="<?php echo ($slide['autoplay_video'] ? 1 : 0)?>" class="main-gallery__content-link_video-inner">
+                            <?php
+
+                                echo apply_filters('the_content', "[embed]" . $slide['video'] . "[/embed]");
+                            ?>
                         </div>
                     </div>
                     <?php else:?>
@@ -159,6 +158,7 @@ if(count($mainSlides)): ?>
         </menu>
     </div>
 </div>
+
 <div class="main-gallery__footer">
     <div class="container">
         <ul class="main-gallery__titles">

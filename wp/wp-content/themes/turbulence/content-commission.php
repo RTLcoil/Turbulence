@@ -60,10 +60,7 @@ $category = get_the_category();
     </div>
     <?php if($media = get_field('media')):?>
         <div class="commission__media">
-            <?php
-            $vid = apply_filters('the_content', "[embed]" . $media . "[/embed]");
-            echo $vid;
-            ?>
+            <?php echo apply_filters('the_content', "[embed]" . $media . "[/embed]");?>
         </div>
     <?php endif;?>
     <div class="commission__item">

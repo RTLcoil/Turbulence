@@ -28,8 +28,9 @@ get_header(); ?>
                     <?php foreach($homeSlides as $ind => $slide): ?>
                         <div class="slider-medium__item">
                             <div class="slider-medium__item-img">
-                                <a href="<?php echo get_the_title($slide->ID)?>"></a>
-                                <?php echo get_the_post_thumbnail( $slide->ID, array(545, 270), array('class'    => "slide-medium-img"))?>
+                                <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
+                                    <?php echo get_the_post_thumbnail( $slide->ID, array(545, 270), array('class'    => "slide-medium-img"))?>
+                                </a>
                             </div>
 
                             <span class="label-category">
