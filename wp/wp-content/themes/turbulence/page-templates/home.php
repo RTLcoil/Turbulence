@@ -102,7 +102,6 @@ get_header(); ?>
 
             $launch_date = date_create(get_field('year_realise', $pItem->ID));
             $entry['year_realise'] = date_format($launch_date,'Y');
-
             $entry['color'] = get_field('color', $pItem->ID);
 
             $frm = get_field('list_frame_type', $pItem->ID);
@@ -123,6 +122,8 @@ get_header(); ?>
             }
 
             $entry['title'] = $pItem->post_title;
+            $cat = get_the_category($pItem->ID);
+            $entry['category'] = $cat[0]->cat_name;
             $entry['url'] = get_permalink($pItem->ID);
 
             $arts = get_field('artist', $pItem->ID);
@@ -339,6 +340,7 @@ get_header(); ?>
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
                          data-title="<?php echo $item['title']?>"
+                         data-category="<?php echo $item['category']?>"
                          data-author="<?php echo $item['author']?>"
                          data-labels="<?php echo implode(',', $item['tags'])?>"
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>"
