@@ -104,7 +104,15 @@ get_header(); ?>
             $entry['year_realise'] = date_format($launch_date,'Y');
 
             $entry['color'] = get_field('color', $pItem->ID);
-            $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
+
+            $frm = get_field('list_frame_type', $pItem->ID);
+
+            if ($frm) {
+              $entry['list_frame_type'] = $frm;
+            } else {
+              $entry['list_frame_type'] = "i-item_feature";
+            }
+
             if ( has_post_thumbnail($pItem->ID) ) {
               $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
               list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
@@ -162,7 +170,7 @@ get_header(); ?>
 
         /***************************/
         $artistsItems = array();
-          
+
         foreach(get_posts( array(
             'orderby'          => 'post_title',
             'order'            => 'ASC',
@@ -176,7 +184,7 @@ get_header(); ?>
             $entry['ID'] = $pItem->ID;
             $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
             list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 200));
-            $entry['title'] = iconv('UTF-8', 'US-ASCII//TRANSLIT', $pItem->post_title); 
+            $entry['title'] = iconv('UTF-8', 'US-ASCII//TRANSLIT', $pItem->post_title);
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
             $map = get_field('artist_map', $pItem->ID);
@@ -399,6 +407,7 @@ get_header(); ?>
                     <div class="i-item i-item_artist type-artist"
 
                          data-works="<?php echo implode(',', $item['works'])?>"
+
                          data-labels="<?php echo $item['title']?>"
                          data-map="<?php echo get_template_directory_uri()?>/img/map-2.png"
 
@@ -420,4 +429,4 @@ get_header(); ?>
 
     </section>
 </div>
-<?php get_footer(); ?>         
+<?php get_footer(); ?>
