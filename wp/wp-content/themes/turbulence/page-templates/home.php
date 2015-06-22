@@ -128,7 +128,9 @@ get_header(); ?>
             $entry['title'] = $pItem->post_title;
             $cat = get_the_category($pItem->ID);
             $entry['category'] = $cat[0]->cat_name;
-            $entry['catslug'] = 'i-item_feature '.$cat[0]->slug;
+            if ($cat){
+              $entry['catslug'] = 'i-item_feature '.$cat[0]->slug;
+            }
             $entry['url'] = get_permalink($pItem->ID);
 
             $arts = get_field('artist', $pItem->ID);
