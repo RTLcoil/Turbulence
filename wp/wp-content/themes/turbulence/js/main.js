@@ -1907,7 +1907,7 @@ return;
 
 //            center        : new google.maps.LatLng(0, 0),
 
-            center: new google.maps.LatLng(parseFloat($el.find('.marker:first').attr('data-lat')) + 1.2, $el.find('.marker:first').attr('data-lng')),
+            center: new google.maps.LatLng(parseFloat($el.find('.marker:first').attr('data-lat')) + 1.8, $el.find('.marker:first').attr('data-lng')),
 
 //            center: new google.maps.LatLng(50.871768297397445, -113.93932679662703),
 

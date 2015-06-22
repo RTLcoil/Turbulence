@@ -103,8 +103,11 @@ $category = get_the_category();
         </div>
     </div>
 </section>
+
+<section class="artists">
 <?php foreach($artists as $artist): ?>
-    <section class="artist-details">
+
+    <!-- <section class="artist-details">
         <div class="artist-details__info">
             <h1 class="artist-details__name"><?php echo $artist->post_title?></h1>
             <div class="artist-details__photo">
@@ -139,8 +142,25 @@ $category = get_the_category();
                 <?php endif;?>
             </div>
         </div>
-    </section>
-<?php endforeach;?>
+    </section> -->
+    <div class="i-item_artist">
+      <div class="i-item__popup i-item__popup_person i-item_static">
+        <div class="i-item__popup_map">
+          <div class="acf-map">
+            <div class="marker" data-lat="<?php echo $map['lat']; ?>" data-lng="<?php echo $map['lng']; ?>"></div>
+          </div>
+        </div>
+        <a href="<?php echo get_permalink($artist->ID);?>" class="i-item__popup-name">
+          <img src="<?php echo get_artist_pic($artist->ID,'uri')?>" alt="<?php echo $artist->post_title?>" class="i-item__popup-artist">
+          <span class="i-item__popup-artist-name"><?php echo $artist->post_title?></span>
+          <span class="i-item__popup-place"><?php echo get_field('location', $artist->ID)?></span>
+        </a>
+      </div>
+    </div>
+
+  <?php endforeach;?>
+</section>
+
 <div class="artist-details__relevant">
     <?php if ( function_exists( 'ald_crp_commissions' ) )  ald_crp_commissions(); ?>
 </div>
