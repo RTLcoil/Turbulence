@@ -33,10 +33,15 @@ get_header(); ?>
                                 </a>
                             </div>
 
-                            <span class="label-category">
-                                <?php $category = get_the_category($slide->ID);
-                                if($category[0]){ echo $category[0]->cat_name; }?>
-                            </span>
+                            <?php
+                              $category = get_the_category($slide->ID);
+                              if($category[0]){ echo
+                                '<span class="label-category">' .
+                                  $category[0]->cat_name .
+                                '</span>';
+                              }
+                            ?>
+
                         </div>
                     <?php endforeach;?>
                 </div>
@@ -109,22 +114,21 @@ get_header(); ?>
 
             if ($frm) {
               $entry['list_frame_type'] = $frm;
-            } else {
-              $entry['list_frame_type'] = "i-item_feature";
             }
 
             if ( has_post_thumbnail($pItem->ID) ) {
-              $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
+              $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50), array( 'class' => 'thumbnail' ));
               list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
             } else {
               $default_img = get_template_directory_uri() . '/img/default_profile.png';
-              $entry['thumbnail'] = '<img src="'. $default_img . '" alt=""></img>';
+              $entry['thumbnail'] = '<img class="thumbnail default_img" src="'. $default_img . '" alt="default image"></img>';
               $entry['image'] = $default_img;
             }
 
             $entry['title'] = $pItem->post_title;
             $cat = get_the_category($pItem->ID);
             $entry['category'] = $cat[0]->cat_name;
+            $entry['catslug'] = 'i-item_feature '.$cat[0]->slug;
             $entry['url'] = get_permalink($pItem->ID);
 
             $arts = get_field('artist', $pItem->ID);
@@ -334,7 +338,7 @@ get_header(); ?>
                         </div>
                     <?php endif;?>
 
-                    <a href="<?php echo $item['url']?>" title="<?php echo $item['title']?>" class="i-item i-item_icon type-icon <?php echo $item['list_frame_type']?>"
+                    <a href="<?php echo $item['url']?>" title="<?php echo $item['title']?>" class="i-item i-item_icon type-icon <?php echo $item['list_frame_type'] . ' ' . $item['catslug']; ?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
                          <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up="<?php echo $ind;?>"
@@ -342,6 +346,7 @@ get_header(); ?>
                          data-img="<?php echo $item['image']?>"
                          data-title="<?php echo $item['title']?>"
                          data-category="<?php echo $item['category']?>"
+                         data-catslug="<?php echo $item['catslug']?>"
                          data-author="<?php echo $item['author']?>"
                          data-labels="<?php echo implode(',', $item['tags'])?>"
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>"
@@ -371,13 +376,15 @@ get_header(); ?>
                         </div>
                     <?php endif;?>
 
-                    <div title="<?php echo $item['title']?>" class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type']?>"
+                    <div title="<?php echo $item['title']?>" class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type'] . ' ' . $item['catslug']; ?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
                         <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up-title="<?php echo $ind;?>"
                          data-sort-down-title="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
                          data-title="<?php echo $item['title']?>"
+                         data-category="<?php echo $item['category']?>"
+                         data-catslug="<?php echo $item['catslug']?>"
                          data-url="<?php echo $item['url']?>"
                          data-author="<?php echo $item['author']?>"
                          data-labels="<?php echo implode(',', $item['tags'])?>"
