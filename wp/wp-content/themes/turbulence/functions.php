@@ -1553,9 +1553,11 @@ function ald_crp_commissions() {
         'postid' => $post->ID,
         'strict_limit' => TRUE,
     ) );
-    $output = '<ul class="artist-details__relevant-list">';
-    if ( $results ) {
 
+    $output = '';
+
+    if ( $results ) {
+        $output .= '<div class="artist-details__relevant-title">'. __('Other possibly relevant commissions').'</div><ul class="artist-details__relevant-list">';
         foreach ( $results as $result ) {
 
             $pItem = get_post( $result->ID );
@@ -1600,18 +1602,9 @@ function ald_crp_commissions() {
                 </div>
             </li>';
         } //end of foreach loop
+        $output .= '</ul>'; // closing div of 'crp_related'
     }
 
-    $output .= '</ul>'; // closing div of 'crp_related'
-
-    /**
-     * Filter the output
-     *
-     * @since	1.9.1
-     *
-     * @param	string	$output	Formatted list of related posts
-     * @param	array	$args	Complete set of arguments
-     */
     echo $output;
 
 }

@@ -142,6 +142,5 @@ $category = get_the_category();
     </section>
 <?php endforeach;?>
 <div class="artist-details__relevant">
-    <div class="artist-details__relevant-title"><?php _e('Other possibly relevant commissions')?></div>
     <?php if ( function_exists( 'ald_crp_commissions' ) )  ald_crp_commissions(); ?>
 </div>
