@@ -335,7 +335,7 @@ var mapArtistPopupOffsets = {
 
 				var cur  = $elems.filter(".current"),
 
-					next = index ? $elems.eq(index)
+					next = index!=undefined ? $elems.eq(index)
 
 								 : cur.next().length ? cur.next() : $elems.first();
 
