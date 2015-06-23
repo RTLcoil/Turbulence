@@ -50,8 +50,10 @@ get_header(); ?>
                     <ul class="slider-medium__desc">
                         <?php foreach($homeSlides as $ind => $slide): ?>
                             <li <?php echo $ind == 0 ? 'class="active"' : ''?>>
-                                <strong><?php echo $slide->post_title;?></strong>
-                                <span><?php echo get_field('sub_title', $slide->ID)?></span>
+                                <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
+                                    <strong><?php echo $slide->post_title;?></strong>
+                                    <span><?php echo get_field('sub_title', $slide->ID)?></span>
+                                </a>
                             </li>
                         <?php endforeach;?>
                     </ul>
