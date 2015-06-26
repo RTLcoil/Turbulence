@@ -14,7 +14,12 @@ $artists = is_array($artists) ? $artists : array($artists);
 $category = get_the_category();
 ?>
 
-<section class="commission<?php if($category){ echo ' feature-page ' . $category[0]->slug; }?>">
+<section class="commission<?php
+    if($category){
+      if($category[0]->slug != 'commission') {
+        echo ' feature-page ' . $category[0]->slug;
+      }
+    }?>">
 
     <?php if($category){ echo '<h2 class="label-category"> ' . $category[0]->name . '</h2>'; }?>
     <h1 class="commission__title"><?php the_title(); ?></h1>
