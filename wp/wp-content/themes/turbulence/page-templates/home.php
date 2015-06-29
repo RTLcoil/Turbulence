@@ -146,7 +146,7 @@ get_header(); ?>
                 $entry['author'][] = $art->post_title;
             }
 
-            $entry['author'] = implode(' && ', $entry['author']);
+            $entry['author'] = implode(' & ', $entry['author']);
 
             $entry['url'] = get_permalink($pItem->ID);
 

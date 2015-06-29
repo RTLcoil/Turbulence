@@ -528,8 +528,6 @@ function turbulence_paging_nav() {
 
 	<nav class="navigation paging-navigation" role="navigation">
 
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'turbulence' ); ?></h1>
-
 		<div class="nav-links">
 
 
