@@ -130,7 +130,9 @@ get_header(); ?>
             $entry['title'] = $pItem->post_title;
             $cat = get_the_category($pItem->ID);
             $entry['category'] = $cat[0]->cat_name;
-            if ($cat){
+            if ($cat[0]->slug == 'commission' or !isset($cat)){
+              $entry['catslug'] = 'commission';
+            } elseif ($cat){
               $entry['catslug'] = 'i-item_feature '.$cat[0]->slug;
             }
             $entry['url'] = get_permalink($pItem->ID);
