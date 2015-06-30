@@ -1555,7 +1555,7 @@ function ald_crp_commissions() {
     $output = '';
 
     if ( $results ) {
-        $output .= '<div class="artist-details__relevant-title">'. __('Other possibly relevant commissions').'</div><ul class="artist-details__relevant-list">';
+        $output .= '<div class="artist-details__relevant-title">'. __('Related').'</div><ul class="artist-details__relevant-list">';
         foreach ( $results as $result ) {
 
             $pItem = get_post( $result->ID );
