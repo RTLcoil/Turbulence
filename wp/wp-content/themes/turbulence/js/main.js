@@ -621,7 +621,7 @@ var tmpl = {
 			$(window).on("scroll", function() {
 				var st = $(window).scrollTop();
 
-				$(".header_fixed")[st >= $(window).height() ? "addClass" : "removeClass"]("header_filling");
+				$(".header_fixed")[st >= $(window).height()-$(".main-gallery__footer").height() ? "addClass" : "removeClass"]("header_filling");
 			});
 		}
 
