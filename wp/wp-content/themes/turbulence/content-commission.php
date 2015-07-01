@@ -24,7 +24,7 @@ $category = get_the_category();
     <?php if($category){ echo '<h2 class="label-category"> ' . $category[0]->name . '</h2>'; }?>
     <h1 class="commission__title"><?php the_title(); ?></h1>
     <?php if (get_field('sub_heading')){ echo '<h2 class="commission__sub_heading">' . get_field('sub_heading') . '</h2>'; } ?>
-    <div class="commission__year"><span><?php $year_realize = date_create(get_field('year_realize')); echo date_format($year_realize,'F Y')?></span></div>
+    <div class="commission__year"><span><?php $year_realise = date_create(get_field('year_realise')); echo date_format($year_realise,'F Y')?></span></div>
     <div class="commission__author"><?php _e('by')?> <?php
         $arr = array();
         foreach($artists as $o) {
