@@ -87,7 +87,7 @@ get_header(); ?>
 
         foreach(get_posts( array(
 
-            'meta_key'            => 'launch_date',
+            'meta_key'            => 'year_realize',
             'orderby'            => 'meta_value_num',
             'order'                => 'DESC',
 //            'orderby'          => 'post_date',
@@ -99,8 +99,8 @@ get_header(); ?>
 
             $entry = array();
 
-            $launch_date = date_create(get_field('launch_date', $pItem->ID));
-            $entry['launch_date'] = date_format($launch_date,'Y');
+            $year_realize = date_create(get_field('year_realize', $pItem->ID));
+            $entry['year_realize'] = date_format($year_realize,'Y');
             $entry['color'] = get_field('color', $pItem->ID);
             $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
             if ( has_post_thumbnail($pItem->ID) ) {
@@ -139,8 +139,8 @@ get_header(); ?>
 
             $commissionsItems[] = $entry;
 //            *****************
-            $maxYear = $entry['launch_date'] > $maxYear ? $entry['launch_date'] : $maxYear;
-            $minYear = $entry['launch_date'] < $minYear ? $entry['launch_date'] : $minYear;
+            $maxYear = $entry['year_realize'] > $maxYear ? $entry['year_realize'] : $maxYear;
+            $minYear = $entry['year_realize'] < $minYear ? $entry['year_realize'] : $minYear;
 
         }
 
@@ -150,11 +150,11 @@ get_header(); ?>
 
         foreach($commissionsItems as $pInd => $item) {
 
-            if(!isset($yearsSorters[$item['launch_date']])) {
-                $yearsSorters[$item['launch_date']] = array('from' => $pInd, 'to' => $commissionsNumber - $pInd);
+            if(!isset($yearsSorters[$item['year_realize']])) {
+                $yearsSorters[$item['year_realize']] = array('from' => $pInd, 'to' => $commissionsNumber - $pInd);
             }
 
-            $yearsSorters[$item['launch_date']]['to'] = $commissionsNumber - $pInd;
+            $yearsSorters[$item['year_realize']]['to'] = $commissionsNumber - $pInd;
         }
 
         /***************************/
@@ -312,7 +312,7 @@ get_header(); ?>
                 <?php foreach($commissionsItems as $ind => $item):?>
 
 
-                    <?php if($theYear != $item['launch_date']): $theYear = $item['launch_date'];?>
+                    <?php if($theYear != $item['year_realize']): $theYear = $item['year_realize'];?>
                         <div class="i-item i-item_year type-icon"
                              data-sort-up="<?php echo $yearsSorters[$theYear]['from']?>"
                              data-sort-down="<?php echo $yearsSorters[$theYear]['to']?>"
@@ -348,7 +348,7 @@ get_header(); ?>
 
                 <?php foreach($commissionsItems as $ind => $item):?>
 
-                    <?php if($theYear != $item['launch_date']): $theYear = $item['launch_date'];?>
+                    <?php if($theYear != $item['year_realize']): $theYear = $item['year_realize'];?>
                         <div class="i-item i-item_year type-icon-title"
                              data-sort-up-title="<?php echo $yearsSorters[$theYear]['from']?>"
                              data-sort-down-title="<?php echo $yearsSorters[$theYear]['to']?>"
