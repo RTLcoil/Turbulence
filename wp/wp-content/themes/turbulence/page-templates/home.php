@@ -7,7 +7,10 @@
  */
 get_header(); ?>
 <div class="container">
-<?php
+    <div class="clearfix">
+
+
+  <?php 
     $options = get_option( 'turbulence_theme_options' );
     $args = array(
 
@@ -18,11 +21,32 @@ get_header(); ?>
         'post_status'      => 'publish',
         'meta_key'        => 'use_in_home_slides',
         'meta_value'    => true
-);
+      );
+  ?>
+    <div class="front-logo">
+        <div class="front-logo__media">
+            <img src="<?php echo get_template_directory_uri()?>/img/turbulence_logo.png" alt="">
+        </div>
+
+        <div class="front-logo__social">
+            <?php if($options['email_link']):?>
+                <a href="mailto:<?php echo $options['email_link']?>" class="social-envelope"></a>
+            <?php endif;?>
+            <?php if($options['facebook_link']):?>
+                <a href="<?php echo $options['facebook_link']?>" class="social-fb"></a>
+            <?php endif;?>
+            <?php if($options['twitter_link']):?>
+                <a href="<?php echo $options['twitter_link']?>" class="social-tw"></a>
+            <?php endif;?>
+            <?php if($options['github_link']):?>
+                <a href="<?php echo $options['github_link']?>" class="social-git"></a>
+            <?php endif;?>
+        </div>
+    </div>
+<?php
     $homeSlides = get_posts( $args );
 
     if(count($homeSlides)): ?>
-        <div class="clearfix">
             <div class="slider-medium">
                 <div class="slider-medium__wrap">
                     <?php foreach($homeSlides as $ind => $slide): ?>
@@ -66,26 +90,6 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="front-logo">
-                <div class="front-logo__media">
-                    <img src="<?php echo get_template_directory_uri()?>/img/logo-1.png" alt="">
-                </div>
-
-                <div class="front-logo__social">
-                    <?php if($options['email_link']):?>
-                        <a href="mailto:<?php echo $options['email_link']?>" class="social-envelope"></a>
-                    <?php endif;?>
-                    <?php if($options['facebook_link']):?>
-                        <a href="<?php echo $options['facebook_link']?>" class="social-fb"></a>
-                    <?php endif;?>
-                    <?php if($options['twitter_link']):?>
-                        <a href="<?php echo $options['twitter_link']?>" class="social-tw"></a>
-                    <?php endif;?>
-                    <?php if($options['github_link']):?>
-                        <a href="<?php echo $options['github_link']?>" class="social-git"></a>
-                    <?php endif;?>
-                </div>
-            </div>
         </div>
     <?php endif;?>
     <?php
