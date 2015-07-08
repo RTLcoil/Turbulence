@@ -123,11 +123,13 @@ get_header(); ?>
             }
 
             if ( has_post_thumbnail($pItem->ID) ) {
-              $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50), array( 'class' => 'thumbnail' ));
-              list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
+                $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+                $entry['thumbnail'] = '<img class="thumbnail" src="'.get_template_directory_uri().'/img/blank.png" alt="" data-origin="'.$thumbnail.'" />';
+                list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
             } else {
               $default_img = get_template_directory_uri() . '/img/default_profile.png';
-              $entry['thumbnail'] = '<img class="thumbnail default_img" src="'. $default_img . '" alt="default image"></img>';
+              $entry['thumbnail'] = '<img class="thumbnail default_img" src="'.get_template_directory_uri().'/img/blank.png" data-origin="'.$default_img.'" alt="default image"></img>';
+
               $entry['image'] = $default_img;
             }
 
@@ -198,7 +200,8 @@ get_header(); ?>
             $entry = array();
 
             $entry['ID'] = $pItem->ID;
-            $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
+            $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+            $entry['thumbnail'] = '<img class="thumbnail" src="'.get_template_directory_uri().'/img/blank.png" alt="" data-origin="'.$thumbnail.'" />';
             list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 200));
             $entry['title'] = iconv('UTF-8', 'US-ASCII//TRANSLIT', $pItem->post_title);
             $entry['url'] = get_permalink($pItem->ID);
@@ -440,7 +443,8 @@ get_header(); ?>
                          data-place="<?php echo $item['location']?>"
                          data-map-lat="<?php echo $item['map_lat']?>"
                          data-map-lng="<?php echo $item['map_lng']?>">
-                         <?php echo get_artist_pic($item['ID'],'normal')?>
+                        <img class="thumbnail" src="<?php echo get_template_directory_uri()?>/img/blank.png" alt="" data-origin="<?php echo get_artist_pic($item['ID'],'uri48')?>" />
+
                         <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>
                 <?php endforeach;?>

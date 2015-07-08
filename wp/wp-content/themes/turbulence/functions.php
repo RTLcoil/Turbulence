@@ -1524,7 +1524,7 @@ function get_artist_pic($artist_id, $size = 'original') {
 			return $extracted;
 		}
 	} elseif ($twitter == true ) {
-		if ($size == 'uri') {
+		if ($size == 'uri' || $size == 'uri48') {
 			return 'https://twitter.com/' . $twitter . '/profile_image?size=bigger';
 		} else {
 			return '<img src="https://twitter.com/' . $twitter . '/profile_image?size=' . $size . '"></img>';
@@ -1536,6 +1536,10 @@ function get_artist_pic($artist_id, $size = 'original') {
 			return get_avatar( $email, '48', get_template_directory_uri() . '/img/default_profile.png');
 		} elseif($size == 'uri') {
 			$tag = get_avatar( $email, '73', get_template_directory_uri() . '/img/default_profile.png');
+			$extracted = preg_replace('/<img [^>]*src=[\'"]([^\'"]+)[\'"][^>]*>/','\\1',$tag);
+			return $extracted;
+		} elseif($size == 'uri48') {
+			$tag = get_avatar( $email, '48', get_template_directory_uri() . '/img/default_profile.png');
 			$extracted = preg_replace('/<img [^>]*src=[\'"]([^\'"]+)[\'"][^>]*>/','\\1',$tag);
 			return $extracted;
 		}
