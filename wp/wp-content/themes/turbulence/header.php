@@ -46,6 +46,13 @@ $color = get_field('color');
 $_theArtists = is_array($_theArtists) ? $_theArtists : array($_theArtists);
 ?>
 <body <?php echo ($color ? 'class="color-custom" style="color: '.$color.'"' : '')?>>
+
+<?php if(is_front_page()): ?>
+<div class="loading-overlay">
+    <div class="loading-overlay__body"></div>
+</div>
+<?php endif;?>
+
 <div id="wrapper">
 <?php
 $mainSlides = array();
