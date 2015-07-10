@@ -280,38 +280,27 @@ var mapArtistPopupOffsets = {
 
 			});
 
-
-
 			function init() {
-
 				$elems.each(function() {
-
 					var $img = $("img", this);
 
-
-
 					if($img && $img.length) {
-
 						if($(".slider-medium__item-img", this).length) {
-
 							$(".slider-medium__item-img", this).css("background-image", "url(" + $img.attr("src") + ")");
 
+							if($img.attr("data-origin")) {
+								$(".slider-medium__item-img", this).attr("data-origin", $img.attr("data-origin"));
+							}
 						} else if ($(".main-gallery__content-inner", this).length) {
-
 							$(".main-gallery__content-inner", this).css("background-image", "url(" + $img.attr("src") + ")");
-
 						}
 
+						$img.addClass("slide-complete");
 					}
-
 				});
 
-
-
 				if(!$elems.filter(".current").length) {
-
 					$elems.eq(0).addClass("current");
-
 				}
 
 				if($elems.length > 1) {
@@ -387,8 +376,6 @@ var tmpl = {
 
 var lazyLoad = {
 	show: function() {
-		console.log(this);
-
 		var _this = this,
 			$elems = _this.p.elements.not(".lazy_ready").filter(":visible"),
 			count = 0;
@@ -406,9 +393,18 @@ var lazyLoad = {
 						element.src = this.src;
 
 						setTimeout(function() {
-							$(element).animate({
-								opacity: 1
-							}, 250);
+							if($(element).hasClass("slide-medium-img")) {
+								$(element).closest(".slider-medium__item-img").css({
+									backgroundImage: 'url(' + $(element).attr("data-origin") + ')',
+									opacity: 0
+								}).animate({
+									opacity: 1
+								});
+							} else {
+								$(element).animate({
+									opacity: 1
+								}, 250);
+							}
 						}, count * 100);
 					};
 					img.src = $(element).attr(_this.p.attr);
@@ -442,12 +438,6 @@ var lazyLoad = {
 				$(".loading-overlay").addClass("preloader-hide");
 			});
 		})();
-
-		lazyLoad.init({
-			elements : $("img.thumbnail"),
-			attr     : "data-origin",
-			eventName: "scroll"
-		});
 
 		if($(".main-gallery").length) {
 
@@ -620,6 +610,12 @@ var lazyLoad = {
 
 		}
 
+
+		lazyLoad.init({
+			elements : $("img.thumbnail, .slide-medium-img"),
+			attr     : "data-origin",
+			eventName: "scroll"
+		});
 
 
 		if($(".show-site").length) {
