@@ -385,19 +385,69 @@ var tmpl = {
 
 };
 
+var lazyLoad = {
+	show: function() {
+		console.log(this);
 
+		var _this = this,
+			$elems = _this.p.elements.not(".lazy_ready").filter(":visible"),
+			count = 0;
+
+		$elems.each(function(i) {
+			var p = this.getBoundingClientRect(),
+				h = $(window).height();
+
+			if(p.top > 0 && p.bottom < h) {
+				(function(element, index) {
+					$(element).addClass("lazy_ready");
+					count += 1;
+					var img = new Image();
+					img.onload = function() {
+						element.src = this.src;
+
+						setTimeout(function() {
+							$(element).animate({
+								opacity: 1
+							}, 250);
+						}, count * 100);
+					};
+					img.src = $(element).attr(_this.p.attr);
+				}(this, i));
+			}
+		});
+	},
+
+	check: function(delay) {
+		var _this = this;
+
+		setTimeout(function() {
+			_this.show();
+		}, delay || 0);
+	},
+
+	init: function(params) {
+		var _this = this;
+		_this.p = params;
+
+		$(window).on(this.p.eventName, function() {
+			_this.show();
+		});
+	}
+};
 
 (function($) {
-
 	$(function() {
-
 		(function() { // preloader
 			$(window).load(function() {
 				$(".loading-overlay").addClass("preloader-hide");
 			});
-
-			$("img.lazy").lazyload();
 		})();
+
+		lazyLoad.init({
+			elements : $("img.thumbnail"),
+			attr     : "data-origin",
+			eventName: "scroll"
+		});
 
 		if($(".main-gallery").length) {
 
@@ -772,6 +822,8 @@ var tmpl = {
 					$container.isotope({
 						sortBy: 'yearDown'
 					});
+
+					lazyLoad.check(600);
 				});
 
 				$sortByYearsUp.on("click", function() { // sort by years
@@ -781,6 +833,8 @@ var tmpl = {
 					$container.isotope({
 						sortBy: 'yearUp'
 					});
+
+					lazyLoad.check(600);
 				});
 
 				$sortByLettersDown.on("click", function() { // sort by letters
@@ -790,6 +844,8 @@ var tmpl = {
 					$container.isotope({
 						sortBy: 'letterDown'
 					});
+
+					lazyLoad.check(600);
 				});
 
 				$sortByLettersUp.on("click", function() { // sort by letters
@@ -799,6 +855,8 @@ var tmpl = {
 					$container.isotope({
 						sortBy: 'letterUp'
 					});
+
+					lazyLoad.check(600);
 				});
 
 				$sortByTitleDown.on("click", function() { // sort by title
@@ -808,6 +866,8 @@ var tmpl = {
 					$container.isotope({
 						sortBy: 'titleDown'
 					});
+
+					lazyLoad.check(600);
 				});
 
 				$sortByTitleUp.on("click", function() { // sort by title
@@ -817,6 +877,8 @@ var tmpl = {
 					$container.isotope({
 						sortBy: 'titleUp'
 					});
+
+					lazyLoad.check(600);
 				});
 
 				$labels.on("mousedown", function(e) {
@@ -917,6 +979,8 @@ var tmpl = {
 					if($inputSearch.val()) {
 						searchMatch($inputSearch.val());
 					}
+
+					lazyLoad.check(600);
 				});
 
 				function getType() {
