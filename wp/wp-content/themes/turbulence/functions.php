@@ -1518,7 +1518,7 @@ function get_artist_pic($artist_id, $size = 'original') {
 			return get_the_post_thumbnail( $artist_id, full);
 		} elseif ($size == 'normal') {
 			return get_the_post_thumbnail( $artist_id, array(50, 50));
-		} elseif ($size == 'uri') {
+		} elseif ($size == 'uri' || $size == 'uri48') {
 			$tag = get_the_post_thumbnail( $artist_id, array(73, 73));
 			$extracted = preg_replace('/<img [^>]*src=[\'"]([^\'"]+)[\'"][^>]*>/','\\1',$tag);
 			return $extracted;

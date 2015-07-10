@@ -49,14 +49,15 @@ get_header(); ?>
     if(count($homeSlides)): ?>
             <div class="slider-medium">
                 <div class="slider-medium__wrap">
-                    <?php foreach($homeSlides as $ind => $slide): ?>
+                    <?php foreach($homeSlides as $ind => $slide): if(!has_post_thumbnail($slide->ID)) continue; ?>
                         <div class="slider-medium__item">
                             <div class="slider-medium__item-img">
                                 <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
                                     <?php
                                         list($slideImage) = wp_get_attachment_image_src(get_post_thumbnail_id( $slide->ID ), array(545, 270));
                                     ?>
-                                    <img class="slide-medium-img" src="<?php echo get_template_directory_uri()?>/img/blank.png" alt="" data-origin="<?php echo $slideImage?>" />
+                                    <img class="slide-medium-img" src="<?php echo get_template_directory_uri()?>/img/blank.png" alt=""
+                                         data-origin="<?php echo $slideImage?>" />
                                 </a>
                             </div>
 
@@ -75,7 +76,7 @@ get_header(); ?>
 
                 <div class="slider-medium__content">
                     <ul class="slider-medium__desc">
-                        <?php foreach($homeSlides as $ind => $slide): ?>
+                        <?php foreach($homeSlides as $ind => $slide):  if(!has_post_thumbnail($slide->ID)) continue; ?>
                             <li <?php echo $ind == 0 ? 'class="active"' : ''?>>
                                 <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
                                     <strong><?php echo $slide->post_title;?></strong>
