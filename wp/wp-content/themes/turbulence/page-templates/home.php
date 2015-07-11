@@ -88,7 +88,7 @@ get_header(); ?>
                 </div>
 
                 <div class="slider-medium__pager">
-                    <?php foreach($homeSlides as $ind => $slide): ?>
+                    <?php foreach($homeSlides as $ind => $slide):  if(!has_post_thumbnail($slide->ID)) continue; ?>
                         <a href="#" data-slide-index="<?php echo $ind?>" <?php echo $ind == 0 ? 'class="active"' : ''?>></a>
                     <?php endforeach;?>
                 </div>
