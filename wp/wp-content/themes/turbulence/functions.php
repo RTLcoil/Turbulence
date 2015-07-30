@@ -1512,6 +1512,7 @@ add_image_size( 'thumbnail-commision-size', 50, 50, true );
 /* get artist image */
 function get_artist_pic($artist_id, $size = 'original') {
 	$twitter = get_field('twitter_link', $artist_id);
+	$twitter = str_replace('@', '', $twitter); // remove '@' from string
 	$email = get_field('artist_email', $artist_id);
 	if(has_post_thumbnail($artist_id)) {
 		if($size == 'original') {
