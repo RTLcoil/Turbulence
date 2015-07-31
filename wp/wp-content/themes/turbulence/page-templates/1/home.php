@@ -65,7 +65,7 @@ get_header(); ?>
 
                 <div class="front-logo__social">
                     <?php if($options['email_link']):?>
-                        <a href="mailto:<?php echo $options['email_link']?>" class="social-envelope"></a>
+                        <a href="<?php echo $options['email_link']?>" class="social-envelope"></a>
                     <?php endif;?>
                     <?php if($options['facebook_link']):?>
                         <a href="<?php echo $options['facebook_link']?>" class="social-fb"></a>

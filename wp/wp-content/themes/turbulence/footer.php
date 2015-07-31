@@ -81,7 +81,7 @@
 
             <ul class="drop-list">
                 <?php if($options['email_link']):?>
-                    <li><a href="mailto:<?php echo $options['email_link']?>"><i class="icon-mail_small"></i> <?php _e('Email us')?></a></li>
+                    <li><a href="<?php echo $options['email_link']?>"><i class="icon-mail_small"></i> <?php _e('Email us')?></a></li>
                 <?php endif;?>
                 <?php if($options['facebook_link']):?>
                     <li><a href="<?php echo $options['facebook_link']?>"><i class="icon-fb_small"></i> <?php _e('Like us')?></a></li>
