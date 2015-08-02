@@ -35,10 +35,10 @@ $category = get_the_category();
 
       <div class="commission__work
         <?php
-          if($category){
-            echo ' frame-type-' . $category[0]->slug;
-          } else {
+          if($category[0]->name = 'commission' || !isset($category) ){
             echo ' frame-type-' . (get_field('list_frame_type') ? get_field('list_frame_type') : 'default');
+          } else {
+            echo ' frame-type-' . $category[0]->slug;
           }
         ?>">
           <div class="commission__work-img">
