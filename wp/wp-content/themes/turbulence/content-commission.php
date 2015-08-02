@@ -95,7 +95,7 @@ $category = get_the_category();
     <?php endif;?>
     <?php if($addittional_notes = get_field('addittional_notes')):?>
         <div class="commission__item">
-            <h3><?php _e('ADDITTIONAL NOTES')?></h3>
+            <h3><?php _e('ADDITIONAL NOTES')?></h3>
             <?php echo $addittional_notes;?>
         </div>
     <?php endif;?>
