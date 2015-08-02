@@ -82,7 +82,7 @@ if(is_front_page()):
             'top_title' => '',
             'top_sub_title' => '',
             'title' => $slide->post_title,
-            'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
+            'sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
             'video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
             'background' => get_field('main_gallery_background', $slide->ID),
             'autoplay_video' => (get_field('autoplay_video', $slide->ID) ? : false),
@@ -109,9 +109,9 @@ endif;?>
             $mainSlides[] = array(
                 'id' => $row['commision_gallery_slide']['id'],
                 'top_title' => $_thePost->post_title,
-                'top_sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
+                'top_sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
                 'title' => $row['commision_gallery_slide']['title'],
-                'sub_title' => count($arr) ? (_('by') . ' ' . implode(' && ', $arr)) : '',
+                'sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
                 'video' => false,
                 'background' => $row['commision_gallery_background'],
                 'autoplay_video' => false,
@@ -205,7 +205,7 @@ if(count($mainSlides)): ?>
         <div class="container">
             <div class="nav-toggle" data-old-class="<?php echo is_front_page() ? 'mobile-vs' : ''?>">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="link-logo"></a>
-                <?php edit_post_link( 'edit'); ?> 
+                <?php edit_post_link( 'edit'); ?>
                 <div class="nav-toggle-btn"  data-toggle=".header__nav" data-toggle-dir="ltr"></div>
             </div>
             <nav class="header__nav">

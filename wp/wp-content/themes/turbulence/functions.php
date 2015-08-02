@@ -1583,7 +1583,7 @@ function ald_crp_commissions() {
                 $author[] = $art->post_title;
             }
 
-            $author = implode(' && ', $author);
+            $author = implode(' & ', $author);
 
             $tags = array();
             foreach ( wp_get_post_tags($pItem->ID) as $tag ) {
