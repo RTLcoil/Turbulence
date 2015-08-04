@@ -89,7 +89,7 @@ $category = get_the_category();
     <?php endif;?>
     <?php if($media_and_achievments = get_field('media_and_achievments')):?>
         <div class="commission__item">
-            <h3><?php _e('MEDIA &amp; ACHIEVMENTS')?></h3>
+            <h3><?php _e('MEDIA &amp; ACHIEVEMENTS')?></h3>
             <?php echo $media_and_achievments;?>
         </div>
     <?php endif;?>
