@@ -112,7 +112,7 @@ endif;?>
                 'id' => $row['commision_gallery_slide']['id'],
                 'top_title' => $_thePost->post_title,
                 'top_sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
-                'top_sub_single' => count($arr) ? (_('by') . ' ' . $arr[0]) : '',
+                'top_sub_single' => count($arr) ? (_('curated by') . ' ' . $arr[0]) : '',
                 'title' => $row['commision_gallery_slide']['title'],
                 'caption' => $row['commision_gallery_slide']['caption'],
                 'sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
