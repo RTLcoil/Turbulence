@@ -117,6 +117,7 @@ endif;?>
                 'autoplay_video' => false,
                 'link' => '#',
                 'thumbnail' => '<img src="'.$row['commision_gallery_slide']['url'].'" alt="'.$row['commision_gallery_slide']['alt'].'">',
+                'stretch' => $row['stretch'],
             );
 
         }
@@ -131,7 +132,7 @@ if(count($mainSlides)): ?>
         <div class="main-gallery__content-slider">
             <?php foreach($mainSlides as $ind => $slide): ?>
             <div class="main-gallery__content-slider-item" <?php echo $slide['background'] ? "style='background: {$slide['background']}'" : ''?>>
-                <div class="main-gallery__content-inner">
+                <div class="main-gallery__content-inner" <?php echo $slide['stretch'] ? "style='background-size: {$slide['stretch']} !important'" : ''?>>
                     <?php if($slide['video']):?>
                     <div class="main-gallery__content-link main-gallery__content-link_video">
                         <div data-autoplay="<?php echo ($slide['autoplay_video'] ? 1 : 0)?>" class="main-gallery__content-link_video-inner">
