@@ -97,6 +97,8 @@ endif;?>
     $arr = array();
     $artists = get_field('artist');
     $artists = is_array($artists) ? $artists : array($artists);
+    $category = get_the_category($_thePost->ID);
+    $currentcat = $category[0]->slug;
     foreach($artists as $o) {
         $arr[] = $o->post_title;
     }
@@ -110,7 +112,9 @@ endif;?>
                 'id' => $row['commision_gallery_slide']['id'],
                 'top_title' => $_thePost->post_title,
                 'top_sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
+                'top_sub_single' => count($arr) ? (_('by') . ' ' . $arr[0]) : '',
                 'title' => $row['commision_gallery_slide']['title'],
+                'caption' => $row['commision_gallery_slide']['caption'],
                 'sub_title' => count($arr) ? (_('by') . ' ' . implode(' & ', $arr)) : '',
                 'video' => false,
                 'background' => $row['commision_gallery_background'],
@@ -150,7 +154,16 @@ if(count($mainSlides)): ?>
                     <?php if($slide['top_title']):?>
                     <div class="main-gallery__content-slider-item-body">
                         <div class="main-gallery__title"><?php echo $slide['top_title'];?></div>
-                        <div class="main-gallery__author"><?php echo $slide['top_sub_title'];?></div>
+                        <div class="main-gallery__author">
+                          <?php
+                          if($currentcat == "exhibition"){
+                            echo $slide['top_sub_single'];
+                          } else {
+                            echo $slide['top_sub_title'];
+                          }
+                          ?>
+
+                        </div>
                     </div>
                     <?php endif?>
                 </div>
@@ -174,7 +187,7 @@ if(count($mainSlides)): ?>
             <li data-slide-index="<?php echo $ind?>" <?php echo $ind == 0 ? 'class="active"' : ''?>>
                 <strong><?php echo $slide['title'];?></strong>
                 <?php if($slide['title']) :?>
-                <span><?php echo $slide['sub_title'];?></span>
+                <span><?php echo $slide['caption'];?></span>
                 <?php endif?>
             </li>
             <?php endforeach;?>
