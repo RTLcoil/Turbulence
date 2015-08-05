@@ -77,6 +77,18 @@ if(is_front_page()):
             $arr[] = $o->post_title;
         }
 
+        $rows = get_field('commision_gallery', $slide->ID);
+        if(is_array($rows)){
+            foreach($rows as $row){
+              if($row['use_on_homepage']){
+                $img['url'] = $row['commision_gallery_slide']['url'];
+                $img['alt'] = $row['commision_gallery_slide']['alt'];
+                $img['commision_gallery_background'] = $row['commision_gallery_background'];
+                $img['stretch'] = $row['stretch'];
+              }
+            }
+        }
+
         $mainSlides[] = array(
             'id' => $slide->ID,
             'top_title' => '',
@@ -84,10 +96,12 @@ if(is_front_page()):
             'title' => $slide->post_title,
             'sub_title' => count($arr) ? (_('by') . ' ' . implode(', ', $arr)) : '',
             'video' => (get_field('use_the_video_in_main_gallery', $slide->ID) ? : false),
-            'background' => get_field('main_gallery_background', $slide->ID),
+            'background' => $img['commision_gallery_background'],
             'autoplay_video' => (get_field('autoplay_video', $slide->ID) ? : false),
             'link' => get_permalink($slide->ID),
-            'thumbnail' => get_the_post_thumbnail( $slide->ID, 'full', array('class'    => "slide-post-img")),
+            'thumbnail' => '<img src="'.$img['url'].'" alt="'.$img['alt'].'">',
+            'stretch' => ($img['stretch']) ?: 'cover',
+            // 'stretch' => $img['stretch'],
         );
     }
 endif;?>

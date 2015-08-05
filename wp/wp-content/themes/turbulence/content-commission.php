@@ -21,7 +21,10 @@ $category = get_the_category();
       }
     }?>">
 
-    <?php if($category){ echo '<h2 class="label-category"> ' . $category[0]->name . '</h2>'; }?>
+    <?php if($category[0]->slug != 'commission'){
+      //echo '<h2 class="label-category"><a href="'.esc_url( get_category_link( $category[0]->term_id ) ) .'" name="'.$category[0]->name.'">' . $category[0]->name . '</a></h2>';
+      echo '<h2 class="label-category">'. $category[0]->name . '</h2>';
+    }?>
     <h1 class="commission__title"><?php the_title(); ?></h1>
     <?php if (get_field('sub_heading')){ echo '<h2 class="commission__sub_heading">' . get_field('sub_heading') . '</h2>'; } ?>
     <div class="commission__year"><span><?php $year_realise = date_create(get_field('year_realise')); echo date_format($year_realise,'F Y')?></span></div>
