@@ -186,9 +186,14 @@ if(count($mainSlides)): ?>
             <?php foreach($mainSlides as $ind => $slide): ?>
             <li data-slide-index="<?php echo $ind?>" <?php echo $ind == 0 ? 'class="active"' : ''?>>
                 <strong><?php echo $slide['title'];?></strong>
-                <?php if($slide['title']) :?>
-                <span><?php echo $slide['caption'];?></span>
-                <?php endif?>
+                <?php
+                if($slide['title']) {
+                  if(is_front_page()) { ?>
+                    <span><?php echo $slide['sub_title'];?></span>
+                  <?php } else { ?>
+                    <span><?php echo $slide['caption'];?></span>
+                  <?php }
+                }?>
             </li>
             <?php endforeach;?>
         </ul>
