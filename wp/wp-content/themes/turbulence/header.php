@@ -78,6 +78,7 @@ if(is_front_page()):
         }
 
         $rows = get_field('commision_gallery', $slide->ID);
+
         if(is_array($rows)){
             foreach($rows as $row){
               if($row['use_on_homepage']){
@@ -99,9 +100,10 @@ if(is_front_page()):
             'background' => $img['commision_gallery_background'],
             'autoplay_video' => (get_field('autoplay_video', $slide->ID) ? : false),
             'link' => get_permalink($slide->ID),
-            'thumbnail' => '<img src="'.$img['url'].'" alt="'.$img['alt'].'">',
+            'thumbnail' => ($img['url']) ?
+                           '<img src="'.$img['url'].'" alt="'.$img['alt'].'" class="slide-post-img">' :
+                           get_the_post_thumbnail( $slide->ID, 'full', array('class'    => "slide-post-img")),
             'stretch' => ($img['stretch']) ?: 'cover',
-            // 'stretch' => $img['stretch'],
         );
     }
 endif;?>
