@@ -324,11 +324,25 @@ get_header(); ?>
 
             <div class="search-block__filter-labels">
                 <?php
+                $cat_args = array(
+                  'orderby'  => 'count',
+                  'order'   => 'DESC'
+                  );
+                $cats = get_categories( $cat_args );
+                foreach($cats as $cat):?>
+                    <label class="filter-label cat-label">
+                        <input type="checkbox" name="filter-labels" value="<?php echo $cat->name?>">
+                        <span class="tag_name"><?php echo $cat->name ?></span>
+                        <span class="tag_count">(<?php echo $cat->count ?>)</span>
+                    </label>
+                <?php endforeach;?>
+
+                <?php 
                 $tag_args = array(
                   'orderby'  => 'count',
                   'order'   => 'DESC'
                   );
-                $tags = get_tags($tag_args) ;
+                $tags = get_tags($tag_args);
                 foreach($tags as $tag):?>
                     <label class="filter-label">
                         <input type="checkbox" name="filter-labels" value="<?php echo $tag->name?>">
@@ -363,7 +377,7 @@ get_header(); ?>
                     <?php endif;?>
 
                     <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type'] . ' ' . $item['catslug']; ?>"
-                         data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
+                         data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?> <?php echo $item['category']?>"
                          <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up="<?php echo $ind;?>"
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
