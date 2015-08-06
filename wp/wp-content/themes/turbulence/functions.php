@@ -1630,4 +1630,23 @@ function filter_search($query) {
     return $query;
 };
 add_filter('pre_get_posts', 'filter_search');
+
+
+// image to use on homepage
+function hp_img ($slide) {
+	$rows = get_field('commision_gallery', $slide->ID);
+	if(is_array($rows)){
+		foreach($rows as $row){
+			if($row['use_on_homepage']){
+				$img['id'] = $row['commision_gallery_slide']['id'];
+				$img['url'] = $row['commision_gallery_slide']['url'];
+				$img['alt'] = $row['commision_gallery_slide']['alt'];
+				$img['commision_gallery_background'] = $row['commision_gallery_background'];
+				$img['stretch'] = $row['stretch'];
+				break;
+			}
+		}
+	}
+	return $img;
+}
 ?>

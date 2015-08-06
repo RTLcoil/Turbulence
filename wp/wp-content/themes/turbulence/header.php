@@ -55,6 +55,7 @@ $_theArtists = is_array($_theArtists) ? $_theArtists : array($_theArtists);
 
 <div id="wrapper">
 <?php
+
 $mainSlides = array();
 if(is_front_page()):
     $args = array(
@@ -77,18 +78,7 @@ if(is_front_page()):
             $arr[] = $o->post_title;
         }
 
-        $rows = get_field('commision_gallery', $slide->ID);
-
-        if(is_array($rows)){
-            foreach($rows as $row){
-              if($row['use_on_homepage']){
-                $img['url'] = $row['commision_gallery_slide']['url'];
-                $img['alt'] = $row['commision_gallery_slide']['alt'];
-                $img['commision_gallery_background'] = $row['commision_gallery_background'];
-                $img['stretch'] = $row['stretch'];
-              }
-            }
-        }
+        $img = hp_img($slide);
 
         $mainSlides[] = array(
             'id' => $slide->ID,
