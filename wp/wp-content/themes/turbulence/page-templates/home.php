@@ -294,7 +294,7 @@ get_header(); ?>
 
             <div class="search-block__field">
                 <i class="icon-search"></i>
-                <input type="search" placeholder="<?php _e('search or filter by work, artist or keyword')?>">
+                <input type="search" placeholder="<?php _e('search or filter by project, artist or keyword')?>">
             </div>
         </header>
 
@@ -304,14 +304,14 @@ get_header(); ?>
                     <input type="radio" name="filter-type" value=".type-icon" data-toggle-block=".search-block__period-years"
                            checked>
                     <i></i>
-                    <span><?php _e('icon grid')?></span>
+                    <span><?php _e('projects grid')?></span>
                 </label>
 
                 <label class="search-block__filter-item-icons-titls">
                     <input type="radio" name="filter-type" value=".type-icon-title"
                            data-toggle-block=".search-block__period-years-titles">
                     <i></i>
-                    <span><?php _e('icons and titles')?></span>
+                    <span><?php _e('projects with titles')?></span>
                 </label>
 
                 <label class="search-block__filter-item-artists">
@@ -337,7 +337,7 @@ get_header(); ?>
                     </label>
                 <?php endforeach;?>
 
-                <?php 
+                <?php
                 $tag_args = array(
                   'orderby'  => 'count',
                   'order'   => 'DESC'
