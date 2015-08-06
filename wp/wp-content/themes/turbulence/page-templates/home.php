@@ -51,6 +51,7 @@ get_header(); ?>
                 <div class="slider-medium__wrap">
                     <?php foreach($homeSlides as $ind => $slide): if(!has_post_thumbnail($slide->ID)) continue;
                     $img = hp_img($slide);
+                    $img['id'] = ($img['id']) ?: get_post_thumbnail_id( $slide->ID );
                     ?>
                         <div class="slider-medium__item">
                             <div class="slider-medium__item-img">
