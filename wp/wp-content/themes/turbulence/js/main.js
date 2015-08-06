@@ -887,9 +887,9 @@ var lazyLoad = {
 
 					if($("input", _this).is(":checked")) {
 						if($inputSearch.val()) {
-							$inputSearch.val($inputSearch.val() + ", " + $("span", _this).text());
+							$inputSearch.val($inputSearch.val() + ", " + $("span.tag_name", _this).text());
 						} else {
-							$inputSearch.val($("span", _this).text());
+							$inputSearch.val($("span.tag_name", _this).text());
 						}
 					} else {
 						if(~$inputSearch.val().indexOf(",")) {

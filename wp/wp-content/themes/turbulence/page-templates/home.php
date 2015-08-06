@@ -323,10 +323,17 @@ get_header(); ?>
             </div>
 
             <div class="search-block__filter-labels">
-                <?php foreach(get_tags() as $tag):?>
+                <?php
+                $tag_args = array(
+                  'orderby'  => 'count',
+                  'order'   => 'DESC'
+                  );
+                $tags = get_tags($tag_args) ;
+                foreach($tags as $tag):?>
                     <label class="filter-label">
                         <input type="checkbox" name="filter-labels" value="<?php echo $tag->name?>">
-                        <span><?php echo $tag->name?></span>
+                        <span class="tag_name"><?php echo $tag->name ?></span>
+                        <span class="tag_count">(<?php echo $tag->count ?>)</span>
                     </label>
                 <?php endforeach;?>
 
