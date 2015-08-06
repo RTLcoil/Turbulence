@@ -1702,9 +1702,9 @@ return;
 
 					if(isSmallScreen) {
 
-						var $imgIcon       = $("> img", $itemIcon),
+						var $imgIcon       = $("> img, > a", $itemIcon),
 
-							$imgIconTitles = $("> img", $itemIconTitle),
+							$imgIconTitles = $("> img, > a", $itemIconTitle),
 
 							$imgArtist     = $("> img", $itemArtist),
 
