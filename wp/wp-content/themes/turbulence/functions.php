@@ -1603,11 +1603,11 @@ function ald_crp_commissions() {
                             </a>
                             <div style="'.($color ? "box-shadow: 0px 0px 0px 4px {$color}; color: {$color};" : '').' display: none;"
                                  class="i-item__popup '.($color ? 'i-item__popup_custom-color' : '').'">
-                                <div class="i-item__popup-frame frame-type-'.(get_field('list_frame_type', $pItem->ID) ? get_field('list_frame_type', $pItem->ID) : 'default').'"></div>
                                 <a class="i-item__popup-img"
-                                   href="'.get_permalink($pItem->ID).'"><img
-                                        class="i-item__popup-work" alt=""
-                                        src="'.$preview.'"></a>
+                                   href="'.get_permalink($pItem->ID).'">
+																	 <span class="i-item__popup-frame frame-type-'.(get_field('list_frame_type', $pItem->ID) ? get_field('list_frame_type', $pItem->ID) : 'default').'"></span>
+																	 <img class="i-item__popup-work" alt="" src="'.$preview.'">
+																</a>
 
                                 <div class="i-item__popup-title">'.$pItem->post_title.'<span>'.$author.'</span></div>
                                 <div class="i-item__popup-tags">'.implode('', $tags).'</div>
