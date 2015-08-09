@@ -47,7 +47,7 @@ $category = get_the_category();
           <div class="commission__work-img">
               <?php
               if ( has_post_thumbnail() ) {
-                echo get_the_post_thumbnail(null, array(240,180));
+                echo get_the_post_thumbnail(null, array(180,180));
               } else {
                 echo '<img src="'.get_template_directory_uri() . '/img/default_profile.png" alt="default"></img>';
               }

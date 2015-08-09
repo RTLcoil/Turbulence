@@ -83,7 +83,7 @@ get_header(); ?>
                             <li <?php echo $ind == 0 ? 'class="active"' : ''?>>
                                 <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
                                     <strong><?php echo $slide->post_title;?></strong>
-                                    <span><?php echo get_field('sub_title', $slide->ID)?></span>
+                                    <span><?php echo get_field('slide_description', $slide->ID)?></span>
                                 </a>
                             </li>
                         <?php endforeach;?>
