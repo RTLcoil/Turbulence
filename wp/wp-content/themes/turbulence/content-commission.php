@@ -25,6 +25,27 @@ $category = get_the_category();
       //echo '<h2 class="label-category"><a href="'.esc_url( get_category_link( $category[0]->term_id ) ) .'" name="'.$category[0]->name.'">' . $category[0]->name . '</a></h2>';
       echo '<h2 class="label-category">'. $category[0]->name . '</h2>';
     }?>
+
+    <div class="commission__work
+      <?php
+        if($category[0]->name = 'commission' || !isset($category) ){
+          echo ' frame-type-' . (get_field('list_frame_type') ? get_field('list_frame_type') : 'default');
+        } else {
+          echo ' frame-type-' . $category[0]->slug;
+        }
+      ?>">
+        <div class="commission__work-img">
+            <?php
+            if ( has_post_thumbnail() ) {
+              echo get_the_post_thumbnail(null, array(180,180));
+            } else {
+              echo '<img src="'.get_template_directory_uri() . '/img/default_profile.png" alt="default"></img>';
+            }
+            ?>
+        </div>
+        <a href="<?php echo get_field('commission_link') ?>" target="_blank" class="commission__work-overlay"></a>
+    </div>
+
     <h1 class="commission__title"><?php the_title(); ?></h1>
     <?php if (get_field('sub_heading')){ echo '<h2 class="commission__sub_heading">' . get_field('sub_heading') . '</h2>'; } ?>
     <div class="commission__year"><span><?php $year_realise = date_create(get_field('year_realise')); echo date_format($year_realise,'F Y')?></span></div>
@@ -35,26 +56,6 @@ $category = get_the_category();
         }
         echo implode(' & ', $arr);
     ?></div>
-
-      <div class="commission__work
-        <?php
-          if($category[0]->name = 'commission' || !isset($category) ){
-            echo ' frame-type-' . (get_field('list_frame_type') ? get_field('list_frame_type') : 'default');
-          } else {
-            echo ' frame-type-' . $category[0]->slug;
-          }
-        ?>">
-          <div class="commission__work-img">
-              <?php
-              if ( has_post_thumbnail() ) {
-                echo get_the_post_thumbnail(null, array(180,180));
-              } else {
-                echo '<img src="'.get_template_directory_uri() . '/img/default_profile.png" alt="default"></img>';
-              }
-              ?>
-          </div>
-          <a href="<?php echo get_field('commission_link') ?>" target="_blank" class="commission__work-overlay"></a>
-      </div>
 
     <?php
     $funder = get_field('funder');
