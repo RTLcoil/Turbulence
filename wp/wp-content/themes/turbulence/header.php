@@ -164,6 +164,8 @@ if(count($mainSlides)): ?>
                           <?php
                           if($currentcat == "exhibition"){
                             echo $slide['top_sub_single'];
+                          } elseif($currentcat == "artist-studio"){
+                            echo '';
                           } else {
                             echo $slide['top_sub_title'];
                           }
