@@ -98,7 +98,13 @@ if(is_front_page()):
     }
 endif;?>
 
-<?php if(is_single() && $_thePost->post_type == 'commission'):
+<?php
+// temporary hack for disabling commission gallery if current user last name = 'nogal'
+$user_ID = get_current_user_id();
+$user = get_userdata( $user_ID );
+?>
+
+<?php if(is_single() && $_thePost->post_type == 'commission' && $user->last_name != 'nogal'):
     $rows = get_field('commision_gallery');
     $arr = array();
     $artists = get_field('artist');
