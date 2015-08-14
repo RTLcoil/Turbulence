@@ -877,7 +877,267 @@ var lazyLoad = {
 					lazyLoad.check(600);
 				});
 
+				/////////////////////////////////////////////////
+
+				var labelTmpl = '<span class="search-block__label" data-value="{value}">\
+									{value} <i class="search-block__label-remove">&times;</i>\
+								</span>';
+
 				$labels.on("mousedown", function(e) {
+					e.preventDefault();
+
+					var _this = $(this);
+
+					$("input", _this).prop("checked", !$("input", _this).is(":checked"));
+					_this[$("input", _this).is(":checked") ? "addClass" : "removeClass"]("chosen");
+
+					if($("input", _this).is(":checked")) {
+						$(labelTmpl.replace(/\{value\}/g, $("input", _this)[0].value)).insertBefore(".search-block__field");
+					} else {
+						$(".search-block__label:contains(" + $("input", _this)[0].value + ")").remove();
+					}
+					
+					searchMatch(true);
+					
+					if(!getChosen().length) {
+						$inputSearch.focus();
+						$period.show();
+					} else {
+						$period.hide();
+					}
+				}).on("click", function(e) {
+					e.preventDefault();
+				});
+				
+				$("body").on("mousedown", ".search-block__label-remove", function() { // remove label
+					var $label = $(this).closest(".search-block__label"),
+						value = $.trim($label.data("value")),
+						$chosen = getChosen();
+					
+					$chosen.each(function() {
+						if(this.value == value) {
+							$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
+						}
+					});
+					
+					$(this).remove();
+					$label.remove();
+					
+					setTimeout(function() {
+						$inputSearch.focus();
+						searchMatch(true);
+					}, 0);
+				});
+				
+				$("body").on("mousedown", ".search-block__label", function(e) { // select-unselect label
+					if(e.target == this) {
+						$(this).toggleClass("active");
+					}
+					
+					setTimeout(function() {
+						$inputSearch.focus();
+					}, 0);
+				});
+
+				$inputSearch.on({
+					focus: function() {
+						$menuFilter.hide();
+						$labelsField.show();
+
+						searchMatch(this.value);
+					},
+
+					blur: function() {
+						setTimeout(function() {
+							if(!getChosen().length) {
+								$menuFilter.show();
+								$labelsField.hide();
+								$period.show();
+							}
+						}, 0);
+					},
+
+					input: function(e) {
+						if(!this.value) {
+							$menuFilter.hide();
+							$labelsField.show();
+							$period.hide();
+
+							removeLabel(this.value);
+
+							searchMatch(this.value);
+						} else {
+							$menuFilter.show();
+							$labelsField.hide();
+							$period.show();
+
+							removeLabel(this.value);
+
+							searchMatch(this.value);
+						}
+					},
+					
+					keydown: function(e) {
+						var $this = $(this);
+						
+						setTimeout(function() {
+							if(e.which == 8 && !$this.val()) {
+								if($(".search-block__label.active").length) {
+									$(".search-block__label.active").each(function(i) {
+										$(".search-block__label-remove", this).trigger("mousedown");
+									});
+								} else if ($(".search-block__label").length) {
+									$(".search-block__label:last .search-block__label-remove").trigger("mousedown");
+								}
+							}
+						}, 0);
+					}
+				}).autocomplete({
+					close: function(e, ui) {
+						searchMatch($inputSearch.val());
+					}
+				});
+
+				smallFilter();
+				fillAutocomplete();
+
+				$inputsTypeFilter.on("change", function() {
+					smallFilter();
+					fillAutocomplete();
+
+					if($inputSearch.val()) {
+						searchMatch($inputSearch.val());
+					}
+
+					lazyLoad.check(600);
+				});
+
+				function getType() {
+					return $inputsTypeFilter.filter(":checked").val();
+				}
+
+				function getChosen(a) {
+					return $labelsInput.filter(":checked");
+				}
+
+				function smallFilter() {
+					var filterValue = getType();
+
+					$container.isotope({
+						filter: filterValue
+					});
+				}
+
+				function removeLabel(value) {
+					var values = $inputSearch.val(),
+						chosen = getChosen();
+
+					if(~values.indexOf(",")) {
+						values = values.split(",");
+					} else {
+						values = [].concat(values);
+					}
+
+					if(chosen.length && value) {
+						for(var i = 0, j = values.length; i < j; i += 1) {
+							chosen.each(function(k) {
+								if(~this.value.indexOf($.trim(values[i])) && this.value != $.trim(values[i])) {
+									$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
+								}
+							});
+						}
+					} else if (!value && chosen.length) {
+						chosen.each(function(k) {
+							$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
+						});
+					}
+
+					searchMatch();
+				}
+
+				
+				function searchMatch(onlyLabel) {
+					var className   = getType().slice(1),
+						words       = [],
+						matchesElem = [];
+					
+					if($(".search-block__label").length) {
+						$(".search-block__label").each(function() {
+							words.push($(this).data("value"));
+						});
+					}
+					
+					if($inputSearch.val()) {
+						words.push($inputSearch.val());
+					}
+					
+					$container.isotope({
+						filter: function(e, elem) {
+							if(!$(elem).hasClass(className)) {
+								return !1;
+							}
+							
+							var flag = true;
+							
+							$.each(words, function(index, value) {
+								/*if(!isNaN(+$(elem).data('search'))) {
+									return true;
+								}*/
+								
+								var re = new RegExp(value, "gi"),
+									str = onlyLabel ? $(elem).data('labels') : ($(elem).data('labels') + "," + $(elem).data('search'));
+								
+								if($(elem).data('category')) {
+									str += $(elem).data('category');
+								}
+								
+								if(!re.test(str)) {
+									flag = false;
+								}
+							});
+							
+							flag && matchesElem.push(elem);
+							
+							return flag;
+						}
+					});
+					
+					matchesElem.length && toggleLabels(matchesElem);
+				}
+				
+				function toggleLabels($elems) {
+					if($elems.length < 1) {
+						$(".filter-label.hidden").removeClass("hidden");
+					} else {
+						$(".filter-label").addClass("hidden");
+					}
+					
+					$(".filter-label").each(function() {
+						var $this = $(this),
+							value = $("input", this).val(),
+							re;
+						
+						if(!value) {
+							return;
+						}
+						
+						re = new RegExp(value, "i");
+						
+						$.each($elems, function(i) {
+							var str = $(this).data("labels");
+							
+							if($this.hasClass("cat-label")) {
+								str += " " + $(this).data("category");
+							}
+							
+							if(re.test(str)) {
+								$this.hasClass("hidden") && $this.removeClass("hidden");
+							} 
+						});
+					});
+				}
+
+				/*$labels.on("mousedown", function(e) {
 					e.preventDefault();
 
 					var _this = $(this);
@@ -1041,7 +1301,9 @@ var lazyLoad = {
 							//return !!(("" + $(elem).data('search')).toLowerCase().indexOf(text.toLowerCase()) !== -1);
 						}
 					});
-				}
+				}*/
+
+				//////////////////////
 
 				function searchTags() {
 
