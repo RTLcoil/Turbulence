@@ -908,6 +908,22 @@ var lazyLoad = {
 				}).on("click", function(e) {
 					e.preventDefault();
 				});
+
+				$("body").on("click", ".i-item__popup-tags a", function(e) {
+					e.preventDefault();
+
+					var txt = $(this).text();
+
+					$(".filter-label").each(function() {
+						if($(this).hasClass("hidden")) {
+							return;
+						}
+
+						if(txt == $('input', this).val()) {
+							$(this).trigger("mousedown");
+						}
+					});
+				});
 				
 				$("body").on("mousedown", ".search-block__label-remove", function() { // remove label
 					var $label = $(this).closest(".search-block__label"),
@@ -1136,172 +1152,6 @@ var lazyLoad = {
 						});
 					});
 				}
-
-				/*$labels.on("mousedown", function(e) {
-					e.preventDefault();
-
-					var _this = $(this);
-
-					$("input", _this).prop("checked", !$("input", _this).is(":checked"));
-					_this[$("input", _this).is(":checked") ? "addClass" : "removeClass"]("chosen");
-
-					if($("input", _this).is(":checked")) {
-						if($inputSearch.val()) {
-							$inputSearch.val($inputSearch.val() + ", " + $("span.tag_name", _this).text());
-						} else {
-							$inputSearch.val($("span.tag_name", _this).text());
-						}
-					} else {
-						if(~$inputSearch.val().indexOf(",")) {
-							try {
-								$inputSearch.val($inputSearch.val().replace(($("span", _this).text() + ", "), ""));
-							} catch(e) {}
-						} else {
-							try {
-								$inputSearch.val($inputSearch.val().replace($("span", _this).text(), ""));
-							} catch(e) {}
-						}
-					}
-
-					searchMatch($inputSearch.val());
-
-					if(!getChosen().length) {
-						$inputSearch.focus();
-						$period.show();
-					} else {
-						$period.hide();
-					}
-				}).on("click", function(e) {
-					e.preventDefault();
-				});
-
-				$inputSearch.on({
-					focus: function() {
-						//if(!this.value) {
-							$menuFilter.hide();
-							$labelsField.show();
-							//searchTags();
-
-							searchMatch(this.value);
-						//} else {
-						//	searchMatch(this.value);
-						//}
-					},
-
-					blur: function() {
-						setTimeout(function() {
-							if(!getChosen().length) {
-								$menuFilter.show();
-								$labelsField.hide();
-								$period.show();
-							}
-						}, 0);
-					},
-
-					input: function() {
-						if(!this.value) {
-							$menuFilter.hide();
-							$labelsField.show();
-							$period.hide();
-
-							removeLabel(this.value);
-
-							searchMatch(this.value);
-
-							//searchTags();
-						} else {
-							$menuFilter.show();
-							$labelsField.hide();
-							$period.show();
-
-							removeLabel(this.value);
-
-							searchMatch(this.value);
-						}
-					}
-				}).autocomplete({
-					close: function(e, ui) {
-						searchMatch($inputSearch.val());
-					}
-				});
-
-				smallFilter();
-				fillAutocomplete();
-
-				$inputsTypeFilter.on("change", function() {
-					smallFilter();
-					fillAutocomplete();
-
-					if($inputSearch.val()) {
-						searchMatch($inputSearch.val());
-					}
-
-					lazyLoad.check(600);
-				});
-
-				function getType() {
-					return $inputsTypeFilter.filter(":checked").val();
-				}
-
-				function getChosen(a) {
-					return $labelsInput.filter(":checked");
-				}
-
-				function smallFilter() {
-					var filterValue = getType();
-
-					$container.isotope({
-						filter: filterValue
-					});
-				}
-
-				function removeLabel(value) {
-					var values = $inputSearch.val(),
-						chosen = getChosen();
-
-					if(~values.indexOf(",")) {
-						values = values.split(",");
-					} else {
-						values = [].concat(values);
-					}
-
-					if(chosen.length && value) {
-						for(var i = 0, j = values.length; i < j; i += 1) {
-							chosen.each(function(k) {
-								if(~this.value.indexOf($.trim(values[i])) && this.value != $.trim(values[i])) {
-									$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
-								}
-							});
-						}
-					} else if (!value && chosen.length) {
-						chosen.each(function(k) {
-							$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
-						});
-					}
-				}
-
-				function searchMatch(text) {
-					var className = getType().slice(1),
-						values = [].concat(text.split(","));
-
-					$container.isotope({
-						filter: function(e, elem) {
-							if(!$(elem).hasClass(className)) {
-								return !1;
-							}
-
-							for(var i = 0, j = values.length; i < j; i += 1) {
-								if(("" + $(elem).data('search')).toLowerCase().indexOf(values[i].toLowerCase()) !== -1) {
-									return true;
-								}
-							}
-
-							return false;
-
-							//return !!(("" + $(elem).data('search')).toLowerCase().indexOf(text.toLowerCase()) !== -1);
-						}
-					});
-				}*/
 
 				//////////////////////
 
