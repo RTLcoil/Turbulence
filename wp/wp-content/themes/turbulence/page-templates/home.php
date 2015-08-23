@@ -321,7 +321,7 @@ get_header(); ?>
                     <input type="radio" name="filter-type" value=".type-artist"
                            data-toggle-block=".search-block__period-letters">
                     <i></i>
-                    <span><?php _e('artists')?></span>
+                    <span><?php _e('people')?></span>
                 </label>
             </div>
 
