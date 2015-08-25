@@ -380,7 +380,7 @@ get_header(); ?>
                     <?php endif;?>
 
                     <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type'] . ' ' . $item['catslug']; ?>"
-                         data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?> <?php echo $item['category']?>"
+                         data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?> <?php echo $item['category']?> <?php echo $item['author']?>"
                          <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up="<?php echo $ind;?>"
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
