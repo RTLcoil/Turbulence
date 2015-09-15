@@ -44,7 +44,7 @@ $mini['author'] = implode(' & ', $mini['author']);
 
   <div class="i-item__popup" style="box-shadow: 0 0 0 4px <?php echo get_field('location')?>; color: <?php echo get_field('location')?>">
     <a href="<?php the_permalink();?>" class="i-item__popup-img">
-      <img src="<? echo $mini['image'] ?>" alt="" class="i-item__popup-work">
+      <img src="<?php echo $mini['image'] ?>" alt="" class="i-item__popup-work">
       <span class="label-category"><?php echo $mini['category'] ?></span>
     </a>
     <div class="i-item__popup-title"><?php the_title() ?><span><?php echo $mini['author'] ?></span></div>
