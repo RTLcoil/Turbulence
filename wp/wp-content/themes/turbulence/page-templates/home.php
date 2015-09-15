@@ -108,10 +108,8 @@ get_header(); ?>
         foreach(get_posts( array(
 
             'meta_key'            => 'year_realise',
-//            'orderby'            => 'meta_value_num',
-//            'order'                => 'DESC',
-            'orderby'          => 'post_date',
-            'order'            => 'DESC',
+            'orderby'            => 'meta_value_num',
+            'order'                => 'DESC',
             'numberposts'       => -1,
             'post_type'        => 'commission',
             'post_status'      => 'publish'
@@ -121,6 +119,7 @@ get_header(); ?>
 
             $year_realise = date_create(get_field('year_realise', $pItem->ID));
             $entry['year_realise'] = date_format($year_realise,'Y');
+            $entry['date_realise'] = date_format($year_realise,'m/d/Y'); 
             $entry['color'] = get_field('color', $pItem->ID);
 
             $frm = get_field('list_frame_type', $pItem->ID);
@@ -385,6 +384,7 @@ get_header(); ?>
                          data-sort-up="<?php echo $ind;?>"
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
+                         data-date_realise="<?php echo $item['date_realise']?>"  
                          data-title="<?php echo $item['title']?>"
                          data-category="<?php echo $item['category']?>"
                          data-catslug="<?php echo $item['catslug']?>"
@@ -425,6 +425,7 @@ get_header(); ?>
                          data-sort-up-title="<?php echo $ind;?>"
                          data-sort-down-title="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
+                         data-date_realise="<?php echo $item['date_realise']?>" 
                          data-title="<?php echo $item['title']?>"
                          data-category="<?php echo $item['category']?>"
                          data-catslug="<?php echo $item['catslug']?>"
