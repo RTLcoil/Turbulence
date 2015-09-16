@@ -170,7 +170,8 @@ get_header(); ?>
                 $entry['tags'][] = $tag->name;
             }
 
-            $years[] = date_format($year_realise,'Y');
+            $years[] = strtotime(date_format($year_realise,'d-m-Y'));
+
             $commissionsItems[] = $entry;
 //            *****************
             $maxYear = $entry['year_realise'] > $maxYear ? $entry['year_realise'] : $maxYear;
@@ -367,7 +368,6 @@ get_header(); ?>
                 </div>
 
                 <?php foreach($commissionsItems as $ind => $item):?>
-
 
                     <?php if($theYear != $item['year_realise']): $theYear = $item['year_realise'];?>
                         <div class="i-item i-item_year type-icon"
