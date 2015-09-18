@@ -7,13 +7,36 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="nav-support footer__nav-item">
+        <div class="nav-one footer__nav-item">
+            <div class="nav-title"><?php _e('We Are')?></div>
+
+            <ul class="drop-list">
+                <?php wp_nav_menu(array(
+                    'theme_location'  => '',
+                    'menu'            => 'nav_one',
+                    'container'       => '',
+                    'container_class' => '',
+                    'container_id'    => '',
+                    'echo'            => true,
+                    'fallback_cb'     => 'wp_page_menu',
+                    'before'          => '',
+                    'after'           => '',
+                    'link_before'     => '',
+                    'link_after'      => '',
+                    'items_wrap'      => '%3$s',
+                    'depth'           => 0,
+                    'walker'          => ''
+                ));?>
+            </ul>
+        </div>
+
+        <div class="nav-two footer__nav-item">
             <div class="nav-title"><?php _e('We Support')?></div>
 
             <ul class="drop-list">
                 <?php wp_nav_menu(array(
                     'theme_location'  => '',
-                    'menu'            => 'we_support_nav',
+                    'menu'            => 'nav_two',
                     'container'       => '',
                     'container_class' => '',
                     'container_id'    => '',
@@ -30,36 +53,13 @@
             </ul>
         </div>
 
-        <div class="nav-publish footer__nav-item">
-            <div class="nav-title"><?php _e('We Publish')?></div>
+        <div class="nav-three footer__nav-item">
+            <div class="nav-title"><?php _e('We Need')?></div>
 
             <ul class="drop-list">
                 <?php wp_nav_menu(array(
                     'theme_location'  => '',
-                    'menu'            => 'we_publish_nav',
-                    'container'       => '',
-                    'container_class' => '',
-                    'container_id'    => '',
-                    'echo'            => true,
-                    'fallback_cb'     => 'wp_page_menu',
-                    'before'          => '',
-                    'after'           => '',
-                    'link_before'     => '',
-                    'link_after'      => '',
-                    'items_wrap'      => '%3$s',
-                    'depth'           => 0,
-                    'walker'          => ''
-                ));?>
-            </ul>
-        </div>
-
-        <div class="nav-organize footer__nav-item">
-            <div class="nav-title"><?php _e('We Organize')?></div>
-
-            <ul class="drop-list">
-                <?php wp_nav_menu(array(
-                    'theme_location'  => '',
-                    'menu'            => 'we_organize_nav',
+                    'menu'            => 'nav_three',
                     'container'       => '',
                     'container_class' => '',
                     'container_id'    => '',

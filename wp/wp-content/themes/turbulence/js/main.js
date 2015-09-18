@@ -896,9 +896,9 @@ var lazyLoad = {
 					} else {
 						$(".search-block__label:contains(" + $("input", _this)[0].value + ")").remove();
 					}
-					
+
 					searchMatch(true);
-					
+
 					if(!getChosen().length) {
 						$inputSearch.focus();
 						$period.show();
@@ -924,32 +924,32 @@ var lazyLoad = {
 						}
 					});
 				});
-				
+
 				$("body").on("mousedown", ".search-block__label-remove", function() { // remove label
 					var $label = $(this).closest(".search-block__label"),
 						value = $.trim($label.data("value")),
 						$chosen = getChosen();
-					
+
 					$chosen.each(function() {
 						if(this.value == value) {
 							$(this).prop("checked", false).closest(".chosen").removeClass("chosen");
 						}
 					});
-					
+
 					$(this).remove();
 					$label.remove();
-					
+
 					setTimeout(function() {
 						$inputSearch.focus();
 						searchMatch(true);
 					}, 0);
 				});
-				
+
 				$("body").on("mousedown", ".search-block__label", function(e) { // select-unselect label
 					if(e.target == this) {
 						$(this).toggleClass("active");
 					}
-					
+
 					setTimeout(function() {
 						$inputSearch.focus();
 					}, 0);
@@ -992,10 +992,10 @@ var lazyLoad = {
 							searchMatch(this.value);
 						}
 					},
-					
+
 					keydown: function(e) {
 						var $this = $(this);
-						
+
 						setTimeout(function() {
 							if(e.which == 8 && !$this.val()) {
 								if($(".search-block__label.active").length) {
@@ -1071,84 +1071,84 @@ var lazyLoad = {
 					searchMatch();
 				}
 
-				
+
 				function searchMatch(onlyLabel) {
 					var className   = getType().slice(1),
 						words       = [],
 						matchesElem = [];
-					
+
 					if($(".search-block__label").length) {
 						$(".search-block__label").each(function() {
 							words.push($(this).data("value"));
 						});
 					}
-					
+
 					if($inputSearch.val()) {
 						words.push($inputSearch.val());
 					}
-					
+
 					$container.isotope({
 						filter: function(e, elem) {
 							if(!$(elem).hasClass(className)) {
 								return !1;
 							}
-							
+
 							var flag = true;
-							
+
 							$.each(words, function(index, value) {
 								/*if(!isNaN(+$(elem).data('search'))) {
 									return true;
 								}*/
-								
+
 								var re = new RegExp(value, "gi"),
 									str = onlyLabel ? $(elem).data('labels') : ($(elem).data('labels') + "," + $(elem).data('search'));
-								
+
 								if($(elem).data('category')) {
 									str += $(elem).data('category');
 								}
-								
+
 								if(!re.test(str)) {
 									flag = false;
 								}
 							});
-							
+
 							flag && matchesElem.push(elem);
-							
+
 							return flag;
 						}
 					});
-					
+
 					matchesElem.length && toggleLabels(matchesElem);
 				}
-				
+
 				function toggleLabels($elems) {
 					if($elems.length < 1) {
 						$(".filter-label.hidden").removeClass("hidden");
 					} else {
 						$(".filter-label").addClass("hidden");
 					}
-					
+
 					$(".filter-label").each(function() {
 						var $this = $(this),
 							value = $("input", this).val(),
 							re;
-						
+
 						if(!value) {
 							return;
 						}
-						
+
 						re = new RegExp(value, "i");
-						
+
 						$.each($elems, function(i) {
 							var str = $(this).data("labels");
-							
+
 							if($this.hasClass("cat-label")) {
 								str += " " + $(this).data("category");
 							}
-							
+
 							if(re.test(str)) {
 								$this.hasClass("hidden") && $this.removeClass("hidden");
-							} 
+							}
 						});
 					});
 				}
@@ -1591,7 +1591,7 @@ return;
 									sliderIcon.goToSlide(index);
 								}
 							} else {
-								
+
 							}
 						});
 

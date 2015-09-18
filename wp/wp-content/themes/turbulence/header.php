@@ -243,13 +243,13 @@ if(count($mainSlides)): ?>
             </div>
             <nav class="header__nav">
                 <div class="header__nav-inner">
-                    <div class="nav-support header__nav-item">
-                        <div class="nav-title"><?php _e('We Support')?></div>
+                    <div class="nav-one header__nav-item">
+                        <div class="nav-title"><?php _e('We Are')?></div>
                         <ul class="drop-list">
 
                             <?php wp_nav_menu(array(
                             'theme_location'  => '',
-                            'menu'            => 'we_support_nav',
+                            'menu'            => 'nav_one',
                             'container'       => '',
                             'container_class' => '',
                             'container_id'    => '',
@@ -265,12 +265,12 @@ if(count($mainSlides)): ?>
                         ));?>
                         </ul>
                     </div>
-                    <div class="nav-publish header__nav-item">
-                        <div class="nav-title"><?php _e('We Publish')?></div>
+                    <div class="nav-two header__nav-item">
+                        <div class="nav-title"><?php _e('We Support')?></div>
                         <ul class="drop-list">
                             <?php wp_nav_menu(array(
                             'theme_location'  => '',
-                            'menu'            => 'we_publish_nav',
+                            'menu'            => 'nav_two',
                             'container'       => '',
                             'container_class' => '',
                             'container_id'    => '',
@@ -286,12 +286,12 @@ if(count($mainSlides)): ?>
                         ));?>
                         </ul>
                     </div>
-                    <div class="nav-organize header__nav-item">
-                        <div class="nav-title"><?php _e('We Organize')?></div>
+                    <div class="nav-three header__nav-item">
+                        <div class="nav-title"><?php _e('We Need')?></div>
                         <ul class="drop-list">
                             <?php wp_nav_menu(array(
                             'theme_location'  => '',
-                            'menu'            => 'we_organize_nav',
+                            'menu'            => 'nav_three',
                             'container'       => '',
                             'container_class' => '',
                             'container_id'    => '',
