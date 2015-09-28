@@ -119,7 +119,7 @@ get_header(); ?>
 
             $year_realise = date_create(get_field('year_realise', $pItem->ID));
             $entry['year_realise'] = date_format($year_realise,'Y');
-            $entry['date_realise'] = date_format($year_realise,'m/d/Y'); 
+            $entry['date_realise'] = date_format($year_realise,'m/d/Y');
             $entry['color'] = get_field('color', $pItem->ID);
 
             $frm = get_field('list_frame_type', $pItem->ID);
@@ -253,7 +253,7 @@ get_header(); ?>
         $firstLetter = array_shift($usedLetters);
         $lastLetter = array_pop($usedLetters);
     ?>
-    <section class="search-block">
+    <section id="projects" class="search-block">
 
         <header class="search-block__head">
 
@@ -384,7 +384,7 @@ get_header(); ?>
                          data-sort-up="<?php echo $ind;?>"
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
-                         data-date_realise="<?php echo $item['date_realise']?>"  
+                         data-date_realise="<?php echo $item['date_realise']?>"
                          data-title="<?php echo $item['title']?>"
                          data-category="<?php echo $item['category']?>"
                          data-catslug="<?php echo $item['catslug']?>"
@@ -425,7 +425,7 @@ get_header(); ?>
                          data-sort-up-title="<?php echo $ind;?>"
                          data-sort-down-title="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
-                         data-date_realise="<?php echo $item['date_realise']?>" 
+                         data-date_realise="<?php echo $item['date_realise']?>"
                          data-title="<?php echo $item['title']?>"
                          data-category="<?php echo $item['category']?>"
                          data-catslug="<?php echo $item['catslug']?>"
