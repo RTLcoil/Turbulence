@@ -5,103 +5,148 @@
  * @subpackage Turbulence
  * @since Turbulence 1.0
  */
-get_header();
-    $options = get_option( 'turbulence_theme_options' );
-    $args = array(
+get_header(); ?>
+<div class="container">
+    <div class="clearfix">
 
+
+  <?php
+    $options = get_option( 'turbulence_theme_options' );
+  ?>
+    <div class="front-logo">
+        <div class="front-logo__media">
+            <img src="<?php echo get_template_directory_uri()?>/img/turbulence_logo.png" alt="">
+        </div>
+
+        <div class="front-logo__social">
+            <?php if($options['email_link']):?>
+                <a href="<?php echo $options['email_link']?>" class="social-envelope"></a>
+            <?php endif;?>
+            <?php if($options['facebook_link']):?>
+                <a href="<?php echo $options['facebook_link']?>" class="social-fb"></a>
+            <?php endif;?>
+            <?php if($options['twitter_link']):?>
+                <a href="<?php echo $options['twitter_link']?>" class="social-tw"></a>
+            <?php endif;?>
+            <?php if($options['github_link']):?>
+                <a href="<?php echo $options['github_link']?>" class="social-git"></a>
+            <?php endif;?>
+        </div>
+    </div>
+<?php
+    $args = array(
         'orderby'   => 'menu_order',
         'order'   => 'ASC',
         'posts_per_page' => -1,
         'post_type'        => 'commission',
         'post_status'      => 'publish',
-        'meta_key'		=> 'use_in_home_slides',
-        'meta_value'	=> true
-);
+        'meta_key'        => 'use_in_home_slides',
+        'meta_value'    => true
+      );
+
     $homeSlides = get_posts( $args );
 
     if(count($homeSlides)): ?>
-        <div class="clearfix">
             <div class="slider-medium">
                 <div class="slider-medium__wrap">
-                    <?php foreach($homeSlides as $ind => $slide): ?>
+                    <?php foreach($homeSlides as $ind => $slide): if(!has_post_thumbnail($slide->ID)) continue;
+                    $img = hp_img($slide);
+                    $img['id'] = ($img['id']) ?: get_post_thumbnail_id( $slide->ID );
+                    ?>
                         <div class="slider-medium__item">
                             <div class="slider-medium__item-img">
-                                <a href="<?php echo get_the_title($slide->ID)?>"></a>
-                                <?php echo get_the_post_thumbnail( $slide->ID, array(545, 270), array('class'	=> "slide-medium-img"))?>
+                                <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
+                                    <?php
+                                        list($slideImage) = wp_get_attachment_image_src($img['id'], array(545, 270));
+                                    ?>
+                                    <img class="slide-medium-img" src="<?php echo get_template_directory_uri()?>/img/blank.png" alt=""
+                                         data-origin="<?php echo $slideImage?>" />
+                                </a>
                             </div>
 
-                            <span class="label-category">
-                                <?php $category = get_the_category($slide->ID);
-                                if($category[0]){ echo $category[0]->cat_name; }?>
-                            </span>
+                            <?php
+                              $category = get_the_category($slide->ID);
+                              if($category[0]){ echo
+                                '<span class="label-category">' .
+                                  $category[0]->cat_name .
+                                '</span>';
+                              }
+                            ?>
+
                         </div>
                     <?php endforeach;?>
                 </div>
 
                 <div class="slider-medium__content">
                     <ul class="slider-medium__desc">
-                        <?php foreach($homeSlides as $ind => $slide): ?>
+                        <?php foreach($homeSlides as $ind => $slide):  if(!has_post_thumbnail($slide->ID)) continue; ?>
                             <li <?php echo $ind == 0 ? 'class="active"' : ''?>>
-                                <strong><?php echo $slide->post_title;?></strong>
-                                <span><?php echo get_field('sub_title', $slide->ID)?></span>
+                                <a title="<?php echo get_the_title($slide->ID)?>" href="<?php echo get_permalink($slide->ID)?>">
+                                    <strong><?php echo $slide->post_title;?></strong>
+                                    <span><?php echo get_field('slide_description', $slide->ID)?></span>
+                                </a>
                             </li>
                         <?php endforeach;?>
                     </ul>
                 </div>
 
                 <div class="slider-medium__pager">
-                    <?php foreach($homeSlides as $ind => $slide): ?>
+                    <?php foreach($homeSlides as $ind => $slide):  if(!has_post_thumbnail($slide->ID)) continue; ?>
                         <a href="#" data-slide-index="<?php echo $ind?>" <?php echo $ind == 0 ? 'class="active"' : ''?>></a>
                     <?php endforeach;?>
                 </div>
             </div>
 
-            <div class="front-logo">
-                <div class="front-logo__media">
-                    <img src="<?php echo get_template_directory_uri()?>/img/logo-1.png" alt="">
-                </div>
-
-                <div class="front-logo__social">
-                    <?php if($options['email_link']):?>
-                        <a href="mailto:<?php echo $options['email_link']?>" class="social-envelope"></a>
-                    <?php endif;?>
-                    <?php if($options['facebook_link']):?>
-                        <a href="<?php echo $options['facebook_link']?>" class="social-fb"></a>
-                    <?php endif;?>
-                    <?php if($options['twitter_link']):?>
-                        <a href="<?php echo $options['twitter_link']?>" class="social-tw"></a>
-                    <?php endif;?>
-                    <?php if($options['github_link']):?>
-                        <a href="<?php echo $options['github_link']?>" class="social-git"></a>
-                    <?php endif;?>
-                </div>
-            </div>
         </div>
     <?php endif;?>
     <?php
         $commissionsItems = array();
         $minYear = 9999;
         $maxYear = 0;
+        $years = array();
 
         foreach(get_posts( array(
 
-            'meta_key'			=> 'year_realise',
-            'orderby'			=> 'meta_value_num',
-            'order'				=> 'DESC',
-//            'orderby'          => 'post_date',
-//            'order'            => 'DESC',
+            'meta_key'            => 'year_realise',
+            'orderby'            => 'meta_value_num',
+            'order'                => 'DESC',
+            'numberposts'       => -1,
             'post_type'        => 'commission',
             'post_status'      => 'publish'
         )) as $pItem) {
 
             $entry = array();
-            $entry['year_realise'] = get_field('year_realise', $pItem->ID);
+
+            $year_realise = date_create(get_field('year_realise', $pItem->ID));
+            $entry['year_realise'] = date_format($year_realise,'Y');
+            $entry['date_realise'] = date_format($year_realise,'m/d/Y');
             $entry['color'] = get_field('color', $pItem->ID);
-            $entry['list_frame_type'] = get_field('list_frame_type', $pItem->ID);
-            $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+
+            $frm = get_field('list_frame_type', $pItem->ID);
+
+            if ($frm) {
+              $entry['list_frame_type'] = $frm;
+            }
+
+            if ( has_post_thumbnail($pItem->ID) ) {
+                list($thumbnail) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+                $entry['thumbnail'] = '<img class="thumbnail" src="'.get_template_directory_uri().'/img/blank.png" alt="" data-origin="'.$thumbnail.'" />';
+                list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), 'custom-commision-size');
+            } else {
+              $default_img = get_template_directory_uri() . '/img/default_profile.png';
+              $entry['thumbnail'] = '<img class="thumbnail default_img" src="'.get_template_directory_uri().'/img/blank.png" data-origin="'.$default_img.'" alt="default image"></img>';
+
+              $entry['image'] = $default_img;
+            }
 
             $entry['title'] = $pItem->post_title;
+            $cat = get_the_category($pItem->ID);
+            $entry['category'] = $cat[0]->cat_name;
+            if ($cat[0]->slug == 'commission' or !isset($cat)){
+              $entry['catslug'] = 'commission';
+            } elseif ($cat){
+              $entry['catslug'] = 'i-item_feature '.$cat[0]->slug;
+            }
             $entry['url'] = get_permalink($pItem->ID);
 
             $arts = get_field('artist', $pItem->ID);
@@ -113,7 +158,7 @@ get_header();
                 $entry['author'][] = $art->post_title;
             }
 
-            $entry['author'] = implode(' && ', $entry['author']);
+            $entry['author'] = implode(' & ', $entry['author']);
 
             $entry['url'] = get_permalink($pItem->ID);
 
@@ -125,6 +170,7 @@ get_header();
                 $entry['tags'][] = $tag->name;
             }
 
+            $years[] = strtotime(date_format($year_realise,'d-m-Y'));
 
             $commissionsItems[] = $entry;
 //            *****************
@@ -136,6 +182,7 @@ get_header();
         $theYear = $maxYear;
         $yearsSorters = array();
         $commissionsNumber = count($commissionsItems);
+        array_multisort($years,  SORT_DESC, SORT_NUMERIC, $commissionsItems,  SORT_DESC, SORT_NUMERIC);
 
         foreach($commissionsItems as $pInd => $item) {
 
@@ -153,23 +200,29 @@ get_header();
             'orderby'          => 'post_title',
             'order'            => 'ASC',
             'post_type'        => 'artist',
+            'numberposts'       => -1,
             'post_status'      => 'publish'
         )) as $pInd => $pItem) {
 
             $entry = array();
 
-            $entry['thumbnail'] = get_the_post_thumbnail($pItem->ID, array(50, 50));
-            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
-            $entry['title'] = $pItem->post_title;
+            $entry['ID'] = $pItem->ID;
+            list($thumbnail) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(50, 50));
+            $entry['thumbnail'] = '<img class="thumbnail" src="'.get_template_directory_uri().'/img/blank.png" alt="" data-origin="'.$thumbnail.'" />';
+            list($entry['image']) = wp_get_attachment_image_src(get_post_thumbnail_id( $pItem->ID ), array(200, 200));
+            $entry['title'] = iconv('UTF-8', 'US-ASCII//TRANSLIT', $pItem->post_title);
             $entry['url'] = get_permalink($pItem->ID);
             $entry['location'] = get_field('location', $pItem->ID);
-            $entry['letter'] = strtolower(substr($pItem->post_title, 0, 1));
+            $map = get_field('artist_map', $pItem->ID);
+            $entry['map_lat'] = $map ? $map['lat'] : '';
+            $entry['map_lng'] = $map ? $map['lng'] : '';;
+            $entry['letter'] = strtolower(substr($entry['title'], 0, 1));
 
             $entry['works'] = array();
 
             foreach(get_posts(array(
-                'numberposts'	=> 3,
-                'post_type'		=> 'commission',
+                'numberposts'    => 3,
+                'post_type'        => 'commission',
                 'post__in'      => getCommissionsPostIds(array($pItem)),
             )) as $pCommission) {
 
@@ -180,6 +233,7 @@ get_header();
         }
 
         $lettersSorters = array();
+        $usedLetters = array();
         $theLetter = '';
 
         $artistsNumber = count($artistsItems);
@@ -190,12 +244,16 @@ get_header();
 
             if(!isset($lettersSorters[$item['letter']])) {
                 $lettersSorters[$item['letter']] = array('from' => $pInd, 'to' => ($artistsNumber - $pInd));
+                $usedLetters[] = $item['letter'];
             }
 
             $lettersSorters[$item['letter']]['to'] = ($artistsNumber - $pInd);
         }
+        sort($usedLetters);
+        $firstLetter = array_shift($usedLetters);
+        $lastLetter = array_pop($usedLetters);
     ?>
-    <section class="search-block">
+    <section id="projects" class="search-block">
 
         <header class="search-block__head">
 
@@ -203,43 +261,43 @@ get_header();
                 <div class="search-block__period-years">
                     <div class="search-block__period-left active">
                         <?php echo $maxYear;?>
-                        <span>&rarr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
 
                     <div class="search-block__period-right">
                         <?php echo $minYear;?>
-                        <span>&larr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
                 </div>
 
                 <div class="search-block__period-years-titles" style="display: none">
                     <div class="search-block__period-left active">
                         <?php echo $maxYear;?>
-                        <span>&rarr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
 
                     <div class="search-block__period-right">
                         <?php echo $minYear;?>
-                        <span>&larr;</span>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
                 </div>
 
                 <div class="search-block__period-letters" style="display: none">
                     <div class="search-block__period-left active">
-                        <?php _e('A')?>
-                        <span>&rarr;</span>
+                        <?php echo strtoupper($firstLetter)?>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
 
                     <div class="search-block__period-right">
-                        <?php _e('Z')?>
-                        <span>&larr;</span>
+                        <?php echo strtoupper($lastLetter)?>
+                        <span data-before="&rarr;" data-after="&larr;"></span>
                     </div>
                 </div>
             </div>
 
             <div class="search-block__field">
                 <i class="icon-search"></i>
-                <input type="search" placeholder="<?php _e('search or filter by work, artist or keyword')?>">
+                <input type="search" placeholder="<?php _e('search or filter by project, artist or keyword')?>">
             </div>
         </header>
 
@@ -249,29 +307,50 @@ get_header();
                     <input type="radio" name="filter-type" value=".type-icon" data-toggle-block=".search-block__period-years"
                            checked>
                     <i></i>
-                    <span><?php _e('icon grid')?></span>
+                    <span><?php _e('projects grid')?></span>
                 </label>
 
                 <label class="search-block__filter-item-icons-titls">
                     <input type="radio" name="filter-type" value=".type-icon-title"
                            data-toggle-block=".search-block__period-years-titles">
                     <i></i>
-                    <span><?php _e('icons and titles')?></span>
+                    <span><?php _e('projects with titles')?></span>
                 </label>
 
                 <label class="search-block__filter-item-artists">
                     <input type="radio" name="filter-type" value=".type-artist"
                            data-toggle-block=".search-block__period-letters">
                     <i></i>
-                    <span><?php _e('commisioned artists')?></span>
+                    <span><?php _e('people')?></span>
                 </label>
             </div>
 
             <div class="search-block__filter-labels">
-                <?php foreach(get_tags() as $tag):?>
+                <?php
+                $cat_args = array(
+                  'orderby'  => 'count',
+                  'order'   => 'DESC'
+                  );
+                $cats = get_categories( $cat_args );
+                foreach($cats as $cat):?>
+                    <label class="filter-label cat-label">
+                        <input type="checkbox" name="filter-labels" value="<?php echo $cat->name?>">
+                        <span class="tag_name"><?php echo $cat->name ?></span>
+                        <span class="tag_count">(<?php echo $cat->count ?>)</span>
+                    </label>
+                <?php endforeach;?>
+
+                <?php
+                $tag_args = array(
+                  'orderby'  => 'count',
+                  'order'   => 'DESC'
+                  );
+                $tags = get_tags($tag_args);
+                foreach($tags as $tag):?>
                     <label class="filter-label">
                         <input type="checkbox" name="filter-labels" value="<?php echo $tag->name?>">
-                        <span><?php echo $tag->name?></span>
+                        <span class="tag_name"><?php echo $tag->name ?></span>
+                        <span class="tag_count">(<?php echo $tag->count ?>)</span>
                     </label>
                 <?php endforeach;?>
 
@@ -290,7 +369,6 @@ get_header();
 
                 <?php foreach($commissionsItems as $ind => $item):?>
 
-
                     <?php if($theYear != $item['year_realise']): $theYear = $item['year_realise'];?>
                         <div class="i-item i-item_year type-icon"
                              data-sort-up="<?php echo $yearsSorters[$theYear]['from']?>"
@@ -300,18 +378,23 @@ get_header();
                         </div>
                     <?php endif;?>
 
-                    <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type']?>"
-                         data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
+                    <div class="i-item i-item_icon type-icon <?php echo $item['list_frame_type'] . ' ' . $item['catslug']; ?>"
+                         data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?> <?php echo $item['category']?> <?php echo $item['author']?>"
                          <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up="<?php echo $ind;?>"
                          data-sort-down="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
+                         data-date_realise="<?php echo $item['date_realise']?>"
                          data-title="<?php echo $item['title']?>"
+                         data-category="<?php echo $item['category']?>"
+                         data-catslug="<?php echo $item['catslug']?>"
                          data-author="<?php echo $item['author']?>"
                          data-labels="<?php echo implode(',', $item['tags'])?>"
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>"
                          data-url="<?php echo $item['url']?>">
-                        <?php echo $item['thumbnail']?>
+                        <a href="<?php echo $item['url']?>" title="<?php echo $item['title']?>">
+                            <?php echo $item['thumbnail']?>
+                        </a>
                     </div>
                 <?php endforeach;?>
 
@@ -336,19 +419,22 @@ get_header();
                         </div>
                     <?php endif;?>
 
-                    <div class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type']?>"
+                    <div title="<?php echo $item['title']?>" class="i-item i-item_icon_title type-icon-title <?php echo $item['list_frame_type'] . ' ' . $item['catslug']; ?>"
                          data-search="<?php echo $item['title']?> <?php echo implode(' ', $item['tags'])?>"
                         <?php echo ($item['color'] ? 'data-custom-color="'.$item['color'].'"' : '') ?>
                          data-sort-up-title="<?php echo $ind;?>"
                          data-sort-down-title="<?php echo ($commissionsNumber - $ind);?>"
                          data-img="<?php echo $item['image']?>"
+                         data-date_realise="<?php echo $item['date_realise']?>"
                          data-title="<?php echo $item['title']?>"
+                         data-category="<?php echo $item['category']?>"
+                         data-catslug="<?php echo $item['catslug']?>"
                          data-url="<?php echo $item['url']?>"
                          data-author="<?php echo $item['author']?>"
                          data-labels="<?php echo implode(',', $item['tags'])?>"
                          data-labels-url="<?php echo implode(',', $item['tags_links'])?>">
-                        <?php echo $item['thumbnail']?>
-                        <span><?php echo $item['title']?></span>
+                        <a href="<?php echo $item['url']?>"><?php echo $item['thumbnail']?></a>
+                        <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>
 
                 <?php endforeach;?>
@@ -375,22 +461,27 @@ get_header();
                     <div class="i-item i-item_artist type-artist"
 
                          data-works="<?php echo implode(',', $item['works'])?>"
+
                          data-labels="<?php echo $item['title']?>"
                          data-map="<?php echo get_template_directory_uri()?>/img/map-2.png"
 
                          data-sort-up-letter="<?php echo $ind;?>"
                          data-sort-down-letter="<?php echo ($commissionsNumber - $ind);?>"
                          data-search="<?php echo $item['title']?>"
-                         data-artist="<?php echo $item['image']?>"
+                         data-artist="<?php echo get_artist_pic($item['ID'],'uri')?>"
                          data-name="<?php echo $item['title']?>?<?php echo $item['url']?>"
                          data-url="<?php echo $item['url']?>"
-                         data-place="<?php echo $item['location']?>">
-                        <?php echo $item['thumbnail']?>
-                        <span><?php echo $item['title']?></span>
+                         data-place="<?php echo $item['location']?>"
+                         data-map-lat="<?php echo $item['map_lat']?>"
+                         data-map-lng="<?php echo $item['map_lng']?>">
+                        <img class="thumbnail" src="<?php echo get_template_directory_uri()?>/img/blank.png" alt="" data-origin="<?php echo get_artist_pic($item['ID'],'uri48')?>" />
+
+                        <a href="<?php echo $item['url']?>"><?php echo $item['title']?></a>
                     </div>
                 <?php endforeach;?>
             </div>
         </div>
 
     </section>
+</div>
 <?php get_footer(); ?>

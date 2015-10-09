@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>scrn-laptop</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="hp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="-hp_grid" sketch:type="MSArtboardGroup" transform="translate(-725.000000, -1792.000000)">
+            <g id="hovers" sketch:type="MSLayerGroup" transform="translate(20.000000, 719.000000)">
+                <g id="commission-hovers" transform="translate(165.000000, 435.000000)" sketch:type="MSShapeGroup">
+                    <g id="scrn-laptop" transform="translate(540.000000, 638.000000)">
+                        <path d="M10.4977448,12.0063093 C10.4977448,10.8982553 11.4009535,10 12.4947405,10 L67.5052595,10 C68.6081697,10 69.5022552,10.8861955 69.5022552,12.0063093 L69.5022552,62.9936907 C69.5022552,64.1017447 68.5990465,65 67.5052595,65 L12.4947405,65 C11.3918303,65 10.4977448,64.1138045 10.4977448,62.9936907 L10.4977448,12.0063093 Z M13.4932345,20.0023996 C13.4932345,18.8965048 14.3946152,18 15.4972177,18 L63.4214572,18 C64.5282266,18 65.4254404,18.8962786 65.4254404,20.0023996 L65.4254404,52.9976004 C65.4254404,54.1034952 64.5240597,55 63.4214572,55 L15.4972177,55 C14.3904484,55 13.4932345,54.1037214 13.4932345,52.9976004 L13.4932345,20.0023996 Z" id="Rectangle-212" fill="#FFFFFF"></path>
+                        <path d="M0,1.99749826 C0,0.894310431 0.8984375,0 1.99749826,0 L78.0025017,0 C79.1056896,0 80,0.8984375 80,1.99749826 L80,78.0025017 C80,79.1056896 79.1015625,80 78.0025017,80 L1.99749826,80 C0.894310431,80 0,79.1015625 0,78.0025017 L0,1.99749826 Z M15,15 L65,15 L65,65 L15,65 L15,15 Z" id="Rectangle-212-Copy-5" fill="#FFFFFF" transform="translate(40.000000, 40.000000) rotate(-90.000000) translate(-40.000000, -40.000000) "></path>
+                        <path d="M5,58.5 L75,58.5" id="Line-10" stroke="#C6D0DA" stroke-width="3"></path>
+                        <rect id="Rectangle-211" stroke="#C6D0DA" x="14.0677941" y="18" width="51.9322059" height="37" rx="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

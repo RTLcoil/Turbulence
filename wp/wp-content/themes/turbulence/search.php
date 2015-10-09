@@ -10,7 +10,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+		<div id="content" class="site-content archive" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -19,9 +19,11 @@ get_header(); ?>
 			</header>
 
 			<?php /* The loop */ ?>
+			<div class="minis">
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php get_template_part( 'mini', get_post_type() );?>
 			<?php endwhile; ?>
+			</div>
 
 			<?php turbulence_paging_nav(); ?>
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="72px" height="73px" viewBox="0 0 72 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (232) - http://www.bohemiancoding.com/sketch -->
+    <title>scrn-tablet</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="hp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="-hp_grid" sketch:type="MSArtboardGroup" transform="translate(-933.000000, -1342.000000)">
+            <g id="hovers" sketch:type="MSLayerGroup" transform="translate(20.000000, 719.000000)">
+                <g id="commission-hovers" transform="translate(175.000000, 615.000000)" sketch:type="MSShapeGroup">
+                    <g id="scrn-tablet" transform="translate(738.000000, 8.000000)">
+                        <path d="M0,1.99043333 C0,0.891147355 0.897313328,0 2.00083888,0 L69.9991611,0 C71.1041939,0 72,0.896652961 72,1.99043333 L72,71.0095667 C72,72.1088526 71.1026867,73 69.9991611,73 L2.00083888,73 C0.895806078,73 0,72.103347 0,71.0095667 L0,1.99043333 Z M15.363934,12.6194791 C15.363934,11.5141931 16.2650645,10.6181818 17.3688788,10.6181818 L53.7892873,10.6181818 C54.8965877,10.6181818 55.7942321,11.5124837 55.7942321,12.6194791 L55.7942321,57.7259754 C55.7942321,58.8312614 54.8931015,59.7272727 53.7892873,59.7272727 L17.3688788,59.7272727 C16.2615783,59.7272727 15.363934,58.8329709 15.363934,57.7259754 L15.363934,12.6194791 Z" id="Rectangle-212" fill="#FFFFFF"></path>
+                        <rect id="Path-2" stroke="#C6D0DA" x="12" y="5" width="47" height="64" rx="4"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
